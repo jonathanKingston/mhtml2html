@@ -24,7 +24,8 @@
     "prebuild": "yarn lint",
     "build": "webpack --mode=production",
     "pretest": "yarn build",
-    "test": "yarn mocha tests/ && karma start --single-run"
+    "test": "yarn mocha tests/ && karma start --single-run",
+    "compare": "node screenshot-compare.js"
   },
   "engines": {
     "node": ">=10"
@@ -32,6 +33,9 @@
   "dependencies": {
     "base-64": "^0.1.0",
     "jsdom": "^15.1.1",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^21.0.0",
     "quoted-printable": "^1.0.1",
     "yargs": "^15.1.0"
   },

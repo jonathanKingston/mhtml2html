@@ -1,0 +1,10 @@
+# Sample URL list for screenshot comparison
+# Lines starting with # are ignored
+# One URL per line
+
+https://example.com
+https://www.w3.org/Style/CSS/Overview.en.html
+https://developer.mozilla.org/en-US/
+https://news.ycombinator.com
+https://en.wikipedia.org/wiki/HTML
+
