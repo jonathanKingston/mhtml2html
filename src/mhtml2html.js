@@ -54,35 +54,51 @@ function absoluteURL(base, relative) {
     return stack.join('/');
 }
 
+// Decode and process CSS from a media entry, replacing url() references.
+function processCSS(media, path) {
+    const entry = media[path];
+    if (!entry || entry.type !== 'text/css') return null;
+
+    const decoded = entry.encoding === 'base64'
+        ? Base64.decode(entry.data)
+        : entry.data;
+
+    return replaceReferences(media, path, decoded);
+}
+
 // Replace asset references with the corresponding data.
-function replaceReferences(media, base, asset) {
+function replaceReferences(media, base, css) {
     const CSS_URL_RULE = 'url(';
     let reference, i;
 
-    for (i = 0; (i = asset.indexOf(CSS_URL_RULE, i)) > 0; i += reference.length) {
+    for (i = 0; (i = css.indexOf(CSS_URL_RULE, i)) > 0; i += reference.length) {
         i += CSS_URL_RULE.length;
-        reference = asset.substring(i, asset.indexOf(')', i));
+        reference = css.substring(i, css.indexOf(')', i));
 
         // Get the absolute path of the referenced asset.
         const path = absoluteURL(base, reference.replace(/(\"|\')/g,''));
-        if (media[path] != null) {
-            if (media[path].type === 'text/css') {
-                media[path].data = replaceReferences(media, base, media[path].data);
+        const entry = media[path];
+        if (entry != null) {
+            let assetData;
+            if (entry.type === 'text/css') {
+                // Recursively process nested CSS
+                assetData = processCSS(media, path);
+            } else {
+                // Decode non-CSS assets
+                assetData = entry.encoding === 'base64'
+                    ? Base64.decode(entry.data)
+                    : entry.data;
             }
-            // Replace the reference with an encoded version of the resource.
+            // Replace the reference with a data URI
             try {
-                const embeddedAsset = `'data:${media[path].type};base64,${(
-                    media[path].encoding === 'base64' ?
-                        media[path].data :
-                        Base64.encode(media[path].data)
-                )}'`;
-                asset = `${asset.substring(0, i)}${embeddedAsset}${asset.substring(i + reference.length)}`;
+                const embeddedAsset = `'data:${entry.type};base64,${Base64.encode(assetData)}'`;
+                css = `${css.substring(0, i)}${embeddedAsset}${css.substring(i + reference.length)}`;
             } catch(e) {
                 console.warn(e);
             }
         }
     }
-    return asset;
+    return css;
 }
 
 // Converts the provided asset to a data URI based on the encoding.
@@ -341,12 +357,7 @@ const mhtml2html = {
                             // Embed the css into the document.
                             style = documentElem.createElement('style');
                             style.type = 'text/css';
-                            // Decode base64-encoded CSS before embedding
-                            let cssData = media[href].encoding === 'base64'
-                                ? Base64.decode(media[href].data)
-                                : media[href].data;
-                            cssData = replaceReferences(media, href, cssData);
-                            style.appendChild(documentElem.createTextNode(cssData));
+                            style.appendChild(documentElem.createTextNode(processCSS(media, href)));
                             childNode.replaceChild(style, child);
                         }
                         break;
