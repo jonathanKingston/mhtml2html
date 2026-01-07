@@ -341,8 +341,12 @@ const mhtml2html = {
                             // Embed the css into the document.
                             style = documentElem.createElement('style');
                             style.type = 'text/css';
-                            media[href].data = replaceReferences(media, href, media[href].data);
-                            style.appendChild(documentElem.createTextNode(media[href].data));
+                            // Decode base64-encoded CSS before embedding
+                            let cssData = media[href].encoding === 'base64'
+                                ? Base64.decode(media[href].data)
+                                : media[href].data;
+                            cssData = replaceReferences(media, href, cssData);
+                            style.appendChild(documentElem.createTextNode(cssData));
                             childNode.replaceChild(style, child);
                         }
                         break;
