@@ -2,18 +2,18 @@
 
 /**
  * Screenshot Comparison Tool for MHTML Conversion Quality
- * 
+ *
  * Loads pages from a list, exports to MHTML via CDP, converts back to HTML,
  * then compares screenshots between original and converted versions.
  */
 
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-const path = require('path');
-const { PNG } = require('pngjs');
-const pixelmatch = require('pixelmatch');
-const mhtml2html = require('./dist/mhtml2html');
-const { JSDOM } = require('jsdom');
+import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
+import { PNG } from 'pngjs';
+import pixelmatch from 'pixelmatch';
+import mhtml2html from './src/mhtml2html.js';
+import { JSDOM } from 'jsdom';
 
 const OUTPUT_DIR = './.debug/comparison';
 const VIEWPORT = { width: 1280, height: 800 };
@@ -42,7 +42,7 @@ async function takeScreenshot(page, filepath) {
 function convertMHTMLToHTML(mhtmlContent) {
     const dom = mhtml2html.convert(mhtmlContent, {
         convertIframes: true,
-        parseDOM: (html) => new JSDOM(html)
+        parseDOM: (html) => new JSDOM(html),
     });
     return dom.serialize();
 }
@@ -50,36 +50,36 @@ function convertMHTMLToHTML(mhtmlContent) {
 async function compareImages(img1Path, img2Path, diffPath) {
     const img1 = PNG.sync.read(fs.readFileSync(img1Path));
     const img2 = PNG.sync.read(fs.readFileSync(img2Path));
-    
+
     const { width, height } = img1;
-    
+
     // Handle size mismatches
     if (img2.width !== width || img2.height !== height) {
         return {
             mismatch: true,
             reason: `Size mismatch: ${width}x${height} vs ${img2.width}x${img2.height}`,
             diffPixels: -1,
-            diffPercent: -1
+            diffPercent: -1,
         };
     }
-    
+
     const diff = new PNG({ width, height });
     const diffPixels = pixelmatch(img1.data, img2.data, diff.data, width, height, {
         threshold: 0.1,
-        includeAA: false
+        includeAA: false,
     });
-    
+
     fs.writeFileSync(diffPath, PNG.sync.write(diff));
-    
+
     const totalPixels = width * height;
     const diffPercent = (diffPixels / totalPixels) * 100;
-    
+
     return {
         mismatch: false,
         diffPixels,
         diffPercent: diffPercent.toFixed(2),
         width,
-        height
+        height,
     };
 }
 
@@ -94,13 +94,13 @@ async function processURL(browser, url, index, results) {
     const safeName = sanitizeFilename(url);
     const pageDir = path.join(OUTPUT_DIR, `${index.toString().padStart(3, '0')}_${safeName}`);
     await ensureDir(pageDir);
-    
+
     const originalScreenshot = path.join(pageDir, 'original.png');
     const convertedScreenshot = path.join(pageDir, 'converted.png');
     const diffScreenshot = path.join(pageDir, 'diff.png');
     const mhtmlFile = path.join(pageDir, 'page.mhtml');
     const htmlFile = path.join(pageDir, 'converted.html');
-    
+
     const result = {
         index,
         url,
@@ -108,73 +108,83 @@ async function processURL(browser, url, index, results) {
         success: false,
         error: null,
         comparison: null,
-        files: { pageDir, mhtmlFile, htmlFile }
+        files: { pageDir, mhtmlFile, htmlFile },
     };
-    
+
     let page = null;
-    
+
     try {
         console.log(`[${index}] Loading: ${url}`);
-        
+
         // Load original page and capture
         page = await browser.newPage();
         await page.setViewport(VIEWPORT);
-        
-        await page.goto(url, { 
+
+        await page.goto(url, {
             waitUntil: 'networkidle2',
-            timeout: TIMEOUT 
+            timeout: TIMEOUT,
         });
-        
+
         // Wait a bit for any late-loading content
-        await page.evaluate(() => new Promise(r => setTimeout(r, 1000)));
-        
+        await page.evaluate(() => new Promise((r) => setTimeout(r, 1000)));
+
         // Take screenshot of original
         await takeScreenshot(page, originalScreenshot);
         console.log(`[${index}] Original screenshot captured`);
-        
+
         // Capture MHTML
         const mhtmlContent = await captureMHTML(page);
         await fs.promises.writeFile(mhtmlFile, mhtmlContent);
         console.log(`[${index}] MHTML captured (${(mhtmlContent.length / 1024).toFixed(1)} KB)`);
-        
+
         await page.close();
         page = null;
-        
+
         // Convert MHTML to HTML
         const htmlContent = convertMHTMLToHTML(mhtmlContent);
         await fs.promises.writeFile(htmlFile, htmlContent);
         console.log(`[${index}] Converted to HTML (${(htmlContent.length / 1024).toFixed(1)} KB)`);
-        
+
         // Load converted HTML and screenshot
         page = await browser.newPage();
         await page.setViewport(VIEWPORT);
-        
+
         // Load as data URI or file URL
         const htmlDataUri = `data:text/html;charset=utf-8,${encodeURIComponent(htmlContent)}`;
-        await page.goto(htmlDataUri, { 
+        await page.goto(htmlDataUri, {
             waitUntil: 'networkidle2',
-            timeout: TIMEOUT 
+            timeout: TIMEOUT,
         });
-        
-        await page.evaluate(() => new Promise(r => setTimeout(r, 500)));
+
+        await page.evaluate(() => new Promise((r) => setTimeout(r, 500)));
         await takeScreenshot(page, convertedScreenshot);
         console.log(`[${index}] Converted screenshot captured`);
-        
+
         await page.close();
         page = null;
-        
+
         // Compare screenshots
-        const comparison = await compareImages(originalScreenshot, convertedScreenshot, diffScreenshot);
+        const comparison = await compareImages(
+            originalScreenshot,
+            convertedScreenshot,
+            diffScreenshot
+        );
         result.comparison = comparison;
         result.success = true;
-        
+
         if (comparison.mismatch) {
             console.log(`[${index}] ⚠️  ${comparison.reason}`);
         } else {
-            const status = comparison.diffPercent < 1 ? '✅' : comparison.diffPercent < 5 ? '⚠️' : '❌';
-            console.log(`[${index}] ${status} Diff: ${comparison.diffPercent}% (${comparison.diffPixels} pixels)`);
+            const status =
+                comparison.diffPercent < 1
+                    ? '✅'
+                    : comparison.diffPercent < 5
+                      ? '⚠️'
+                      : '❌';
+            console.log(
+                `[${index}] ${status} Diff: ${comparison.diffPercent}% (${comparison.diffPixels} pixels)`
+            );
         }
-        
     } catch (err) {
         result.error = err.message;
         console.log(`[${index}] ❌ Error: ${err.message}`);
@@ -183,7 +193,7 @@ async function processURL(browser, url, index, results) {
             await page.close().catch(() => {});
         }
     }
-    
+
     results.push(result);
     return result;
 }
@@ -192,8 +202,8 @@ async function loadURLList(filepath) {
     const content = await fs.promises.readFile(filepath, 'utf8');
     return content
         .split('\n')
-        .map(line => line.trim())
-        .filter(line => line && !line.startsWith('#'));
+        .map((line) => line.trim())
+        .filter((line) => line && !line.startsWith('#'));
 }
 
 function generateReport(results) {
@@ -201,22 +211,25 @@ function generateReport(results) {
         timestamp: new Date().toISOString(),
         summary: {
             total: results.length,
-            successful: results.filter(r => r.success).length,
-            failed: results.filter(r => !r.success).length,
-            lowDiff: results.filter(r => r.success && r.comparison?.diffPercent < 1).length,
-            mediumDiff: results.filter(r => r.success && r.comparison?.diffPercent >= 1 && r.comparison?.diffPercent < 5).length,
-            highDiff: results.filter(r => r.success && r.comparison?.diffPercent >= 5).length,
+            successful: results.filter((r) => r.success).length,
+            failed: results.filter((r) => !r.success).length,
+            lowDiff: results.filter((r) => r.success && r.comparison?.diffPercent < 1).length,
+            mediumDiff: results.filter(
+                (r) =>
+                    r.success && r.comparison?.diffPercent >= 1 && r.comparison?.diffPercent < 5
+            ).length,
+            highDiff: results.filter((r) => r.success && r.comparison?.diffPercent >= 5).length,
         },
-        results: results.map(r => ({
+        results: results.map((r) => ({
             url: r.url,
             success: r.success,
             error: r.error,
             diffPercent: r.comparison?.diffPercent ?? null,
             diffPixels: r.comparison?.diffPixels ?? null,
-            directory: r.files?.pageDir
-        }))
+            directory: r.files?.pageDir,
+        })),
     };
-    
+
     return report;
 }
 
@@ -231,26 +244,26 @@ function printSummary(report) {
     console.log(`Medium (1-5%):   ${report.summary.mediumDiff} ⚠️`);
     console.log(`High (>5%):      ${report.summary.highDiff} ❌`);
     console.log('='.repeat(60));
-    
+
     // List high-diff pages
-    const highDiff = report.results.filter(r => r.success && r.diffPercent >= 5);
+    const highDiff = report.results.filter((r) => r.success && r.diffPercent >= 5);
     if (highDiff.length > 0) {
         console.log('\nHigh difference pages:');
-        highDiff.forEach(r => console.log(`  ${r.diffPercent}% - ${r.url}`));
+        highDiff.forEach((r) => console.log(`  ${r.diffPercent}% - ${r.url}`));
     }
-    
+
     // List failures
-    const failures = report.results.filter(r => !r.success);
+    const failures = report.results.filter((r) => !r.success);
     if (failures.length > 0) {
         console.log('\nFailed pages:');
-        failures.forEach(r => console.log(`  ${r.url}: ${r.error}`));
+        failures.forEach((r) => console.log(`  ${r.url}: ${r.error}`));
     }
 }
 
 async function main() {
     const args = process.argv.slice(2);
     let urls = [...DEFAULT_URLS];
-    
+
     // Parse arguments
     for (const arg of args) {
         if (arg.startsWith('--urls=')) {
@@ -285,23 +298,19 @@ Examples:
             process.exit(0);
         }
     }
-    
+
     console.log(`Testing ${urls.length} URL(s)...\n`);
-    
+
     await ensureDir(OUTPUT_DIR);
-    
+
     const browser = await puppeteer.launch({
         headless: 'new',
-        channel: 'chrome',  // Use installed Chrome instead of bundled Chromium
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage'
-        ]
+        channel: 'chrome', // Use installed Chrome instead of bundled Chromium
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     });
-    
+
     const results = [];
-    
+
     try {
         for (let i = 0; i < urls.length; i++) {
             await processURL(browser, urls[i], i + 1, results);
@@ -309,19 +318,18 @@ Examples:
     } finally {
         await browser.close();
     }
-    
+
     // Generate and save report
     const report = generateReport(results);
     const reportPath = path.join(OUTPUT_DIR, 'report.json');
     await fs.promises.writeFile(reportPath, JSON.stringify(report, null, 2));
-    
+
     printSummary(report);
     console.log(`\nDetailed report: ${reportPath}`);
     console.log(`Output directory: ${OUTPUT_DIR}`);
 }
 
-main().catch(err => {
+main().catch((err) => {
     console.error('Fatal error:', err);
     process.exit(1);
 });
-

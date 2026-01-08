@@ -25,8 +25,8 @@
  *      We use getAttribute/setAttribute instead of style.cssText.
  */
 
-const QuotedPrintable = require('quoted-printable');
-const Base64 = require('base-64');
+import QuotedPrintable from 'quoted-printable';
+import Base64 from 'base-64';
 
 // Asserts a condition (throws on failure).
 function assert(condition, error) {
@@ -788,4 +788,5 @@ const mhtml2html = {
     },
 };
 
-module.exports = mhtml2html;
+export default mhtml2html;
+export const { parse, convert } = mhtml2html;
