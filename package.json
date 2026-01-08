@@ -41,6 +41,8 @@
     "build:esm": "esbuild src/mhtml2html.js --bundle --format=esm --platform=node --outfile=dist/mhtml2html.esm.js --external:quoted-printable --external:base-64",
     "build:cjs": "esbuild src/mhtml2html.js --bundle --format=cjs --platform=node --outfile=dist/mhtml2html.cjs --external:quoted-printable --external:base-64",
     "build:iife": "esbuild src/mhtml2html.js --bundle --format=iife --global-name=mhtml2html --platform=browser --outfile=dist/mhtml2html.iife.js",
+    "prepare": "npm run build:only",
+    "build:only": "npm run build:esm && npm run build:cjs && npm run build:iife",
     "pretest": "npm run build",
     "test": "mocha tests/mhtml2html.test.js && karma start karma.conf.cjs --single-run",
     "compare": "node screenshot-compare.js",
@@ -52,13 +54,13 @@
   },
   "dependencies": {
     "base-64": "^1.0.0",
+    "esbuild": "^0.20.0",
     "jsdom": "^24.0.0",
     "quoted-printable": "^1.0.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
     "chai": "^4.4.1",
-    "esbuild": "^0.20.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
