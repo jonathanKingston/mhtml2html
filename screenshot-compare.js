@@ -20,10 +20,7 @@ const VIEWPORT = { width: 1280, height: 800 };
 const TIMEOUT = 30000;
 
 // Default test URLs - override with --urls=file.txt or --url=https://...
-const DEFAULT_URLS = [
-    'https://example.com',
-    'https://www.w3.org/Style/CSS/Overview.en.html',
-];
+const DEFAULT_URLS = ['https://example.com', 'https://www.w3.org/Style/CSS/Overview.en.html'];
 
 async function ensureDir(dir) {
     await fs.promises.mkdir(dir, { recursive: true });
@@ -176,11 +173,7 @@ async function processURL(browser, url, index, results) {
             console.log(`[${index}] ⚠️  ${comparison.reason}`);
         } else {
             const status =
-                comparison.diffPercent < 1
-                    ? '✅'
-                    : comparison.diffPercent < 5
-                      ? '⚠️'
-                      : '❌';
+                comparison.diffPercent < 1 ? '✅' : comparison.diffPercent < 5 ? '⚠️' : '❌';
             console.log(
                 `[${index}] ${status} Diff: ${comparison.diffPercent}% (${comparison.diffPixels} pixels)`
             );
@@ -215,8 +208,7 @@ function generateReport(results) {
             failed: results.filter((r) => !r.success).length,
             lowDiff: results.filter((r) => r.success && r.comparison?.diffPercent < 1).length,
             mediumDiff: results.filter(
-                (r) =>
-                    r.success && r.comparison?.diffPercent >= 1 && r.comparison?.diffPercent < 5
+                (r) => r.success && r.comparison?.diffPercent >= 1 && r.comparison?.diffPercent < 5
             ).length,
             highDiff: results.filter((r) => r.success && r.comparison?.diffPercent >= 5).length,
         },

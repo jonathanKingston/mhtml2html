@@ -6,7 +6,8 @@
     "env": {
         "browser": true,
         "node": true,
-        "es2022": true
+        "es2022": true,
+        "mocha": true
     },
     "plugins": ["prettier"],
     "rules": {

@@ -204,8 +204,7 @@ function processCSS(media, path) {
     const entry = media[path];
     if (!entry || !entry.type.includes('css')) return null;
 
-    const decoded =
-        entry.encoding === 'base64' ? Base64.decode(entry.data) : entry.data;
+    const decoded = entry.encoding === 'base64' ? Base64.decode(entry.data) : entry.data;
 
     return replaceReferences(media, path, decoded);
 }
@@ -226,10 +225,7 @@ function replaceReferences(media, base, css) {
             if (entry.type.includes('css')) {
                 assetData = processCSS(media, path);
             } else {
-                assetData =
-                    entry.encoding === 'base64'
-                        ? Base64.decode(entry.data)
-                        : entry.data;
+                assetData = entry.encoding === 'base64' ? Base64.decode(entry.data) : entry.data;
             }
             try {
                 const embeddedAsset = `'data:${entry.type};base64,${Base64.encode(assetData)}'`;
@@ -257,8 +253,7 @@ function processDeclarativeShadowDOM(element, documentElem) {
     for (const child of element.children) {
         if (
             child.tagName === 'TEMPLATE' &&
-            (child.hasAttribute('data-shadowrootmode') ||
-                child.hasAttribute('data-shadowmode'))
+            (child.hasAttribute('data-shadowrootmode') || child.hasAttribute('data-shadowmode'))
         ) {
             shadowTemplate = child;
             break;
@@ -448,8 +443,7 @@ const mhtml2html = {
                             break;
                         }
 
-                        const matches =
-                            headers['Content-Type'].match(/boundary=(.*)/m);
+                        const matches = headers['Content-Type'].match(/boundary=(.*)/m);
 
                         if (
                             !softAssert(
@@ -537,10 +531,7 @@ const mhtml2html = {
                         }
 
                         // Skip if no ID or location (can't reference it anyway)
-                        if (
-                            typeof id === 'undefined' &&
-                            typeof location === 'undefined'
-                        ) {
+                        if (typeof id === 'undefined' && typeof location === 'undefined') {
                             console.warn(
                                 `[mhtml2html] Skipping content without ID or location at line ${l}`
                             );
@@ -550,9 +541,7 @@ const mhtml2html = {
                             while (!isEOF() && !getLine().includes(boundary)) {
                                 // Skip data
                             }
-                            state = isEOF()
-                                ? MHTML_FSM.MHTML_END
-                                : MHTML_FSM.MTHML_CONTENT;
+                            state = isEOF() ? MHTML_FSM.MHTML_END : MHTML_FSM.MTHML_CONTENT;
                             break;
                         }
 
@@ -595,11 +584,7 @@ const mhtml2html = {
                     }
 
                     // Decode with charset support
-                    asset.data = decodeWithCharset(
-                        asset.data,
-                        asset.charset,
-                        asset.encoding
-                    );
+                    asset.data = decodeWithCharset(asset.data, asset.charset, asset.encoding);
 
                     // Ignore assets if 'htmlOnly' is set.
                     if (htmlOnly === true && typeof index !== 'undefined') {
@@ -607,9 +592,7 @@ const mhtml2html = {
                     }
 
                     // Set the finishing state if there are no more characters.
-                    state = isEOF()
-                        ? MHTML_FSM.MHTML_END
-                        : MHTML_FSM.MTHML_CONTENT;
+                    state = isEOF() ? MHTML_FSM.MHTML_END : MHTML_FSM.MTHML_CONTENT;
                     break;
                 }
             }
@@ -631,10 +614,7 @@ const mhtml2html = {
      * @param {options.parseDOM} // The callback to parse an HTML string.
      * @returns an html document element.
      */
-    convert: (
-        mhtml,
-        { convertIframes = false, parseDOM = defaultDOMParser } = {}
-    ) => {
+    convert: (mhtml, { convertIframes = false, parseDOM = defaultDOMParser } = {}) => {
         let index, media, frames;
         let style, base, img;
         let href, src;
@@ -642,10 +622,7 @@ const mhtml2html = {
         if (typeof mhtml === 'string') {
             mhtml = mhtml2html.parse(mhtml);
         } else {
-            assert(
-                typeof mhtml === 'object',
-                'Expected argument of type string or object'
-            );
+            assert(typeof mhtml === 'object', 'Expected argument of type string or object');
         }
 
         frames = mhtml.frames;
@@ -657,8 +634,7 @@ const mhtml2html = {
         assert(typeof index === 'string', 'MHTML error: invalid index');
         assert(
             media[index] &&
-                (media[index].type === 'text/html' ||
-                    media[index].type.includes('html')),
+                (media[index].type === 'text/html' || media[index].type.includes('html')),
             'MHTML error: invalid index'
         );
 
@@ -716,9 +692,7 @@ const mhtml2html = {
                         ) {
                             style = documentElem.createElement('style');
                             style.type = 'text/css';
-                            style.appendChild(
-                                documentElem.createTextNode(processCSS(media, href))
-                            );
+                            style.appendChild(documentElem.createTextNode(processCSS(media, href)));
                             childNode.replaceChild(style, child);
                         }
                         break;
@@ -757,8 +731,7 @@ const mhtml2html = {
 
                             if (
                                 frame &&
-                                (frame.type === 'text/html' ||
-                                    frame.type.includes('html'))
+                                (frame.type === 'text/html' || frame.type.includes('html'))
                             ) {
                                 const iframe = mhtml2html.convert(
                                     {

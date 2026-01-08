@@ -9,7 +9,7 @@
  * Copyright(c) 2016 Mayank Sindwani
  **/
 
-/* global mhtml2html, chai, describe, it, fetch, FileReader */
+/* global mhtml2html, chai */
 
 function readMHTML(file, callback) {
     fetch('/templates/' + file)
@@ -97,4 +97,3 @@ describe('Browser: Test converting MHTML to HTML', function () {
         done();
     });
 });
-

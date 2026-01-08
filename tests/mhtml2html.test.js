@@ -105,9 +105,7 @@ describe('Test parsing MHTML', function () {
             chai.expect(doc.media).to.have.property(
                 'http://msindwan.bitbucket.org/images/react.png'
             );
-            chai.expect(doc.media).to.have.property(
-                'http://msindwan.bitbucket.org/css/design.css'
-            );
+            chai.expect(doc.media).to.have.property('http://msindwan.bitbucket.org/css/design.css');
 
             done();
         });
