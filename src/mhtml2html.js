@@ -9,6 +9,22 @@
  * Copyright(c) 2016 Mayank Sindwani
  **/
 
+/**
+ * KNOWN LIMITATIONS:
+ * 
+ * 1. MHTML Capture (Chrome limitation, not fixable here):
+ *    - adoptedStyleSheets: Web components using `new CSSStyleSheet()` and
+ *      `shadowRoot.adoptedStyleSheets` will have their CSS missing from MHTML.
+ *    - Font files: Fonts referenced in @font-face are not captured in MHTML.
+ *    - These are Chrome Page.captureSnapshot limitations.
+ * 
+ * 2. jsdom limitations (worked around in this code):
+ *    - Declarative Shadow DOM: jsdom consumes light DOM children when parsing
+ *      <template shadowrootmode>. We work around this by renaming attributes.
+ *    - CSS Custom Properties: jsdom's CSSOM doesn't support custom properties.
+ *      We use getAttribute/setAttribute instead of style.cssText.
+ */
+
 const QuotedPrintable = require('quoted-printable');
 const Base64 = require('base-64');
 
@@ -54,23 +70,23 @@ function absoluteURL(base, relative) {
     return stack.join('/');
 }
 
-// Try to find an asset in media using multiple URL resolution strategies
+// Try to find an asset in media using multiple URL resolution strategies.
+// Handles relative URLs, root-relative URLs, and filename matching.
 function findAsset(media, base, reference) {
-    // Clean the reference (remove quotes)
     const cleanRef = reference.replace(/(\"|\')/g, '');
     
-    // Strategy 1: Direct lookup (already absolute URL)
+    // Direct lookup
     if (media[cleanRef]) {
         return { path: cleanRef, entry: media[cleanRef] };
     }
     
-    // Strategy 2: Resolve relative to base
+    // Resolve relative to base
     const absolutePath = absoluteURL(base, cleanRef);
     if (media[absolutePath]) {
         return { path: absolutePath, entry: media[absolutePath] };
     }
     
-    // Strategy 3: For root-relative URLs (starting with /), try with base origin
+    // Root-relative URLs (starting with /)
     if (cleanRef.startsWith('/')) {
         try {
             const baseUrl = new URL(base);
@@ -83,7 +99,7 @@ function findAsset(media, base, reference) {
         }
     }
     
-    // Strategy 4: Try matching by filename (last resort for relative paths)
+    // Filename matching (last resort)
     const filename = cleanRef.split('/').pop();
     if (filename && filename.length > 3) {
         for (const key of Object.keys(media)) {
@@ -108,7 +124,7 @@ function processCSS(media, path) {
     return replaceReferences(media, path, decoded);
 }
 
-// Replace asset references with the corresponding data.
+// Replace asset references with the corresponding data URIs.
 function replaceReferences(media, base, css) {
     const CSS_URL_RULE = 'url(';
     let reference, i;
@@ -117,21 +133,17 @@ function replaceReferences(media, base, css) {
         i += CSS_URL_RULE.length;
         reference = css.substring(i, css.indexOf(')', i));
 
-        // Try to find the asset using multiple resolution strategies
         const found = findAsset(media, base, reference);
         if (found != null) {
             const { path, entry } = found;
             let assetData;
             if (entry.type === 'text/css') {
-                // Recursively process nested CSS
                 assetData = processCSS(media, path);
             } else {
-                // Decode non-CSS assets
                 assetData = entry.encoding === 'base64'
                     ? Base64.decode(entry.data)
                     : entry.data;
             }
-            // Replace the reference with a data URI
             try {
                 const embeddedAsset = `'data:${entry.type};base64,${Base64.encode(assetData)}'`;
                 css = `${css.substring(0, i)}${embeddedAsset}${css.substring(i + reference.length)}`;
@@ -143,12 +155,17 @@ function replaceReferences(media, base, css) {
     return css;
 }
 
-// Process Declarative Shadow DOM templates
-// Strategy: Remove the shadow template and keep light DOM content as-is
-// The existing CSS rules (e.g. hiding [slot="dropdown"]) will apply
-// Note: Attributes are renamed to data-* in convert() to prevent jsdom issues
-function processDeclarativeShadowDOM(element) {
-    // Find shadow root template (using renamed data-* attributes)
+/**
+ * Process Declarative Shadow DOM templates.
+ * 
+ * JSDOM WORKAROUND: jsdom has partial Declarative Shadow DOM support that
+ * consumes light DOM children incorrectly. We rename shadowrootmode/shadowmode
+ * attributes to data-* before parsing, then process templates here.
+ * 
+ * If jsdom fixes this, this function could be simplified or removed.
+ * If Chrome changes MHTML format, this would still be needed for jsdom.
+ */
+function processDeclarativeShadowDOM(element, documentElem) {
     let shadowTemplate = null;
     for (const child of element.children) {
         if (child.tagName === 'TEMPLATE' && 
@@ -160,11 +177,42 @@ function processDeclarativeShadowDOM(element) {
     }
     if (!shadowTemplate) return false;
     
-    // Simply remove the shadow template - light DOM content stays as-is
-    shadowTemplate.parentNode.removeChild(shadowTemplate);
+    // Check if template has actual content vs just slots
+    const templateContent = shadowTemplate.innerHTML;
+    const hasOnlySlots = !templateContent
+        .replace(/<slot[^>]*>.*?<\/slot>/gi, '')
+        .replace(/<!--[\s\S]*?-->/g, '')
+        .trim();
+    
+    // Collect light DOM children (everything except the template)
+    const lightDOMChildren = [];
+    for (const child of element.children) {
+        if (child !== shadowTemplate) {
+            lightDOMChildren.push(child);
+        }
+    }
+    
+    if (hasOnlySlots || lightDOMChildren.length > 0) {
+        // Template has slots or light DOM exists - just remove template, keep light DOM
+        shadowTemplate.parentNode.removeChild(shadowTemplate);
+    } else {
+        // Template has actual content with no light DOM - extract it
+        const fragment = documentElem.createDocumentFragment();
+        const contentNodes = shadowTemplate.content 
+            ? shadowTemplate.content.childNodes 
+            : shadowTemplate.childNodes;
+            
+        Array.from(contentNodes).forEach(node => {
+            if (node.nodeType !== 8) { // Skip comment nodes
+                fragment.appendChild(node.cloneNode(true));
+            }
+        });
+        
+        shadowTemplate.parentNode.removeChild(shadowTemplate);
+        element.appendChild(fragment);
+    }
     
     // Remove 'loaded' attribute so CSS hide rules apply
-    // CSS like `element:not([loaded]) [slot="dropdown"] { display: none }` will work
     if (element.hasAttribute('loaded')) {
         element.removeAttribute('loaded');
     }
@@ -181,6 +229,22 @@ function convertAssetToDataURI(asset) {
             return `data:${asset.type};base64,${asset.data}`;
         default:
             return `data:${asset.type};base64,${Base64.encode(asset.data)}`;
+    }
+}
+
+/**
+ * Update inline styles, preserving CSS custom properties.
+ * 
+ * JSDOM WORKAROUND: jsdom's CSSOM doesn't support CSS custom properties.
+ * Using style.cssText strips properties like --my-var: value.
+ * We use getAttribute/setAttribute to preserve the raw style text.
+ * 
+ * If jsdom adds CSS custom property support, this could use style.cssText.
+ */
+function updateInlineStyle(element, media, base) {
+    const inlineStyle = element.getAttribute && element.getAttribute('style');
+    if (inlineStyle) {
+        element.setAttribute('style', replaceReferences(media, base, inlineStyle));
     }
 }
 
@@ -379,9 +443,9 @@ const mhtml2html = {
      * @returns an html document element.
      */
     convert: (mhtml, { convertIframes = false, parseDOM = defaultDOMParser } = {}) => {
-        let index, media, frames;  // Record-keeping.
-        let style, base, img;      // DOM objects.
-        let href, src;             // References.
+        let index, media, frames;
+        let style, base, img;
+        let href, src;
 
         if (typeof mhtml === "string") {
             mhtml = mhtml2html.parse(mhtml);
@@ -398,11 +462,9 @@ const mhtml2html = {
         assert(typeof index  === "string", 'MHTML error: invalid index' );
         assert(media[index] && media[index].type === "text/html", 'MHTML error: invalid index');
 
-        // Pre-process HTML to prevent jsdom from processing Declarative Shadow DOM
-        // jsdom consumes light DOM children when it sees shadowrootmode/shadowmode
-        // Rename the attributes so jsdom treats templates as regular inert templates
-        let htmlContent = media[index].data;
-        htmlContent = htmlContent
+        // JSDOM WORKAROUND: Rename shadow DOM attributes before parsing
+        // to prevent jsdom from consuming light DOM children incorrectly.
+        let htmlContent = media[index].data
             .replace(/shadowrootmode=/gi, 'data-shadowrootmode=')
             .replace(/shadowmode=/gi, 'data-shadowmode=');
 
@@ -414,7 +476,6 @@ const mhtml2html = {
         while (nodes.length) {
             const childNode = nodes.shift();
 
-            // Resolve each node.
             childNode.childNodes.forEach(function(child) {
                 if (child.getAttribute) {
                     href = child.getAttribute('href');
@@ -424,13 +485,13 @@ const mhtml2html = {
                     child.removeAttribute('integrity');
                 }
                 
-                // Process Declarative Shadow DOM if present (using renamed data-* attrs)
+                // Process Declarative Shadow DOM if present
                 if (child.children) {
                     for (const grandchild of child.children) {
                         if (grandchild.tagName === 'TEMPLATE' &&
                             (grandchild.hasAttribute('data-shadowrootmode') || 
                              grandchild.hasAttribute('data-shadowmode'))) {
-                            processDeclarativeShadowDOM(child);
+                            processDeclarativeShadowDOM(child, documentElem);
                             break;
                         }
                     }
@@ -438,19 +499,15 @@ const mhtml2html = {
                 
                 switch(child.tagName) {
                     case 'HEAD':
-                        // Link targets should be directed to the outer frame.
                         base = documentElem.createElement("base");
                         base.setAttribute("target", "_parent");
                         child.insertBefore(base, child.firstChild);
                         break;
 
                     case 'LINK': {
-                        // Only process stylesheets with rel="stylesheet", skip alternate stylesheets
+                        // Only process rel="stylesheet", skip alternate stylesheets
                         const rel = child.getAttribute('rel');
-                        const isStylesheet = rel === 'stylesheet';
-                        
-                        if (isStylesheet && typeof media[href] !== 'undefined' && media[href].type === 'text/css') {
-                            // Embed the css into the document.
+                        if (rel === 'stylesheet' && media[href] && media[href].type === 'text/css') {
                             style = documentElem.createElement('style');
                             style.type = 'text/css';
                             style.appendChild(documentElem.createTextNode(processCSS(media, href)));
@@ -462,14 +519,15 @@ const mhtml2html = {
                     case 'STYLE':
                         style = documentElem.createElement('style');
                         style.type = 'text/css';
-                        style.appendChild(documentElem.createTextNode(replaceReferences(media, index, child.innerHTML)));
+                        style.appendChild(documentElem.createTextNode(
+                            replaceReferences(media, index, child.innerHTML)
+                        ));
                         childNode.replaceChild(style, child);
                         break;
 
                     case 'IMG':
                         img = null;
-                        if (typeof media[src] !== 'undefined' && media[src].type.includes('image')) {
-                            // Embed the image into the document.
+                        if (media[src] && media[src].type.includes('image')) {
                             try {
                                 img = convertAssetToDataURI(media[src]);
                             } catch(e) {
@@ -479,7 +537,7 @@ const mhtml2html = {
                                 child.setAttribute('src', img);
                             }
                         }
-                        child.style.cssText = replaceReferences(media, index, child.style.cssText);
+                        updateInlineStyle(child, media, index);
                         break;
 
                     case 'IFRAME':
@@ -501,9 +559,7 @@ const mhtml2html = {
                         break;
 
                     default:
-                        if (child.style) {
-                            child.style.cssText = replaceReferences(media, index, child.style.cssText);
-                        }
+                        updateInlineStyle(child, media, index);
                         break;
                 }
                 nodes.push(child);
