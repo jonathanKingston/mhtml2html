@@ -54,6 +54,48 @@ function absoluteURL(base, relative) {
     return stack.join('/');
 }
 
+// Try to find an asset in media using multiple URL resolution strategies
+function findAsset(media, base, reference) {
+    // Clean the reference (remove quotes)
+    const cleanRef = reference.replace(/(\"|\')/g, '');
+    
+    // Strategy 1: Direct lookup (already absolute URL)
+    if (media[cleanRef]) {
+        return { path: cleanRef, entry: media[cleanRef] };
+    }
+    
+    // Strategy 2: Resolve relative to base
+    const absolutePath = absoluteURL(base, cleanRef);
+    if (media[absolutePath]) {
+        return { path: absolutePath, entry: media[absolutePath] };
+    }
+    
+    // Strategy 3: For root-relative URLs (starting with /), try with base origin
+    if (cleanRef.startsWith('/')) {
+        try {
+            const baseUrl = new URL(base);
+            const fullUrl = baseUrl.origin + cleanRef;
+            if (media[fullUrl]) {
+                return { path: fullUrl, entry: media[fullUrl] };
+            }
+        } catch (e) {
+            // base might not be a valid URL
+        }
+    }
+    
+    // Strategy 4: Try matching by filename (last resort for relative paths)
+    const filename = cleanRef.split('/').pop();
+    if (filename && filename.length > 3) {
+        for (const key of Object.keys(media)) {
+            if (key.endsWith('/' + filename) || key.endsWith(filename)) {
+                return { path: key, entry: media[key] };
+            }
+        }
+    }
+    
+    return null;
+}
+
 // Decode and process CSS from a media entry, replacing url() references.
 function processCSS(media, path) {
     const entry = media[path];
@@ -75,10 +117,10 @@ function replaceReferences(media, base, css) {
         i += CSS_URL_RULE.length;
         reference = css.substring(i, css.indexOf(')', i));
 
-        // Get the absolute path of the referenced asset.
-        const path = absoluteURL(base, reference.replace(/(\"|\')/g,''));
-        const entry = media[path];
-        if (entry != null) {
+        // Try to find the asset using multiple resolution strategies
+        const found = findAsset(media, base, reference);
+        if (found != null) {
+            const { path, entry } = found;
             let assetData;
             if (entry.type === 'text/css') {
                 // Recursively process nested CSS
@@ -99,6 +141,35 @@ function replaceReferences(media, base, css) {
         }
     }
     return css;
+}
+
+// Process Declarative Shadow DOM templates
+// Strategy: Remove the shadow template and keep light DOM content as-is
+// The existing CSS rules (e.g. hiding [slot="dropdown"]) will apply
+// Note: Attributes are renamed to data-* in convert() to prevent jsdom issues
+function processDeclarativeShadowDOM(element) {
+    // Find shadow root template (using renamed data-* attributes)
+    let shadowTemplate = null;
+    for (const child of element.children) {
+        if (child.tagName === 'TEMPLATE' && 
+            (child.hasAttribute('data-shadowrootmode') || 
+             child.hasAttribute('data-shadowmode'))) {
+            shadowTemplate = child;
+            break;
+        }
+    }
+    if (!shadowTemplate) return false;
+    
+    // Simply remove the shadow template - light DOM content stays as-is
+    shadowTemplate.parentNode.removeChild(shadowTemplate);
+    
+    // Remove 'loaded' attribute so CSS hide rules apply
+    // CSS like `element:not([loaded]) [slot="dropdown"] { display: none }` will work
+    if (element.hasAttribute('loaded')) {
+        element.removeAttribute('loaded');
+    }
+    
+    return true;
 }
 
 // Converts the provided asset to a data URI based on the encoding.
@@ -327,7 +398,15 @@ const mhtml2html = {
         assert(typeof index  === "string", 'MHTML error: invalid index' );
         assert(media[index] && media[index].type === "text/html", 'MHTML error: invalid index');
 
-        const dom = parseDOM(media[index].data);
+        // Pre-process HTML to prevent jsdom from processing Declarative Shadow DOM
+        // jsdom consumes light DOM children when it sees shadowrootmode/shadowmode
+        // Rename the attributes so jsdom treats templates as regular inert templates
+        let htmlContent = media[index].data;
+        htmlContent = htmlContent
+            .replace(/shadowrootmode=/gi, 'data-shadowrootmode=')
+            .replace(/shadowmode=/gi, 'data-shadowmode=');
+
+        const dom = parseDOM(htmlContent);
         const documentElem = dom.window.document;
         const nodes = [ documentElem ];
 
@@ -344,6 +423,19 @@ const mhtml2html = {
                 if (child.removeAttribute) {
                     child.removeAttribute('integrity');
                 }
+                
+                // Process Declarative Shadow DOM if present (using renamed data-* attrs)
+                if (child.children) {
+                    for (const grandchild of child.children) {
+                        if (grandchild.tagName === 'TEMPLATE' &&
+                            (grandchild.hasAttribute('data-shadowrootmode') || 
+                             grandchild.hasAttribute('data-shadowmode'))) {
+                            processDeclarativeShadowDOM(child);
+                            break;
+                        }
+                    }
+                }
+                
                 switch(child.tagName) {
                     case 'HEAD':
                         // Link targets should be directed to the outer frame.
@@ -352,8 +444,12 @@ const mhtml2html = {
                         child.insertBefore(base, child.firstChild);
                         break;
 
-                    case 'LINK':
-                        if (typeof media[href] !== 'undefined' && media[href].type === 'text/css') {
+                    case 'LINK': {
+                        // Only process stylesheets with rel="stylesheet", skip alternate stylesheets
+                        const rel = child.getAttribute('rel');
+                        const isStylesheet = rel === 'stylesheet';
+                        
+                        if (isStylesheet && typeof media[href] !== 'undefined' && media[href].type === 'text/css') {
                             // Embed the css into the document.
                             style = documentElem.createElement('style');
                             style.type = 'text/css';
@@ -361,6 +457,7 @@ const mhtml2html = {
                             childNode.replaceChild(style, child);
                         }
                         break;
+                    }
 
                     case 'STYLE':
                         style = documentElem.createElement('style');
