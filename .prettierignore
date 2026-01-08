@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.debug/
+pipeline-output/
+converted-html-*/
+*.mhtml
+*.html
+

@@ -1,14 +1,21 @@
-# Node Modules
-node_modules
+# Dependencies
+node_modules/
 
-# MHTML and HTML
-.mhtml
-.html
-
-# Build
-dist
+# Build output
+dist/
 
 # Debug output
 .debug/
 
+# Test comparison output
+converted-html-*/
+pipeline-output/
+
+# OS files
 .DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
