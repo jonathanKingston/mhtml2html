@@ -1,0 +1,298 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test8-custom-elements.html
+Subject: Test 8: Custom Elements & Shadow DOM
+Date: Sat, 10 Jan 2026 22:30:32 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--gk1zs1FqJxwdYJt0jN6ABGQ7xHlKhIEFMAMj8Affuu----"
+
+
+------MultipartBoundary--gk1zs1FqJxwdYJt0jN6ABGQ7xHlKhIEFMAMj8Affuu----
+Content-Type: text/html
+Content-ID: <frame-880A3CF2845FB704575AFE732CC9CD78@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test8-custom-elements.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-95986f10-ad15-45b5-a734-66632d569318@mhtml.blink" />
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 8: Custom Elements &amp; Shadow DOM</title>
+ =20
+</head>
+<body>
+  <div class=3D"container">
+    <h1>Test 8: Custom Elements</h1>
+    <p class=3D"subtitle">Testing Web Components with Shadow DOM encapsulat=
+ion</p>
+   =20
+    <!-- Custom Alert Component -->
+    <div class=3D"demo-section">
+      <h2>Alert Component</h2>
+      <div class=3D"demo-grid">
+        <alert-box type=3D"info"><template shadowmode=3D"open">
+         =20
+          <div class=3D"alert">
+            <span class=3D"icon">=E2=84=B9=EF=B8=8F</span>
+            <slot></slot>
+          </div>
+        </template>This is an info message</alert-box>
+        <alert-box type=3D"success"><template shadowmode=3D"open">
+         =20
+          <div class=3D"alert">
+            <span class=3D"icon">=E2=9C=93</span>
+            <slot></slot>
+          </div>
+        </template>Operation completed!</alert-box>
+        <alert-box type=3D"warning"><template shadowmode=3D"open">
+         =20
+          <div class=3D"alert">
+            <span class=3D"icon">=E2=9A=A0</span>
+            <slot></slot>
+          </div>
+        </template>Please review carefully</alert-box>
+        <alert-box type=3D"error"><template shadowmode=3D"open">
+         =20
+          <div class=3D"alert">
+            <span class=3D"icon">=E2=9C=95</span>
+            <slot></slot>
+          </div>
+        </template>Something went wrong</alert-box>
+      </div>
+    </div>
+   =20
+    <!-- Custom Card Component -->
+    <div class=3D"demo-section">
+      <h2>Card Component with Slots</h2>
+      <div class=3D"demo-grid">
+        <fancy-card><template shadowmode=3D"open">
+         =20
+          <div class=3D"card">
+            <div class=3D"accent-bar"></div>
+            <div class=3D"card-header">
+              <slot name=3D"title"></slot>
+              <slot name=3D"subtitle"></slot>
+            </div>
+            <div class=3D"card-body">
+              <slot name=3D"content"></slot>
+            </div>
+          </div>
+        </template>
+          <span slot=3D"title">Card Title</span>
+          <span slot=3D"subtitle">A brief description</span>
+          <p slot=3D"content">This content is projected into the shadow DOM=
+ via slots.</p>
+        </fancy-card>
+       =20
+        <fancy-card theme=3D"purple"><template shadowmode=3D"open">
+         =20
+          <div class=3D"card">
+            <div class=3D"accent-bar"></div>
+            <div class=3D"card-header">
+              <slot name=3D"title"></slot>
+              <slot name=3D"subtitle"></slot>
+            </div>
+            <div class=3D"card-body">
+              <slot name=3D"content"></slot>
+            </div>
+          </div>
+        </template>
+          <span slot=3D"title">Purple Theme</span>
+          <span slot=3D"subtitle">Custom theming</span>
+          <p slot=3D"content">Shadow DOM styles don't leak out.</p>
+        </fancy-card>
+      </div>
+    </div>
+   =20
+    <!-- Custom Avatar Component -->
+    <div class=3D"demo-section">
+      <h2>Avatar Component</h2>
+      <div style=3D"display: flex; gap: 1rem; align-items: center;">
+        <user-avatar name=3D"Alice Johnson" size=3D"small"><template shadow=
+mode=3D"open">
+         =20
+          <div class=3D"avatar">
+            AJ
+           =20
+          </div>
+        </template></user-avatar>
+        <user-avatar name=3D"Bob Smith" size=3D"medium"><template shadowmod=
+e=3D"open">
+         =20
+          <div class=3D"avatar">
+            BS
+           =20
+          </div>
+        </template></user-avatar>
+        <user-avatar name=3D"Carol Davis" size=3D"large"><template shadowmo=
+de=3D"open">
+         =20
+          <div class=3D"avatar">
+            CD
+           =20
+          </div>
+        </template></user-avatar>
+        <user-avatar name=3D"David Wilson" size=3D"large" status=3D"online"=
+><template shadowmode=3D"open">
+         =20
+          <div class=3D"avatar">
+            DW
+            <div class=3D"status"></div>
+          </div>
+        </template></user-avatar>
+        <user-avatar name=3D"Eve Brown" size=3D"large" status=3D"away"><tem=
+plate shadowmode=3D"open">
+         =20
+          <div class=3D"avatar">
+            EB
+            <div class=3D"status"></div>
+          </div>
+        </template></user-avatar>
+      </div>
+    </div>
+   =20
+    <!-- Custom Progress Component -->
+    <div class=3D"demo-section">
+      <h2>Progress Ring Component</h2>
+      <div style=3D"display: flex; gap: 2rem; align-items: center;">
+        <progress-ring value=3D"25" max=3D"100"><template shadowmode=3D"ope=
+n">
+         =20
+          <div class=3D"ring-container">
+            <svg width=3D"80" height=3D"80" viewBox=3D"0 0 80 80">
+              <circle class=3D"bg" cx=3D"40" cy=3D"40" r=3D"36"></circle>
+              <circle class=3D"progress" cx=3D"40" cy=3D"40" r=3D"36"></cir=
+cle>
+            </svg>
+            <div class=3D"label">25%</div>
+          </div>
+        </template></progress-ring>
+        <progress-ring value=3D"50" max=3D"100" color=3D"#22c55e"><template=
+ shadowmode=3D"open">
+         =20
+          <div class=3D"ring-container">
+            <svg width=3D"80" height=3D"80" viewBox=3D"0 0 80 80">
+              <circle class=3D"bg" cx=3D"40" cy=3D"40" r=3D"36"></circle>
+              <circle class=3D"progress" cx=3D"40" cy=3D"40" r=3D"36"></cir=
+cle>
+            </svg>
+            <div class=3D"label">50%</div>
+          </div>
+        </template></progress-ring>
+        <progress-ring value=3D"75" max=3D"100" color=3D"#f59e0b"><template=
+ shadowmode=3D"open">
+         =20
+          <div class=3D"ring-container">
+            <svg width=3D"80" height=3D"80" viewBox=3D"0 0 80 80">
+              <circle class=3D"bg" cx=3D"40" cy=3D"40" r=3D"36"></circle>
+              <circle class=3D"progress" cx=3D"40" cy=3D"40" r=3D"36"></cir=
+cle>
+            </svg>
+            <div class=3D"label">75%</div>
+          </div>
+        </template></progress-ring>
+        <progress-ring value=3D"100" max=3D"100" color=3D"#ef4444"><templat=
+e shadowmode=3D"open">
+         =20
+          <div class=3D"ring-container">
+            <svg width=3D"80" height=3D"80" viewBox=3D"0 0 80 80">
+              <circle class=3D"bg" cx=3D"40" cy=3D"40" r=3D"36"></circle>
+              <circle class=3D"progress" cx=3D"40" cy=3D"40" r=3D"36"></cir=
+cle>
+            </svg>
+            <div class=3D"label">100%</div>
+          </div>
+        </template></progress-ring>
+      </div>
+    </div>
+   =20
+    <!-- Nested Custom Elements -->
+    <div class=3D"demo-section">
+      <h2>Nested Custom Elements</h2>
+      <data-table><template shadowmode=3D"open">
+         =20
+          <div class=3D"table">
+            <div class=3D"header">
+              <span>Name</span>
+              <span>Status</span>
+              <span>Progress</span>
+            </div>
+            <div class=3D"rows">
+              <slot></slot>
+            </div>
+          </div>
+        </template>
+        <table-row name=3D"Project Alpha" status=3D"active" progress=3D"85"=
+><template shadowmode=3D"open">
+         =20
+          <div class=3D"row">
+            <span class=3D"name">Project Alpha</span>
+            <span class=3D"status">Active</span>
+            <div class=3D"progress-bar">
+              <div class=3D"progress-fill"></div>
+            </div>
+          </div>
+        </template></table-row>
+        <table-row name=3D"Project Beta" status=3D"pending" progress=3D"42"=
+><template shadowmode=3D"open">
+         =20
+          <div class=3D"row">
+            <span class=3D"name">Project Beta</span>
+            <span class=3D"status">Pending</span>
+            <div class=3D"progress-bar">
+              <div class=3D"progress-fill"></div>
+            </div>
+          </div>
+        </template></table-row>
+        <table-row name=3D"Project Gamma" status=3D"completed" progress=3D"=
+100"><template shadowmode=3D"open">
+         =20
+          <div class=3D"row">
+            <span class=3D"name">Project Gamma</span>
+            <span class=3D"status">Completed</span>
+            <div class=3D"progress-bar">
+              <div class=3D"progress-fill"></div>
+            </div>
+          </div>
+        </template></table-row>
+      </data-table>
+    </div>
+  </div>
+ =20
+ =20
+
+
+</body></html>
+------MultipartBoundary--gk1zs1FqJxwdYJt0jN6ABGQ7xHlKhIEFMAMj8Affuu----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-95986f10-ad15-45b5-a734-66632d569318@mhtml.blink
+
+@charset "utf-8";
+
+:root { --bg: #0a0a0a; --surface: #171717; --border: #262626; --text: #fafa=
+fa; --muted: #a3a3a3; --accent: #3b82f6; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: var(--bg); color: va=
+r(--text); min-height: 100vh; padding: 3rem; }
+
+.container { max-width: 1000px; margin: 0px auto; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 3rem; }
+
+.demo-section { background: var(--surface); border: 1px solid var(--border)=
+; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; }
+
+.demo-section h2 { font-size: 0.875rem; text-transform: uppercase; letter-s=
+pacing: 0.1em; color: var(--accent); margin-bottom: 1.5rem; }
+
+.demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(=
+200px, 1fr)); gap: 1.5rem; }
+------MultipartBoundary--gk1zs1FqJxwdYJt0jN6ABGQ7xHlKhIEFMAMj8Affuu------

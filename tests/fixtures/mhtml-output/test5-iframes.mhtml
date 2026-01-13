@@ -1,0 +1,430 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test5-iframes.html
+Subject: Test 5: Nested Iframes
+Date: Sat, 10 Jan 2026 22:30:26 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----"
+
+
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/html
+Content-ID: <frame-46F9BC0621ED9C27798906D3984BF062@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test5-iframes.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-b6e2798f-3ccd-4e1e-bde8-cb16e8d4613c@mhtml.blink" />
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 5: Nested Iframes</title>
+ =20
+</head>
+<body>
+  <h1>Test 5: Nested Iframes</h1>
+  <p class=3D"subtitle">Testing iframe embedding with various source types =
+and sandbox attributes</p>
+ =20
+  <div class=3D"iframe-grid">
+    <!-- Standard iframe with local file -->
+    <div class=3D"iframe-container">
+      <div class=3D"iframe-header">
+        <div class=3D"dots">
+          <div class=3D"dot red"></div>
+          <div class=3D"dot yellow"></div>
+          <div class=3D"dot green"></div>
+        </div>
+        <div class=3D"iframe-title">iframe-content-a.html</div>
+      </div>
+      <div class=3D"iframe-wrapper">
+        <iframe src=3D"cid:frame-F7DE1120005F7CCE737ADB512D475419@mhtml.bli=
+nk" title=3D"Iframe A"></iframe>
+      </div>
+      <div class=3D"iframe-info">
+        Standard iframe with <code>src</code> attribute pointing to local f=
+ile
+      </div>
+    </div>
+   =20
+    <!-- Iframe with external CSS -->
+    <div class=3D"iframe-container">
+      <div class=3D"iframe-header">
+        <div class=3D"dots">
+          <div class=3D"dot red"></div>
+          <div class=3D"dot yellow"></div>
+          <div class=3D"dot green"></div>
+        </div>
+        <div class=3D"iframe-title">iframe-content-b.html</div>
+      </div>
+      <div class=3D"iframe-wrapper">
+        <iframe src=3D"cid:frame-8ABCBD99DF246DB4DE8126867CC4DC0B@mhtml.bli=
+nk" title=3D"Iframe B"></iframe>
+      </div>
+      <div class=3D"iframe-info">
+        Iframe document loads <code>external CSS</code> stylesheet
+      </div>
+    </div>
+   =20
+    <!-- Srcdoc iframe -->
+    <div class=3D"iframe-container">
+      <div class=3D"iframe-header">
+        <div class=3D"dots">
+          <div class=3D"dot red"></div>
+          <div class=3D"dot yellow"></div>
+          <div class=3D"dot green"></div>
+        </div>
+        <div class=3D"iframe-title">srcdoc inline content</div>
+      </div>
+      <div class=3D"iframe-wrapper">
+        <iframe src=3D"cid:frame-8CF3E68813888B973B7359D49336344A@mhtml.bli=
+nk" title=3D"Srcdoc iframe"></iframe>
+      </div>
+      <div class=3D"iframe-info">
+        Inline HTML content via <code>srcdoc</code> attribute
+      </div>
+    </div>
+   =20
+    <!-- Data URI iframe -->
+    <div class=3D"iframe-container">
+      <div class=3D"iframe-header">
+        <div class=3D"dots">
+          <div class=3D"dot red"></div>
+          <div class=3D"dot yellow"></div>
+          <div class=3D"dot green"></div>
+        </div>
+        <div class=3D"iframe-title">data: URI content</div>
+      </div>
+      <div class=3D"iframe-wrapper">
+        <iframe src=3D"cid:frame-3CAED4EB8B92DB991EA381831C028677@mhtml.bli=
+nk" title=3D"Data URI iframe"></iframe>
+      </div>
+      <div class=3D"iframe-info">
+        Content embedded as <code>data:</code> URI scheme
+      </div>
+    </div>
+  </div>
+ =20
+  <!-- Sandboxed iframe test -->
+  <div class=3D"test-section">
+    <h2>Sandboxed Iframe</h2>
+    <p style=3D"color: var(--muted); margin-bottom: 1rem; font-size: 0.875r=
+em;">
+      Testing iframe with <code>sandbox</code> attribute restrictions
+    </p>
+    <iframe class=3D"sandboxed-frame" sandbox=3D"allow-scripts" src=3D"cid:=
+frame-D4BE12A197AEBA693BE138E2584CD58F@mhtml.blink" title=3D"Sandboxed ifra=
+me"></iframe>
+  </div>
+
+
+</body></html>
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-b6e2798f-3ccd-4e1e-bde8-cb16e8d4613c@mhtml.blink
+
+@charset "utf-8";
+
+:root { --bg: #0f0f0f; --surface: #1a1a1a; --border: #2a2a2a; --text: #fafa=
+fa; --muted: #737373; --accent: #f97316; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: var(--bg); color: va=
+r(--text); min-height: 100vh; padding: 3rem; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 3rem; }
+
+.iframe-grid { display: grid; grid-template-columns: repeat(auto-fit, minma=
+x(350px, 1fr)); gap: 2rem; }
+
+.iframe-container { background: var(--surface); border: 1px solid var(--bor=
+der); border-radius: 1rem; overflow: hidden; }
+
+.iframe-header { display: flex; align-items: center; gap: 0.5rem; padding: =
+1rem; background: rgb(34, 34, 34); border-bottom: 1px solid var(--border); =
+}
+
+.iframe-header .dots { display: flex; gap: 6px; }
+
+.iframe-header .dot { width: 12px; height: 12px; border-radius: 50%; }
+
+.dot.red { background: rgb(239, 68, 68); }
+
+.dot.yellow { background: rgb(234, 179, 8); }
+
+.dot.green { background: rgb(34, 197, 94); }
+
+.iframe-title { flex: 1 1 0%; text-align: center; font-size: 0.75rem; color=
+: var(--muted); font-family: monospace; }
+
+.iframe-wrapper { height: 300px; background: var(--bg); }
+
+.iframe-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+.iframe-info { padding: 1rem; font-size: 0.75rem; color: var(--muted); bord=
+er-top: 1px solid var(--border); }
+
+.iframe-info code { background: var(--bg); padding: 0.125rem 0.375rem; bord=
+er-radius: 4px; font-family: monospace; color: var(--accent); }
+
+.srcdoc-demo { padding: 2rem; background: linear-gradient(135deg, rgb(30, 2=
+7, 75) 0%, rgb(49, 46, 129) 100%); color: white; height: 100%; display: fle=
+x; flex-direction: column; align-items: center; justify-content: center; te=
+xt-align: center; font-family: system-ui, sans-serif; }
+
+.test-section { margin-top: 3rem; background: var(--surface); border: 1px s=
+olid var(--border); border-radius: 1rem; padding: 2rem; }
+
+.test-section h2 { font-size: 1rem; margin-bottom: 1rem; color: var(--accen=
+t); }
+
+.sandboxed-frame { width: 100%; height: 200px; border: 2px dashed var(--bor=
+der); border-radius: 0.5rem; }
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/html
+Content-ID: <frame-F7DE1120005F7CCE737ADB512D475419@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/iframe-content-a.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-7dbf15e9-e106-46ad-a274-ca268ed2f713@mhtml.blink" />
+ =20
+  <title>Iframe Content A</title>
+ =20
+</head>
+<body>
+  <div class=3D"icon">=F0=9F=93=A6</div>
+  <span class=3D"badge">IFRAME A</span>
+  <h1>Nested Content Block</h1>
+  <p>This is an embedded iframe document</p>
+
+
+</body></html>
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-7dbf15e9-e106-46ad-a274-ca268ed2f713@mhtml.blink
+
+@charset "utf-8";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: linear-gradient(135d=
+eg, rgb(30, 58, 95) 0%, rgb(15, 23, 42) 100%); color: white; min-height: 10=
+0vh; display: flex; flex-direction: column; align-items: center; justify-co=
+ntent: center; padding: 1rem; }
+
+.badge { background: rgba(34, 211, 238, 0.2); color: rgb(34, 211, 238); pad=
+ding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weig=
+ht: 600; margin-bottom: 0.5rem; }
+
+h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+p { color: rgb(148, 163, 184); font-size: 0.875rem; }
+
+.icon { width: 60px; height: 60px; background: linear-gradient(135deg, rgb(=
+34, 211, 238), rgb(14, 165, 233)); border-radius: 1rem; display: flex; alig=
+n-items: center; justify-content: center; font-size: 1.5rem; margin-bottom:=
+ 1rem; }
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/html
+Content-ID: <frame-8ABCBD99DF246DB4DE8126867CC4DC0B@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/iframe-content-b.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8">
+ =20
+  <title>Iframe Content B</title>
+  <link rel=3D"stylesheet" href=3D"file:///Users/jonathankingston/debugging=
+/mhtml-tests/assets/css/iframe-b-styles.css">
+</head>
+<body>
+  <div class=3D"widget">
+    <div class=3D"widget-header">
+      <span class=3D"status-dot"></span>
+      <span>Live Data Widget</span>
+    </div>
+    <div class=3D"widget-content">
+      <div class=3D"metric">
+        <div class=3D"metric-value">2,847</div>
+        <div class=3D"metric-label">Active Users</div>
+      </div>
+      <div class=3D"metric">
+        <div class=3D"metric-value">98.7%</div>
+        <div class=3D"metric-label">Uptime</div>
+      </div>
+    </div>
+    <div class=3D"widget-footer">
+      Last updated: Just now
+    </div>
+  </div>
+
+
+</body></html>
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/iframe-b-styles.css
+
+@charset "utf-8";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: rgb(10, 10, 10); col=
+or: white; min-height: 100vh; display: flex; align-items: center; justify-c=
+ontent: center; padding: 1rem; }
+
+.widget { background: rgb(23, 23, 23); border: 1px solid rgb(38, 38, 38); b=
+order-radius: 1rem; width: 100%; max-width: 300px; overflow: hidden; }
+
+.widget-header { display: flex; align-items: center; gap: 0.5rem; padding: =
+1rem; border-bottom: 1px solid rgb(38, 38, 38); font-size: 0.875rem; font-w=
+eight: 500; }
+
+.status-dot { width: 8px; height: 8px; background: rgb(34, 197, 94); border=
+-radius: 50%; animation: 2s ease-in-out 0s infinite normal none running pul=
+se; }
+
+@keyframes pulse {=20
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.widget-content { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;=
+ padding: 1.5rem; }
+
+.metric { text-align: center; }
+
+.metric-value { font-size: 1.5rem; font-weight: 700; color: rgb(168, 85, 24=
+7); }
+
+.metric-label { font-size: 0.75rem; color: rgb(115, 115, 115); margin-top: =
+0.25rem; }
+
+.widget-footer { padding: 0.75rem 1rem; background: rgb(15, 15, 15); font-s=
+ize: 0.75rem; color: rgb(82, 82, 82); text-align: center; }
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/html
+Content-ID: <frame-8CF3E68813888B973B7359D49336344A@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-d4f5c5d3-2483-4162-bf16-93dc75cb613d@mhtml.blink" />
+           =20
+          </head>
+          <body>
+            <div class=3D"icon">=F0=9F=93=84</div>
+            <h1>Inline Document</h1>
+            <p>Content defined via srcdoc attribute</p>
+            <span class=3D"tag">srcdoc</span>
+         =20
+         =20
+        </body></html>
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-d4f5c5d3-2483-4162-bf16-93dc75cb613d@mhtml.blink
+
+@charset "utf-8";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: linear-gradient(135d=
+eg, rgb(30, 27, 75) 0%, rgb(49, 46, 129) 100%); color: white; min-height: 1=
+00vh; display: flex; flex-direction: column; align-items: center; justify-c=
+ontent: center; text-align: center; padding: 2rem; }
+
+.icon { font-size: 2rem; margin-bottom: 1rem; }
+
+h1 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+p { color: rgb(165, 180, 252); font-size: 0.875rem; }
+
+.tag { background: rgba(165, 180, 252, 0.2); color: rgb(165, 180, 252); pad=
+ding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; margin-to=
+p: 1rem; }
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/html
+Content-ID: <frame-3CAED4EB8B92DB991EA381831C028677@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: data:text/html;charset=utf-8,<!DOCTYPE html><html><head><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,%23064e3b,%23065f46);color:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}.icon{font-size:2rem;margin-bottom:1rem}h1{font-size:1.25rem;margin-bottom:0.5rem}p{color:%2386efac;font-size:0.875rem}.tag{background:rgba(134,239,172,0.2);color:%2386efac;padding:0.25rem 0.75rem;border-radius:9999px;font-size:0.75rem;margin-top:1rem}</style></head><body><div class='icon'>%F0%9F%94%97</div><h1>Data URI Document</h1><p>Embedded via data: protocol</p><span class='tag'>data:text/html</span></body></html>
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-e24db41e-a792-47ee-8eaf-42d800296ca5@mhtml.blink" /></head><body><=
+div class=3D"icon">=F0=9F=94=97</div><h1>Data URI Document</h1><p>Embedded =
+via data: protocol</p><span class=3D"tag">data:text/html</span></body></htm=
+l>
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-e24db41e-a792-47ee-8eaf-42d800296ca5@mhtml.blink
+
+@charset "utf-8";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: linear-gradient(135d=
+eg, rgb(6, 78, 59), rgb(6, 95, 70)); color: white; min-height: 100vh; displ=
+ay: flex; flex-direction: column; align-items: center; justify-content: cen=
+ter; text-align: center; padding: 2rem; }
+
+.icon { font-size: 2rem; margin-bottom: 1rem; }
+
+h1 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+p { color: rgb(134, 239, 172); font-size: 0.875rem; }
+
+.tag { background: rgba(134, 239, 172, 0.2); color: rgb(134, 239, 172); pad=
+ding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; margin-to=
+p: 1rem; }
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/html
+Content-ID: <frame-D4BE12A197AEBA693BE138E2584CD58F@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"tex=
+t/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/css" href=3D=
+"cid:css-521133ea-cbf8-45fd-85f7-8ab86f7f733c@mhtml.blink" />
+         =20
+        </head>
+        <body>
+          <div class=3D"sandbox-info">
+            <h3>=F0=9F=94=92 Sandboxed Frame</h3>
+            <p>This iframe has restricted capabilities</p>
+            <span class=3D"attr">sandbox=3D'allow-scripts'</span>
+          </div>
+       =20
+       =20
+      </body></html>
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-521133ea-cbf8-45fd-85f7-8ab86f7f733c@mhtml.blink
+
+@charset "utf-8";
+
+body { font-family: system-ui, sans-serif; background: rgb(24, 24, 27); col=
+or: white; margin: 0px; padding: 2rem; display: flex; align-items: center; =
+justify-content: center; min-height: 100vh; }
+
+.sandbox-info { background: rgb(39, 39, 42); padding: 1.5rem; border-radius=
+: 0.75rem; text-align: center; }
+
+.sandbox-info h3 { color: rgb(251, 191, 36); margin-bottom: 0.5rem; }
+
+.sandbox-info p { color: rgb(161, 161, 170); font-size: 0.875rem; }
+
+.attr { display: inline-block; background: rgb(63, 63, 70); padding: 0.25re=
+m 0.5rem; border-radius: 4px; font-family: monospace; font-size: 0.75rem; c=
+olor: rgb(251, 191, 36); margin-top: 0.75rem; }
+------MultipartBoundary--OH1vi9MUxQLgcye45ECwJamt28SlSAsDPduPlX0X95------

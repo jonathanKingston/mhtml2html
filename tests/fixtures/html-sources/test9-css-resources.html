@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 9: CSS Background Images & Resources</title>
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-sans, system-ui);
+      background: var(--color-bg-primary, #020617);
+      color: var(--color-text-primary, #fafafa);
+      min-height: 100vh;
+    }
+    
+    /* Hero with mesh gradient background from CSS */
+    .hero {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/images/mesh-gradient.svg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.8;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary, #94a3b8);
+      max-width: 600px;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    section {
+      margin-bottom: 4rem;
+    }
+    
+    h2 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent, #8b5cf6);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Grid pattern background */
+    .grid-bg-demo {
+      min-height: 200px;
+      border-radius: 1rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .grid-bg-demo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--color-bg-secondary, #0f172a);
+      background-image: url('../assets/images/grid-pattern.svg');
+      background-size: 40px 40px;
+    }
+    
+    .grid-bg-demo span {
+      position: relative;
+      z-index: 1;
+      background: var(--color-bg-tertiary, #1e293b);
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary, #94a3b8);
+    }
+    
+    /* Multiple background images */
+    .multi-bg-demo {
+      min-height: 300px;
+      border-radius: 1rem;
+      background-color: #0f172a;
+      background-image: 
+        url('../assets/images/mesh-gradient.svg'),
+        url('../assets/images/grid-pattern.svg');
+      background-size: cover, 40px 40px;
+      background-position: center, top left;
+      background-repeat: no-repeat, repeat;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+    }
+    
+    .multi-bg-demo .label {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+    }
+    
+    /* CSS mask-image demos */
+    .mask-demos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .mask-demo {
+      background: var(--color-bg-secondary, #1e293b);
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .mask-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--violet-500, #8b5cf6), var(--rose-500, #f43f5e));
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+    }
+    
+    .mask-check {
+      mask-image: url('../assets/images/icons/check.svg');
+      -webkit-mask-image: url('../assets/images/icons/check.svg');
+    }
+    
+    .mask-star {
+      mask-image: url('../assets/images/icons/star.svg');
+      -webkit-mask-image: url('../assets/images/icons/star.svg');
+    }
+    
+    /* Inline SVG data URI in CSS */
+    .data-uri-bg {
+      min-height: 150px;
+      border-radius: 1rem;
+      background-color: #1e293b;
+      /* Inline SVG as data URI */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23334155' stroke-width='0.5'%3E%3Cpath d='M30 0v60M0 30h60'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='2' fill='%23475569'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .data-uri-bg span {
+      background: #0f172a;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-family: monospace;
+      color: var(--emerald-500, #10b981);
+    }
+    
+    /* Border image */
+    .border-image-demo {
+      padding: 2rem;
+      background: var(--color-bg-secondary, #1e293b);
+      border: 4px solid;
+      border-image: linear-gradient(135deg, var(--violet-500, #8b5cf6), var(--rose-500, #f43f5e), var(--amber-500, #f59e0b)) 1;
+      text-align: center;
+    }
+    
+    .border-image-demo p {
+      color: var(--color-text-secondary, #94a3b8);
+      font-size: 0.875rem;
+    }
+    
+    /* CSS cursor with custom image */
+    .cursor-demo {
+      min-height: 150px;
+      background: var(--color-bg-secondary, #1e293b);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* SVG cursor as data URI */
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%238b5cf6'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") 12 12, auto;
+    }
+    
+    .cursor-demo span {
+      color: var(--color-text-muted, #64748b);
+      font-size: 0.875rem;
+      pointer-events: none;
+    }
+    
+    /* List style with image */
+    .custom-list {
+      list-style: none;
+      padding: 2rem;
+      background: var(--color-bg-secondary, #1e293b);
+      border-radius: 1rem;
+    }
+    
+    .custom-list li {
+      padding: 0.5rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--color-text-secondary, #94a3b8);
+    }
+    
+    .custom-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background: var(--emerald-500, #10b981);
+      mask-image: url('../assets/images/icons/check.svg');
+      mask-size: contain;
+      -webkit-mask-image: url('../assets/images/icons/check.svg');
+      -webkit-mask-size: contain;
+    }
+    
+    /* Filter with backdrop */
+    .filter-demo {
+      min-height: 200px;
+      border-radius: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .filter-demo-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/images/mesh-gradient.svg');
+      background-size: cover;
+    }
+    
+    .filter-demo-content {
+      position: relative;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .glass-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .glass-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <span class="badge-premium">TEST #9</span>
+      <h1>CSS Background Resources</h1>
+      <p>Testing background-image, mask-image, data URIs, and other CSS resource loading patterns</p>
+    </div>
+  </header>
+  
+  <main class="container">
+    <section>
+      <h2>Grid Pattern (background-image)</h2>
+      <div class="grid-bg-demo hero-pattern">
+        <span>background-image: url('../assets/images/grid-pattern.svg')</span>
+      </div>
+    </section>
+    
+    <section>
+      <h2>Multiple Background Images</h2>
+      <div class="multi-bg-demo">
+        <div class="label">Mesh gradient + grid pattern layered</div>
+      </div>
+    </section>
+    
+    <section>
+      <h2>CSS mask-image with External SVG</h2>
+      <div class="mask-demos">
+        <div class="mask-demo">
+          <div class="mask-icon mask-check"></div>
+          <span>mask-image: url(check.svg)</span>
+        </div>
+        <div class="mask-demo">
+          <div class="mask-icon mask-star"></div>
+          <span>mask-image: url(star.svg)</span>
+        </div>
+        <div class="mask-demo">
+          <div class="icon-check" style="width: 48px; height: 48px;"></div>
+          <span>From components.css</span>
+        </div>
+        <div class="mask-demo">
+          <div class="icon-star" style="width: 48px; height: 48px;"></div>
+          <span>From components.css</span>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <h2>Inline SVG Data URI</h2>
+      <div class="data-uri-bg">
+        <span>data:image/svg+xml,...</span>
+      </div>
+    </section>
+    
+    <section>
+      <h2>Border Image Gradient</h2>
+      <div class="border-image-demo">
+        <h3 style="margin-bottom: 0.5rem;">Gradient Border</h3>
+        <p>Using border-image with linear-gradient</p>
+      </div>
+    </section>
+    
+    <section>
+      <h2>Custom Cursor (SVG)</h2>
+      <div class="cursor-demo">
+        <span>Hover here - custom star cursor</span>
+      </div>
+    </section>
+    
+    <section>
+      <h2>List Style with Mask Image</h2>
+      <ul class="custom-list">
+        <li>External CSS resources bundled</li>
+        <li>Nested @import chains resolved</li>
+        <li>SVG masks applied correctly</li>
+        <li>Background images preserved</li>
+        <li>Data URIs inline correctly</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h2>Backdrop Filter with Background</h2>
+      <div class="filter-demo">
+        <div class="filter-demo-bg"></div>
+        <div class="filter-demo-content">
+          <div class="glass-card">
+            <h3>Glassmorphism</h3>
+            <p>backdrop-filter: blur(16px)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,185 @@
+{
+  "timestamp": "2026-01-13T00:58:48.686Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "results": [
+    {
+      "test": "test1-external-css",
+      "width": 1440,
+      "height": 900,
+      "totalPixels": 1296000,
+      "mismatchedPixels": 4982,
+      "matchPercentage": 99.62,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test1-external-css.png",
+        "converted": "converted/test1-external-css.png",
+        "diff": "diff/test1-external-css-diff.png"
+      }
+    },
+    {
+      "test": "test2-images-svg",
+      "width": 1440,
+      "height": 900,
+      "totalPixels": 1296000,
+      "mismatchedPixels": 0,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test2-images-svg.png",
+        "converted": "converted/test2-images-svg.png",
+        "diff": "diff/test2-images-svg-diff.png"
+      }
+    },
+    {
+      "test": "test3-webfonts-typography",
+      "width": 1440,
+      "height": 1966,
+      "totalPixels": 2831040,
+      "mismatchedPixels": 0,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test3-webfonts-typography.png",
+        "converted": "converted/test3-webfonts-typography.png",
+        "diff": "diff/test3-webfonts-typography-diff.png"
+      }
+    },
+    {
+      "test": "test4-css-animations",
+      "width": 1440,
+      "height": 1304,
+      "totalPixels": 1877760,
+      "mismatchedPixels": 95,
+      "matchPercentage": 99.99,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test4-css-animations.png",
+        "converted": "converted/test4-css-animations.png",
+        "diff": "diff/test4-css-animations-diff.png"
+      }
+    },
+    {
+      "test": "test5-iframes",
+      "width": 1440,
+      "height": 1418,
+      "totalPixels": 2041920,
+      "mismatchedPixels": 0,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test5-iframes.png",
+        "converted": "converted/test5-iframes.png",
+        "diff": "diff/test5-iframes-diff.png"
+      }
+    },
+    {
+      "test": "test6-complex-layout",
+      "width": 1440,
+      "height": 1178,
+      "totalPixels": 1696320,
+      "mismatchedPixels": 0,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test6-complex-layout.png",
+        "converted": "converted/test6-complex-layout.png",
+        "diff": "diff/test6-complex-layout-diff.png"
+      }
+    },
+    {
+      "test": "test7-nested-css-imports",
+      "width": 1440,
+      "height": 1091,
+      "totalPixels": 1571040,
+      "mismatchedPixels": 0,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test7-nested-css-imports.png",
+        "converted": "converted/test7-nested-css-imports.png",
+        "diff": "diff/test7-nested-css-imports-diff.png"
+      }
+    },
+    {
+      "test": "test8-custom-elements",
+      "width": 1440,
+      "height": 1450,
+      "totalPixels": 2088000,
+      "mismatchedPixels": 512478,
+      "matchPercentage": 75.46,
+      "sizeDifference": true,
+      "files": {
+        "html": "html/test8-custom-elements.png",
+        "converted": "converted/test8-custom-elements.png",
+        "diff": "diff/test8-custom-elements-diff.png"
+      }
+    },
+    {
+      "test": "test9-css-resources",
+      "width": 1440,
+      "height": 3003,
+      "totalPixels": 4324320,
+      "mismatchedPixels": 0,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test9-css-resources.png",
+        "converted": "converted/test9-css-resources.png",
+        "diff": "diff/test9-css-resources-diff.png"
+      }
+    },
+    {
+      "test": "test10-js-modules",
+      "width": 1440,
+      "height": 1522,
+      "totalPixels": 2191680,
+      "mismatchedPixels": 19,
+      "matchPercentage": 100,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test10-js-modules.png",
+        "converted": "converted/test10-js-modules.png",
+        "diff": "diff/test10-js-modules-diff.png"
+      }
+    },
+    {
+      "test": "test11-image-loading",
+      "width": 1440,
+      "height": 1656,
+      "totalPixels": 2384640,
+      "mismatchedPixels": 8326,
+      "matchPercentage": 99.65,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test11-image-loading.png",
+        "converted": "converted/test11-image-loading.png",
+        "diff": "diff/test11-image-loading-diff.png"
+      }
+    },
+    {
+      "test": "test12-base64-edge-cases",
+      "width": 1440,
+      "height": 1600,
+      "totalPixels": 2304000,
+      "mismatchedPixels": 900,
+      "matchPercentage": 99.96,
+      "sizeDifference": false,
+      "files": {
+        "html": "html/test12-base64-edge-cases.png",
+        "converted": "converted/test12-base64-edge-cases.png",
+        "diff": "diff/test12-base64-edge-cases-diff.png"
+      }
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 11,
+    "warnings": 0,
+    "failed": 1,
+    "errors": 0,
+    "averageMatch": "97.89"
+  }
+}

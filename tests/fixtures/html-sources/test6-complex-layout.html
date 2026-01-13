@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 6: Complex Layout - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/test6-dashboard.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="url(#logoGrad)"/>
+          <path d="M10 16L14 20L22 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#8b5cf6"/>
+              <stop offset="1" stop-color="#ec4899"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Acme Inc</span>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Team
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+        Analytics
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+        Settings
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JK</div>
+        <div class="user-info">
+          <span class="user-name">Jane Kim</span>
+          <span class="user-email">jane@acme.io</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-left">
+        <h1>Dashboard</h1>
+        <p class="header-subtitle">Welcome back, Jane! Here's what's happening.</p>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Export
+        </button>
+        <button class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          New Report
+        </button>
+      </div>
+    </header>
+    
+    <!-- Stats Grid -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Revenue</span>
+          <span class="stat-value">$45,231.89</span>
+          <span class="stat-change positive">+20.1% from last month</span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Active Users</span>
+          <span class="stat-value">2,350</span>
+          <span class="stat-change positive">+180.1% from last month</span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+            <line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Subscriptions</span>
+          <span class="stat-value">+12,234</span>
+          <span class="stat-change positive">+19% from last month</span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Active Now</span>
+          <span class="stat-value">+573</span>
+          <span class="stat-change negative">-201 since last hour</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Charts Section -->
+    <section class="charts-section">
+      <div class="chart-card large">
+        <div class="chart-header">
+          <h2>Revenue Overview</h2>
+          <div class="chart-tabs">
+            <button class="tab active">12 months</button>
+            <button class="tab">30 days</button>
+            <button class="tab">7 days</button>
+          </div>
+        </div>
+        <div class="chart-body">
+          <!-- SVG Bar Chart -->
+          <svg class="bar-chart" viewBox="0 0 600 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8b5cf6"/>
+                <stop offset="100%" stop-color="#6366f1"/>
+              </linearGradient>
+            </defs>
+            <!-- Grid lines -->
+            <line x1="0" y1="50" x2="600" y2="50" stroke="#27272a" stroke-dasharray="4"/>
+            <line x1="0" y1="100" x2="600" y2="100" stroke="#27272a" stroke-dasharray="4"/>
+            <line x1="0" y1="150" x2="600" y2="150" stroke="#27272a" stroke-dasharray="4"/>
+            <!-- Bars -->
+            <rect x="20" y="120" width="30" height="80" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="70" y="100" width="30" height="100" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="120" y="80" width="30" height="120" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="170" y="60" width="30" height="140" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="220" y="90" width="30" height="110" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="270" y="70" width="30" height="130" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="320" y="40" width="30" height="160" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="370" y="55" width="30" height="145" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="420" y="30" width="30" height="170" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="470" y="45" width="30" height="155" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="520" y="20" width="30" height="180" rx="4" fill="url(#barGrad)" class="bar"/>
+            <rect x="570" y="10" width="30" height="190" rx="4" fill="url(#barGrad)" class="bar"/>
+          </svg>
+          <div class="chart-labels">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+            <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Traffic Sources</h2>
+        </div>
+        <div class="chart-body donut-container">
+          <!-- SVG Donut Chart -->
+          <svg class="donut-chart" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#27272a" stroke-width="12"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#8b5cf6" stroke-width="12" 
+                    stroke-dasharray="100 151" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#22d3ee" stroke-width="12" 
+                    stroke-dasharray="60 191" stroke-dashoffset="-100" transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#f97316" stroke-width="12" 
+                    stroke-dasharray="40 211" stroke-dashoffset="-160" transform="rotate(-90 50 50)"/>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="12" 
+                    stroke-dasharray="51 200" stroke-dashoffset="-200" transform="rotate(-90 50 50)"/>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-item"><span class="dot purple"></span>Direct (40%)</div>
+            <div class="legend-item"><span class="dot cyan"></span>Organic (24%)</div>
+            <div class="legend-item"><span class="dot orange"></span>Referral (16%)</div>
+            <div class="legend-item"><span class="dot green"></span>Social (20%)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Table Section -->
+    <section class="table-section">
+      <div class="table-card">
+        <div class="table-header">
+          <h2>Recent Transactions</h2>
+          <button class="btn btn-ghost">View All</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Email</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">OW</div>
+                <span>Olivia Wilson</span>
+              </td>
+              <td>olivia@example.com</td>
+              <td>$316.00</td>
+              <td><span class="status-badge success">Completed</span></td>
+              <td>Jan 10, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">JM</div>
+                <span>Jackson Moore</span>
+              </td>
+              <td>jackson@example.com</td>
+              <td>$242.00</td>
+              <td><span class="status-badge pending">Pending</span></td>
+              <td>Jan 9, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">IN</div>
+                <span>Isabella Nguyen</span>
+              </td>
+              <td>isabella@example.com</td>
+              <td>$837.00</td>
+              <td><span class="status-badge success">Completed</span></td>
+              <td>Jan 8, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">WK</div>
+                <span>William Kim</span>
+              </td>
+              <td>will@example.com</td>
+              <td>$874.00</td>
+              <td><span class="status-badge failed">Failed</span></td>
+              <td>Jan 7, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">SD</div>
+                <span>Sofia Davis</span>
+              </td>
+              <td>sofia@example.com</td>
+              <td>$721.00</td>
+              <td><span class="status-badge success">Completed</span></td>
+              <td>Jan 6, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

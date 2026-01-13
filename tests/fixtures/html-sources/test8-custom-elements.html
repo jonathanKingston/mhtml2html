@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 8: Custom Elements & Shadow DOM</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #171717;
+      --border: #262626;
+      --text: #fafafa;
+      --muted: #a3a3a3;
+      --accent: #3b82f6;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 3rem;
+    }
+    
+    .container { max-width: 1000px; margin: 0 auto; }
+    
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); margin-bottom: 3rem; }
+    
+    .demo-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .demo-section h2 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test 8: Custom Elements</h1>
+    <p class="subtitle">Testing Web Components with Shadow DOM encapsulation</p>
+    
+    <!-- Custom Alert Component -->
+    <div class="demo-section">
+      <h2>Alert Component</h2>
+      <div class="demo-grid">
+        <alert-box type="info">This is an info message</alert-box>
+        <alert-box type="success">Operation completed!</alert-box>
+        <alert-box type="warning">Please review carefully</alert-box>
+        <alert-box type="error">Something went wrong</alert-box>
+      </div>
+    </div>
+    
+    <!-- Custom Card Component -->
+    <div class="demo-section">
+      <h2>Card Component with Slots</h2>
+      <div class="demo-grid">
+        <fancy-card>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">A brief description</span>
+          <p slot="content">This content is projected into the shadow DOM via slots.</p>
+        </fancy-card>
+        
+        <fancy-card theme="purple">
+          <span slot="title">Purple Theme</span>
+          <span slot="subtitle">Custom theming</span>
+          <p slot="content">Shadow DOM styles don't leak out.</p>
+        </fancy-card>
+      </div>
+    </div>
+    
+    <!-- Custom Avatar Component -->
+    <div class="demo-section">
+      <h2>Avatar Component</h2>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <user-avatar name="Alice Johnson" size="small"></user-avatar>
+        <user-avatar name="Bob Smith" size="medium"></user-avatar>
+        <user-avatar name="Carol Davis" size="large"></user-avatar>
+        <user-avatar name="David Wilson" size="large" status="online"></user-avatar>
+        <user-avatar name="Eve Brown" size="large" status="away"></user-avatar>
+      </div>
+    </div>
+    
+    <!-- Custom Progress Component -->
+    <div class="demo-section">
+      <h2>Progress Ring Component</h2>
+      <div style="display: flex; gap: 2rem; align-items: center;">
+        <progress-ring value="25" max="100"></progress-ring>
+        <progress-ring value="50" max="100" color="#22c55e"></progress-ring>
+        <progress-ring value="75" max="100" color="#f59e0b"></progress-ring>
+        <progress-ring value="100" max="100" color="#ef4444"></progress-ring>
+      </div>
+    </div>
+    
+    <!-- Nested Custom Elements -->
+    <div class="demo-section">
+      <h2>Nested Custom Elements</h2>
+      <data-table>
+        <table-row name="Project Alpha" status="active" progress="85"></table-row>
+        <table-row name="Project Beta" status="pending" progress="42"></table-row>
+        <table-row name="Project Gamma" status="completed" progress="100"></table-row>
+      </data-table>
+    </div>
+  </div>
+  
+  <script>
+    // Alert Box Component
+    class AlertBox extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        const type = this.getAttribute('type') || 'info';
+        const colors = {
+          info: { bg: '#1e3a5f', border: '#3b82f6', icon: 'ℹ️' },
+          success: { bg: '#14532d', border: '#22c55e', icon: '✓' },
+          warning: { bg: '#713f12', border: '#f59e0b', icon: '⚠' },
+          error: { bg: '#7f1d1d', border: '#ef4444', icon: '✕' }
+        };
+        const { bg, border, icon } = colors[type];
+        
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+            }
+            .alert {
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 1rem;
+              background: ${bg};
+              border: 1px solid ${border};
+              border-radius: 0.5rem;
+              font-family: system-ui, sans-serif;
+              color: white;
+              font-size: 0.875rem;
+            }
+            .icon {
+              width: 24px;
+              height: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: ${border};
+              border-radius: 50%;
+              font-size: 0.75rem;
+            }
+          </style>
+          <div class="alert">
+            <span class="icon">${icon}</span>
+            <slot></slot>
+          </div>
+        `;
+      }
+    }
+    customElements.define('alert-box', AlertBox);
+    
+    // Fancy Card Component
+    class FancyCard extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        const theme = this.getAttribute('theme') || 'blue';
+        const colors = {
+          blue: '#3b82f6',
+          purple: '#8b5cf6',
+          green: '#22c55e'
+        };
+        const accent = colors[theme] || colors.blue;
+        
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+            }
+            .card {
+              background: #1a1a1a;
+              border: 1px solid #333;
+              border-radius: 1rem;
+              overflow: hidden;
+              font-family: system-ui, sans-serif;
+            }
+            .card-header {
+              padding: 1rem;
+              background: linear-gradient(135deg, ${accent}22, transparent);
+              border-bottom: 1px solid #333;
+            }
+            ::slotted([slot="title"]) {
+              font-size: 1.125rem;
+              font-weight: 600;
+              color: white;
+              display: block;
+            }
+            ::slotted([slot="subtitle"]) {
+              font-size: 0.75rem;
+              color: #888;
+              display: block;
+              margin-top: 0.25rem;
+            }
+            .card-body {
+              padding: 1rem;
+            }
+            ::slotted([slot="content"]) {
+              font-size: 0.875rem;
+              color: #ccc;
+              line-height: 1.6;
+            }
+            .accent-bar {
+              height: 3px;
+              background: ${accent};
+            }
+          </style>
+          <div class="card">
+            <div class="accent-bar"></div>
+            <div class="card-header">
+              <slot name="title"></slot>
+              <slot name="subtitle"></slot>
+            </div>
+            <div class="card-body">
+              <slot name="content"></slot>
+            </div>
+          </div>
+        `;
+      }
+    }
+    customElements.define('fancy-card', FancyCard);
+    
+    // User Avatar Component
+    class UserAvatar extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        const name = this.getAttribute('name') || 'User';
+        const size = this.getAttribute('size') || 'medium';
+        const status = this.getAttribute('status');
+        
+        const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2);
+        const sizes = { small: 32, medium: 48, large: 64 };
+        const px = sizes[size] || sizes.medium;
+        
+        // Generate consistent color from name
+        const hue = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360;
+        
+        const statusColors = {
+          online: '#22c55e',
+          away: '#f59e0b',
+          offline: '#6b7280'
+        };
+        
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: inline-block;
+            }
+            .avatar {
+              width: ${px}px;
+              height: ${px}px;
+              border-radius: 50%;
+              background: hsl(${hue}, 60%, 40%);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: system-ui, sans-serif;
+              font-weight: 600;
+              font-size: ${px * 0.35}px;
+              color: white;
+              position: relative;
+            }
+            .status {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: ${px * 0.28}px;
+              height: ${px * 0.28}px;
+              border-radius: 50%;
+              border: 2px solid #0a0a0a;
+              background: ${statusColors[status] || 'transparent'};
+            }
+          </style>
+          <div class="avatar">
+            ${initials}
+            ${status ? '<div class="status"></div>' : ''}
+          </div>
+        `;
+      }
+    }
+    customElements.define('user-avatar', UserAvatar);
+    
+    // Progress Ring Component
+    class ProgressRing extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        const value = parseInt(this.getAttribute('value') || '0');
+        const max = parseInt(this.getAttribute('max') || '100');
+        const color = this.getAttribute('color') || '#3b82f6';
+        
+        const percent = Math.round((value / max) * 100);
+        const circumference = 2 * Math.PI * 36;
+        const offset = circumference - (percent / 100) * circumference;
+        
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: inline-block;
+            }
+            .ring-container {
+              position: relative;
+              width: 80px;
+              height: 80px;
+            }
+            svg {
+              transform: rotate(-90deg);
+            }
+            .bg {
+              fill: none;
+              stroke: #333;
+              stroke-width: 6;
+            }
+            .progress {
+              fill: none;
+              stroke: ${color};
+              stroke-width: 6;
+              stroke-linecap: round;
+              stroke-dasharray: ${circumference};
+              stroke-dashoffset: ${offset};
+              transition: stroke-dashoffset 0.3s ease;
+            }
+            .label {
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: system-ui, sans-serif;
+              font-size: 1rem;
+              font-weight: 600;
+              color: white;
+            }
+          </style>
+          <div class="ring-container">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle class="bg" cx="40" cy="40" r="36"/>
+              <circle class="progress" cx="40" cy="40" r="36"/>
+            </svg>
+            <div class="label">${percent}%</div>
+          </div>
+        `;
+      }
+    }
+    customElements.define('progress-ring', ProgressRing);
+    
+    // Data Table Component (parent)
+    class DataTable extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+            }
+            .table {
+              width: 100%;
+              background: #1a1a1a;
+              border: 1px solid #333;
+              border-radius: 0.75rem;
+              overflow: hidden;
+              font-family: system-ui, sans-serif;
+            }
+            .header {
+              display: grid;
+              grid-template-columns: 2fr 1fr 1fr;
+              gap: 1rem;
+              padding: 0.75rem 1rem;
+              background: #222;
+              font-size: 0.75rem;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              color: #888;
+              border-bottom: 1px solid #333;
+            }
+            .rows {
+              display: flex;
+              flex-direction: column;
+            }
+          </style>
+          <div class="table">
+            <div class="header">
+              <span>Name</span>
+              <span>Status</span>
+              <span>Progress</span>
+            </div>
+            <div class="rows">
+              <slot></slot>
+            </div>
+          </div>
+        `;
+      }
+    }
+    customElements.define('data-table', DataTable);
+    
+    // Table Row Component (child)
+    class TableRow extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+      
+      connectedCallback() {
+        const name = this.getAttribute('name') || 'Item';
+        const status = this.getAttribute('status') || 'pending';
+        const progress = parseInt(this.getAttribute('progress') || '0');
+        
+        const statusColors = {
+          active: { bg: '#14532d', color: '#22c55e', label: 'Active' },
+          pending: { bg: '#713f12', color: '#f59e0b', label: 'Pending' },
+          completed: { bg: '#1e3a5f', color: '#3b82f6', label: 'Completed' }
+        };
+        const { bg, color, label } = statusColors[status] || statusColors.pending;
+        
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+            }
+            .row {
+              display: grid;
+              grid-template-columns: 2fr 1fr 1fr;
+              gap: 1rem;
+              padding: 1rem;
+              border-bottom: 1px solid #333;
+              align-items: center;
+              font-family: system-ui, sans-serif;
+            }
+            .row:last-child {
+              border-bottom: none;
+            }
+            .name {
+              color: white;
+              font-weight: 500;
+            }
+            .status {
+              display: inline-flex;
+              padding: 0.25rem 0.75rem;
+              background: ${bg};
+              color: ${color};
+              border-radius: 9999px;
+              font-size: 0.75rem;
+              font-weight: 500;
+              width: fit-content;
+            }
+            .progress-bar {
+              height: 6px;
+              background: #333;
+              border-radius: 3px;
+              overflow: hidden;
+            }
+            .progress-fill {
+              height: 100%;
+              width: ${progress}%;
+              background: ${color};
+              border-radius: 3px;
+            }
+          </style>
+          <div class="row">
+            <span class="name">${name}</span>
+            <span class="status">${label}</span>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        `;
+      }
+    }
+    customElements.define('table-row', TableRow);
+  </script>
+</body>
+</html>

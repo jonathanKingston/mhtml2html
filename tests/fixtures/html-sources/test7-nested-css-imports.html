@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 7: Nested CSS @imports</title>
+  <!-- This CSS file has 3 levels of nested @imports -->
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      padding: var(--spacing-xl);
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    header {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    h1 {
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .subtitle {
+      color: var(--color-text-muted);
+      font-size: var(--text-lg);
+    }
+    
+    .import-chain {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .import-chain h2 {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .chain-diagram {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+    }
+    
+    .chain-item {
+      background: var(--color-bg-tertiary);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-secondary);
+    }
+    
+    .chain-item.active {
+      background: var(--color-accent-muted);
+      color: var(--color-accent);
+    }
+    
+    .chain-arrow {
+      color: var(--color-text-muted);
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+    
+    /* Testing all the imported variables work */
+    .color-test {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+    }
+    
+    .color-swatch {
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      position: relative;
+    }
+    
+    .color-swatch::after {
+      content: attr(data-name);
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      font-size: 10px;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+    
+    .swatch-slate-50 { background: var(--slate-50); }
+    .swatch-slate-500 { background: var(--slate-500); }
+    .swatch-slate-950 { background: var(--slate-950); border: 1px solid var(--color-border); }
+    .swatch-violet-500 { background: var(--violet-500); }
+    .swatch-emerald-500 { background: var(--emerald-500); }
+    
+    .spacing-test {
+      display: flex;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-md);
+    }
+    
+    .spacing-box {
+      background: var(--color-accent);
+      border-radius: var(--radius-sm);
+    }
+    
+    .spacing-xs { width: var(--spacing-xs); height: 40px; }
+    .spacing-sm { width: var(--spacing-sm); height: 40px; }
+    .spacing-md { width: var(--spacing-md); height: 40px; }
+    .spacing-lg { width: var(--spacing-lg); height: 40px; }
+    .spacing-xl { width: var(--spacing-xl); height: 40px; }
+    
+    .typography-test {
+      margin-top: var(--spacing-md);
+    }
+    
+    .typography-test p {
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .text-xs { font-size: var(--text-xs); }
+    .text-sm { font-size: var(--text-sm); }
+    .text-base { font-size: var(--text-base); }
+    .text-lg { font-size: var(--text-lg); }
+    .text-xl { font-size: var(--text-xl); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge-premium">TEST #7</span>
+      <h1>Nested CSS @imports</h1>
+      <p class="subtitle">Testing 3+ levels of CSS @import chain resolution</p>
+    </header>
+    
+    <div class="import-chain">
+      <h2>Import Chain</h2>
+      <div class="chain-diagram">
+        <span class="chain-item active">components.css</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-item">base-variables.css</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-item">theme-colors.css</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-item">color-primitives.css</span>
+      </div>
+      <div class="chain-diagram" style="margin-top: var(--spacing-sm);">
+        <span class="chain-item active">components.css</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-item">base-variables.css</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-item">typography-base.css</span>
+        <span class="chain-arrow">→</span>
+        <span class="chain-item">Google Fonts</span>
+      </div>
+    </div>
+    
+    <div class="demo-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Color Primitives</div>
+          <div class="card-subtitle">From color-primitives.css (Level 3)</div>
+        </div>
+        <div class="color-test">
+          <div class="color-swatch swatch-slate-50" data-name="slate-50"></div>
+          <div class="color-swatch swatch-slate-500" data-name="slate-500"></div>
+          <div class="color-swatch swatch-slate-950" data-name="slate-950"></div>
+          <div class="color-swatch swatch-violet-500" data-name="violet-500"></div>
+          <div class="color-swatch swatch-emerald-500" data-name="emerald-500"></div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Spacing Scale</div>
+          <div class="card-subtitle">From base-variables.css (Level 1)</div>
+        </div>
+        <div class="spacing-test">
+          <div class="spacing-box spacing-xs" title="xs"></div>
+          <div class="spacing-box spacing-sm" title="sm"></div>
+          <div class="spacing-box spacing-md" title="md"></div>
+          <div class="spacing-box spacing-lg" title="lg"></div>
+          <div class="spacing-box spacing-xl" title="xl"></div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Typography</div>
+          <div class="card-subtitle">From typography-base.css (Level 2)</div>
+        </div>
+        <div class="typography-test">
+          <p class="text-xs">Extra Small (0.75rem)</p>
+          <p class="text-sm">Small (0.875rem)</p>
+          <p class="text-base">Base (1rem)</p>
+          <p class="text-lg">Large (1.125rem)</p>
+          <p class="text-xl">Extra Large (1.25rem)</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Component Styles</div>
+          <div class="card-subtitle">From components.css (Entry)</div>
+        </div>
+        <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md);">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-ghost">Ghost</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm); margin-top: var(--spacing-md);">
+          <div class="icon-check"></div>
+          <div class="icon-star"></div>
+          <span class="badge-premium">Premium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

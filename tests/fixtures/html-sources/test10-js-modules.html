@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 10: JavaScript Modules</title>
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #18181b;
+      --border: #27272a;
+      --text: #fafafa;
+      --muted: #71717a;
+      --accent: #a855f7;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 3rem;
+    }
+    
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); margin-bottom: 2rem; }
+    
+    .module-diagram {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .module-diagram h2 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    .module-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-family: monospace;
+      font-size: 0.875rem;
+    }
+    
+    .module-node {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .module-file {
+      background: var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: var(--text);
+    }
+    
+    .module-file.entry {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .module-arrow {
+      color: var(--muted);
+    }
+    
+    .module-imports {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .module-import {
+      background: rgba(168, 85, 247, 0.15);
+      color: var(--accent);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+    }
+    
+    .demo-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .demo-section h2 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Stats cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    
+    [data-stats-card] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+    }
+    
+    .stats-card-inner .stats-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .stats-card-inner .stats-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0.25rem 0;
+    }
+    
+    .stats-card-inner .stats-change {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .stats-card-inner .stats-change.positive {
+      color: var(--success);
+    }
+    
+    .stats-card-inner .stats-change.negative {
+      color: var(--danger);
+    }
+    
+    /* Data list */
+    [data-data-list] {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .data-list-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .data-list-item:last-child {
+      border-bottom: none;
+    }
+    
+    .item-name {
+      color: var(--text);
+    }
+    
+    .item-value {
+      color: var(--muted);
+      font-family: monospace;
+    }
+    
+    /* Search */
+    .search-container {
+      position: relative;
+    }
+    
+    [data-search] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+    
+    [data-search]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    
+    .search-status {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    
+    /* Console output */
+    .console-output {
+      background: #1e1e1e;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+      margin-top: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .console-line {
+      padding: 0.25rem 0;
+      color: #9cdcfe;
+    }
+    
+    .console-line.error {
+      color: #f48771;
+    }
+    
+    .console-line.success {
+      color: #4ec9b0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test 10: JavaScript Modules</h1>
+    <p class="subtitle">Testing ES modules with import/export chains</p>
+    
+    <div class="module-diagram">
+      <h2>Module Dependency Tree</h2>
+      <div class="module-tree">
+        <div class="module-node">
+          <span class="module-file entry">app.js</span>
+          <span class="module-arrow">imports →</span>
+          <div class="module-imports">
+            <span class="module-import">StatsCard</span>
+            <span class="module-import">DataList</span>
+            <span class="module-import">formatDate</span>
+            <span class="module-import">debounce</span>
+          </div>
+        </div>
+        <div class="module-node" style="margin-left: 2rem;">
+          <span class="module-file">components.js</span>
+          <span class="module-arrow">imports →</span>
+          <div class="module-imports">
+            <span class="module-import">formatNumber</span>
+            <span class="module-import">formatCurrency</span>
+            <span class="module-import">formatDate</span>
+          </div>
+        </div>
+        <div class="module-node" style="margin-left: 4rem;">
+          <span class="module-file">utils.js</span>
+          <span class="module-arrow">exports →</span>
+          <div class="module-imports">
+            <span class="module-import">formatNumber</span>
+            <span class="module-import">formatCurrency</span>
+            <span class="module-import">formatDate</span>
+            <span class="module-import">clamp</span>
+            <span class="module-import">debounce</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Stats Cards (via StatsCard class)</h2>
+      <div class="stats-grid">
+        <div data-stats-card='{"label": "Revenue", "value": 45231.89, "type": "currency", "change": 20.1}'></div>
+        <div data-stats-card='{"label": "Users", "value": 2350, "type": "number", "change": 15.2}'></div>
+        <div data-stats-card='{"label": "Orders", "value": 12543, "type": "number", "change": -3.1}'></div>
+        <div data-stats-card='{"label": "Updated", "value": "2026-01-10", "type": "date"}'></div>
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Data List (via DataList class)</h2>
+      <div data-data-list='[
+        {"name": "Direct Traffic", "value": 45231},
+        {"name": "Organic Search", "value": 28456},
+        {"name": "Referral", "value": 12789},
+        {"name": "Social Media", "value": 8934},
+        {"name": "Email Campaign", "value": 5621}
+      ]'></div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Debounced Search</h2>
+      <div class="search-container">
+        <input type="text" data-search placeholder="Type to search (debounced)...">
+        <div class="search-status">Type to search</div>
+      </div>
+    </div>
+    
+    <div class="demo-section">
+      <h2>Console Output</h2>
+      <div class="console-output" id="console">
+        <div class="console-line">Loading modules...</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ES Modules -->
+  <script type="module">
+    // Intercept console.log for display
+    const consoleEl = document.getElementById('console');
+    const originalLog = console.log;
+    console.log = (...args) => {
+      originalLog(...args);
+      const line = document.createElement('div');
+      line.className = 'console-line success';
+      line.textContent = args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' ');
+      consoleEl.appendChild(line);
+    };
+    
+    // Import and initialize
+    try {
+      const { initApp } = await import('../assets/js/app.js');
+      console.log('✓ All modules loaded successfully');
+      console.log('✓ App initialized with components');
+    } catch (err) {
+      const line = document.createElement('div');
+      line.className = 'console-line error';
+      line.textContent = '✕ Error: ' + err.message;
+      consoleEl.appendChild(line);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 11: Comprehensive Image Loading</title>
+  <!-- Favicon and icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/icons/star.svg">
+  <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2e2e2e;
+      --text: #fafafa;
+      --muted: #888;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --error: #ef4444;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); margin-bottom: 2rem; }
+    
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .test-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    
+    .test-header {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .test-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .test-tag {
+      font-size: 0.625rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      background: var(--border);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .test-body {
+      padding: 1rem;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+    }
+    
+    .test-body img {
+      max-width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+    }
+    
+    .test-footer {
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-family: monospace;
+    }
+    
+    /* Image gallery layout */
+    .gallery {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .gallery img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+    
+    /* Srcset demo */
+    .srcset-demo img {
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Lazy loading indicator */
+    .lazy-status {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.625rem;
+      padding: 0.125rem 0.375rem;
+      background: var(--warning);
+      color: black;
+      border-radius: 0.125rem;
+    }
+    
+    /* Error state */
+    .img-error {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--error);
+      font-size: 0.75rem;
+    }
+    
+    .img-error::before {
+      content: '⚠';
+      font-size: 2rem;
+    }
+    
+    /* Object/embed test */
+    .object-container {
+      width: 100%;
+      height: 120px;
+    }
+    
+    .object-container object,
+    .object-container embed {
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Figure with caption */
+    figure {
+      margin: 0;
+      text-align: center;
+    }
+    
+    figure img {
+      border-radius: 0.5rem;
+    }
+    
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    
+    /* Relative path tests */
+    .path-info {
+      font-family: monospace;
+      font-size: 0.625rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test 11: Image Loading</h1>
+  <p class="subtitle">Comprehensive test of image loading scenarios for MHTML serialization</p>
+  
+  <div class="test-grid">
+    <!-- 1. Basic PNG image -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">PNG Image</span>
+        <span class="test-tag">Raster</span>
+      </div>
+      <div class="test-body">
+        <img src="../assets/images/sample-photo.png" alt="Sample PNG photo" width="200" height="150">
+      </div>
+      <div class="test-footer">src="../assets/images/sample-photo.png"</div>
+    </div>
+    
+    <!-- 2. JPG image -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">JPEG Image</span>
+        <span class="test-tag">Raster</span>
+      </div>
+      <div class="test-body">
+        <img src="../assets/images/sample-photo.jpg" alt="Sample JPEG photo">
+      </div>
+      <div class="test-footer">src="../assets/images/sample-photo.jpg"</div>
+    </div>
+    
+    <!-- 3. WebP image -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">WebP Image</span>
+        <span class="test-tag">Modern</span>
+      </div>
+      <div class="test-body">
+        <img src="../assets/images/sample-photo.webp" alt="Sample WebP photo">
+      </div>
+      <div class="test-footer">src="../assets/images/sample-photo.webp"</div>
+    </div>
+    
+    <!-- 4. GIF (animated) -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Animated GIF</span>
+        <span class="test-tag">Animation</span>
+      </div>
+      <div class="test-body">
+        <img src="../assets/images/loading-spinner.gif" alt="Loading spinner animation">
+      </div>
+      <div class="test-footer">src="../assets/images/loading-spinner.gif"</div>
+    </div>
+    
+    <!-- 5. Lazy loading -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Lazy Loading</span>
+        <span class="test-tag">Performance</span>
+      </div>
+      <div class="test-body" style="position: relative;">
+        <img src="../assets/images/lazy-image.png" alt="Lazy loaded image" loading="lazy" width="200" height="150">
+      </div>
+      <div class="test-footer">loading="lazy"</div>
+    </div>
+    
+    <!-- 6. Srcset with sizes -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Srcset + Sizes</span>
+        <span class="test-tag">Responsive</span>
+      </div>
+      <div class="test-body srcset-demo">
+        <img 
+          src="../assets/images/responsive-300.png"
+          srcset="../assets/images/responsive-300.png 300w,
+                  ../assets/images/responsive-600.png 600w,
+                  ../assets/images/responsive-900.png 900w"
+          sizes="(max-width: 400px) 300px, (max-width: 800px) 600px, 900px"
+          alt="Responsive image with srcset">
+      </div>
+      <div class="test-footer">srcset with 300w, 600w, 900w</div>
+    </div>
+    
+    <!-- 7. Picture with multiple sources -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Picture Element</span>
+        <span class="test-tag">Art Direction</span>
+      </div>
+      <div class="test-body">
+        <picture>
+          <source srcset="../assets/images/hero-dark.png" media="(prefers-color-scheme: dark)">
+          <source srcset="../assets/images/hero-wide.svg" media="(min-width: 600px)" type="image/svg+xml">
+          <source srcset="../assets/images/hero-narrow.svg" type="image/svg+xml">
+          <img src="../assets/images/hero-fallback.png" alt="Hero with multiple sources">
+        </picture>
+      </div>
+      <div class="test-footer">&lt;picture&gt; with 3 sources + fallback</div>
+    </div>
+    
+    <!-- 8. Figure with figcaption -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Figure + Caption</span>
+        <span class="test-tag">Semantic</span>
+      </div>
+      <div class="test-body">
+        <figure>
+          <img src="../assets/images/figure-image.png" alt="Figure example" width="180" height="120">
+          <figcaption>This is a figure caption</figcaption>
+        </figure>
+      </div>
+      <div class="test-footer">&lt;figure&gt; + &lt;figcaption&gt;</div>
+    </div>
+    
+    <!-- 9. Image gallery -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Image Gallery</span>
+        <span class="test-tag">Multiple</span>
+      </div>
+      <div class="test-body">
+        <div class="gallery">
+          <img src="../assets/images/gallery/thumb-1.png" alt="Thumbnail 1">
+          <img src="../assets/images/gallery/thumb-2.png" alt="Thumbnail 2">
+          <img src="../assets/images/gallery/thumb-3.png" alt="Thumbnail 3">
+          <img src="../assets/images/gallery/thumb-4.png" alt="Thumbnail 4">
+          <img src="../assets/images/gallery/thumb-5.png" alt="Thumbnail 5">
+          <img src="../assets/images/gallery/thumb-6.png" alt="Thumbnail 6">
+        </div>
+      </div>
+      <div class="test-footer">6 images in subdirectory</div>
+    </div>
+    
+    <!-- 10. Object tag -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Object Tag</span>
+        <span class="test-tag">Legacy</span>
+      </div>
+      <div class="test-body">
+        <div class="object-container">
+          <object data="../assets/images/external-graphic.svg" type="image/svg+xml">
+            <img src="../assets/images/fallback.png" alt="Fallback for object">
+          </object>
+        </div>
+      </div>
+      <div class="test-footer">&lt;object data="..."&gt; with fallback</div>
+    </div>
+    
+    <!-- 11. Embed tag -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Embed Tag</span>
+        <span class="test-tag">Legacy</span>
+      </div>
+      <div class="test-body">
+        <div class="object-container">
+          <embed src="../assets/images/mesh-gradient.svg" type="image/svg+xml">
+        </div>
+      </div>
+      <div class="test-footer">&lt;embed src="..."&gt;</div>
+    </div>
+    
+    <!-- 12. Image with decode attribute -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Decode Async</span>
+        <span class="test-tag">Performance</span>
+      </div>
+      <div class="test-body">
+        <img src="../assets/images/decode-test.png" alt="Async decode" decoding="async" width="200" height="150">
+      </div>
+      <div class="test-footer">decoding="async"</div>
+    </div>
+    
+    <!-- 13. CSS background in inline style -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Inline Background</span>
+        <span class="test-tag">CSS</span>
+      </div>
+      <div class="test-body">
+        <div style="width: 200px; height: 120px; background-image: url('../assets/images/pattern-bg.svg'); background-size: 30px 30px; border-radius: 0.5rem;"></div>
+      </div>
+      <div class="test-footer">style="background-image: url(...)"</div>
+    </div>
+    
+    <!-- 14. Multiple backgrounds -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Multiple Backgrounds</span>
+        <span class="test-tag">CSS</span>
+      </div>
+      <div class="test-body">
+        <div style="
+          width: 200px; 
+          height: 120px; 
+          background-image: 
+            url('../assets/images/icons/star.svg'),
+            url('../assets/images/grid-pattern.svg');
+          background-size: 40px, 30px;
+          background-position: center, top left;
+          background-repeat: no-repeat, repeat;
+          background-color: #1e293b;
+          border-radius: 0.5rem;
+        "></div>
+      </div>
+      <div class="test-footer">Multiple background-image layers</div>
+    </div>
+    
+    <!-- 15. Image with usemap -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Image Map</span>
+        <span class="test-tag">Interactive</span>
+      </div>
+      <div class="test-body">
+        <img src="../assets/images/imagemap.png" alt="Image map example" usemap="#imagemap" width="200" height="120">
+        <map name="imagemap">
+          <area shape="rect" coords="0,0,100,60" alt="Top left" href="#topleft">
+          <area shape="rect" coords="100,0,200,60" alt="Top right" href="#topright">
+          <area shape="rect" coords="0,60,100,120" alt="Bottom left" href="#bottomleft">
+          <area shape="rect" coords="100,60,200,120" alt="Bottom right" href="#bottomright">
+        </map>
+      </div>
+      <div class="test-footer">&lt;img usemap="#..."&gt; + &lt;map&gt;</div>
+    </div>
+    
+    <!-- 16. Broken image (intentional) -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Missing Image</span>
+        <span class="test-tag">Error</span>
+      </div>
+      <div class="test-body">
+        <img 
+          src="../assets/images/this-does-not-exist.png" 
+          alt="This image intentionally missing"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=img-error>Image not found</div>';"
+          width="200" 
+          height="150"
+        >
+      </div>
+      <div class="test-footer">onerror handler for missing images</div>
+    </div>
+    
+    <!-- 17. Dynamic image via JS -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">JavaScript Image</span>
+        <span class="test-tag">Dynamic</span>
+      </div>
+      <div class="test-body" id="js-image-container">
+        <span style="color: var(--muted); font-size: 0.75rem;">Loading via JS...</span>
+      </div>
+      <div class="test-footer">new Image() + appendChild</div>
+    </div>
+    
+    <!-- 18. Content-type via data-uri variants -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Data URI Variants</span>
+        <span class="test-tag">Inline</span>
+      </div>
+      <div class="test-body">
+        <div class="gallery">
+          <!-- SVG data URI -->
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%2322c55e' width='60' height='60' rx='8'/%3E%3C/svg%3E" alt="SVG data URI">
+          <!-- PNG data URI (tiny 1x1) -->
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="PNG data URI" style="background: #3b82f6; width: 60px; height: 60px;">
+          <!-- GIF data URI (tiny 1x1) -->
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="GIF data URI" style="background: #f59e0b; width: 60px; height: 60px;">
+        </div>
+      </div>
+      <div class="test-footer">SVG, PNG, GIF as data: URIs</div>
+    </div>
+  </div>
+  
+  <script>
+    // Test 17: Load image via JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('js-image-container');
+      const img = new Image();
+      img.src = '../assets/images/js-loaded.png';
+      img.alt = 'Loaded via JavaScript';
+      img.style.maxWidth = '200px';
+      img.style.maxHeight = '150px';
+      img.onload = () => {
+        container.innerHTML = '';
+        container.appendChild(img);
+      };
+      img.onerror = () => {
+        container.innerHTML = '<div class="img-error">JS load failed</div>';
+      };
+    });
+  </script>
+</body>
+</html>

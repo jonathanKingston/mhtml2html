@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head><base target="_parent"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "utf-8";
+
+:root { --bg: #0a0a0a; --surface: #171717; --border: #262626; --text: #fafafa; --muted: #a3a3a3; --accent: #3b82f6; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 3rem; }
+
+.container { max-width: 1000px; margin: 0px auto; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 3rem; }
+
+.demo-section { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; }
+
+.demo-section h2 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1.5rem; }
+
+.demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+</style>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 8: Custom Elements &amp; Shadow DOM</title>
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Test 8: Custom Elements</h1>
+    <p class="subtitle">Testing Web Components with Shadow DOM encapsulation</p>
+    
+    <!-- Custom Alert Component -->
+    <div class="demo-section">
+      <h2>Alert Component</h2>
+      <div class="demo-grid">
+        <alert-box type="info">This is an info message
+          
+          <div class="alert">
+            <span class="icon">ℹ️</span>
+            <slot></slot>
+          </div>
+        </alert-box>
+        <alert-box type="success">Operation completed!
+          
+          <div class="alert">
+            <span class="icon">✓</span>
+            <slot></slot>
+          </div>
+        </alert-box>
+        <alert-box type="warning">Please review carefully
+          
+          <div class="alert">
+            <span class="icon">⚠</span>
+            <slot></slot>
+          </div>
+        </alert-box>
+        <alert-box type="error">Something went wrong
+          
+          <div class="alert">
+            <span class="icon">✕</span>
+            <slot></slot>
+          </div>
+        </alert-box>
+      </div>
+    </div>
+    
+    <!-- Custom Card Component -->
+    <div class="demo-section">
+      <h2>Card Component with Slots</h2>
+      <div class="demo-grid">
+        <fancy-card>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">A brief description</span>
+          <p slot="content">This content is projected into the shadow DOM via slots.</p>
+        </fancy-card>
+        
+        <fancy-card theme="purple">
+          <span slot="title">Purple Theme</span>
+          <span slot="subtitle">Custom theming</span>
+          <p slot="content">Shadow DOM styles don't leak out.</p>
+        </fancy-card>
+      </div>
+    </div>
+    
+    <!-- Custom Avatar Component -->
+    <div class="demo-section">
+      <h2>Avatar Component</h2>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <user-avatar name="Alice Johnson" size="small">
+          
+          <div class="avatar">
+            AJ
+            
+          </div>
+        </user-avatar>
+        <user-avatar name="Bob Smith" size="medium">
+          
+          <div class="avatar">
+            BS
+            
+          </div>
+        </user-avatar>
+        <user-avatar name="Carol Davis" size="large">
+          
+          <div class="avatar">
+            CD
+            
+          </div>
+        </user-avatar>
+        <user-avatar name="David Wilson" size="large" status="online">
+          
+          <div class="avatar">
+            DW
+            <div class="status"></div>
+          </div>
+        </user-avatar>
+        <user-avatar name="Eve Brown" size="large" status="away">
+          
+          <div class="avatar">
+            EB
+            <div class="status"></div>
+          </div>
+        </user-avatar>
+      </div>
+    </div>
+    
+    <!-- Custom Progress Component -->
+    <div class="demo-section">
+      <h2>Progress Ring Component</h2>
+      <div style="display: flex; gap: 2rem; align-items: center;">
+        <progress-ring value="25" max="100">
+          
+          <div class="ring-container">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle class="bg" cx="40" cy="40" r="36"></circle>
+              <circle class="progress" cx="40" cy="40" r="36"></circle>
+            </svg>
+            <div class="label">25%</div>
+          </div>
+        </progress-ring>
+        <progress-ring value="50" max="100" color="#22c55e">
+          
+          <div class="ring-container">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle class="bg" cx="40" cy="40" r="36"></circle>
+              <circle class="progress" cx="40" cy="40" r="36"></circle>
+            </svg>
+            <div class="label">50%</div>
+          </div>
+        </progress-ring>
+        <progress-ring value="75" max="100" color="#f59e0b">
+          
+          <div class="ring-container">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle class="bg" cx="40" cy="40" r="36"></circle>
+              <circle class="progress" cx="40" cy="40" r="36"></circle>
+            </svg>
+            <div class="label">75%</div>
+          </div>
+        </progress-ring>
+        <progress-ring value="100" max="100" color="#ef4444">
+          
+          <div class="ring-container">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle class="bg" cx="40" cy="40" r="36"></circle>
+              <circle class="progress" cx="40" cy="40" r="36"></circle>
+            </svg>
+            <div class="label">100%</div>
+          </div>
+        </progress-ring>
+      </div>
+    </div>
+    
+    <!-- Nested Custom Elements -->
+    <div class="demo-section">
+      <h2>Nested Custom Elements</h2>
+      <data-table>
+        <table-row name="Project Alpha" status="active" progress="85">
+          
+          <div class="row">
+            <span class="name">Project Alpha</span>
+            <span class="status">Active</span>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </table-row>
+        <table-row name="Project Beta" status="pending" progress="42">
+          
+          <div class="row">
+            <span class="name">Project Beta</span>
+            <span class="status">Pending</span>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </table-row>
+        <table-row name="Project Gamma" status="completed" progress="100">
+          
+          <div class="row">
+            <span class="name">Project Gamma</span>
+            <span class="status">Completed</span>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </table-row>
+      </data-table>
+    </div>
+  </div>
+  
+  
+
+
+
+</body></html>

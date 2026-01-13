@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en"><head><base target="_parent"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 6: Complex Layout - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <style type="text/css">@charset "utf-8";
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2") format("woff2"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2"); unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+</style>
+  <style type="text/css">@charset "utf-8";
+
+:root { --bg: #09090b; --surface: #18181b; --surface-hover: #27272a; --border: #27272a; --text: #fafafa; --text-muted: #a1a1aa; --primary: #8b5cf6; --primary-hover: #7c3aed; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444; --sidebar-width: 260px; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: grid; grid-template-columns: var(--sidebar-width) 1fr; }
+
+.sidebar { background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; height: 100vh; position: sticky; top: 0px; }
+
+.sidebar-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+
+.logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 600; font-size: 1.125rem; }
+
+.logo svg { width: 32px; height: 32px; }
+
+.sidebar-nav { flex: 1 1 0%; padding: 1rem; display: flex; flex-direction: column; gap: 0.25rem; }
+
+.nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 0.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: 0.15s; }
+
+.nav-item svg { width: 20px; height: 20px; }
+
+.nav-item:hover { background: var(--surface-hover); color: var(--text); }
+
+.nav-item.active { background: var(--primary); color: white; }
+
+.sidebar-footer { padding: 1rem; border-top: 1px solid var(--border); }
+
+.user-card { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; border-radius: 0.5rem; background: var(--surface-hover); }
+
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #ec4899); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.875rem; }
+
+.avatar.small { width: 32px; height: 32px; font-size: 0.75rem; }
+
+.user-info { display: flex; flex-direction: column; }
+
+.user-name { font-weight: 500; font-size: 0.875rem; }
+
+.user-email { font-size: 0.75rem; color: var(--text-muted); }
+
+.main-content { padding: 2rem; overflow-y: auto; }
+
+.main-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
+
+.main-header h1 { font-size: 1.875rem; font-weight: 700; }
+
+.header-subtitle { color: var(--text-muted); margin-top: 0.25rem; }
+
+.header-right { display: flex; gap: 0.75rem; }
+
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; transition: 0.15s; }
+
+.btn-primary { background: var(--primary); color: white; }
+
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+
+.btn-secondary:hover { background: var(--surface-hover); }
+
+.btn-ghost { background: transparent; color: var(--text-muted); padding: 0.5rem 0.75rem; }
+
+.btn-ghost:hover { color: var(--text); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; display: flex; gap: 1rem; }
+
+.stat-icon { width: 48px; height: 48px; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+.stat-icon svg { width: 24px; height: 24px; }
+
+.stat-icon.purple { background: rgba(139, 92, 246, 0.15); color: rgb(139, 92, 246); }
+
+.stat-icon.blue { background: rgba(59, 130, 246, 0.15); color: rgb(59, 130, 246); }
+
+.stat-icon.green { background: rgba(34, 197, 94, 0.15); color: rgb(34, 197, 94); }
+
+.stat-icon.amber { background: rgba(245, 158, 11, 0.15); color: rgb(245, 158, 11); }
+
+.stat-content { display: flex; flex-direction: column; }
+
+.stat-label { font-size: 0.875rem; color: var(--text-muted); }
+
+.stat-value { font-size: 1.5rem; font-weight: 700; margin: 0.25rem 0px; }
+
+.stat-change { font-size: 0.75rem; }
+
+.stat-change.positive { color: var(--success); }
+
+.stat-change.negative { color: var(--danger); }
+
+.charts-section { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+.chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; }
+
+.chart-card.large { grid-column: span 1; }
+
+.chart-header { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+
+.chart-header h2 { font-size: 1rem; font-weight: 600; }
+
+.chart-tabs { display: flex; gap: 0.25rem; background: var(--bg); padding: 0.25rem; border-radius: 0.5rem; }
+
+.tab { padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 500; background: transparent; border: none; color: var(--text-muted); cursor: pointer; transition: 0.15s; }
+
+.tab.active { background: var(--surface-hover); color: var(--text); }
+
+.chart-body { padding: 1.5rem; }
+
+.bar-chart { width: 100%; height: 200px; }
+
+.bar-chart .bar { transition: opacity 0.2s; }
+
+.bar-chart .bar:hover { opacity: 0.8; }
+
+.chart-labels { display: flex; justify-content: space-between; margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted); }
+
+.donut-container { display: flex; align-items: center; gap: 2rem; }
+
+.donut-chart { width: 140px; height: 140px; flex-shrink: 0; }
+
+.donut-legend { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--text-muted); }
+
+.legend-item .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+.dot.purple { background: rgb(139, 92, 246); }
+
+.dot.cyan { background: rgb(34, 211, 238); }
+
+.dot.orange { background: rgb(249, 115, 22); }
+
+.dot.green { background: rgb(34, 197, 94); }
+
+.table-section { margin-bottom: 2rem; }
+
+.table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; }
+
+.table-header { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+
+.table-header h2 { font-size: 1rem; font-weight: 600; }
+
+.data-table { width: 100%; border-collapse: collapse; }
+
+.data-table th, .data-table td { padding: 1rem 1.5rem; text-align: left; }
+
+.data-table th { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
+
+.data-table td { font-size: 0.875rem; border-bottom: 1px solid var(--border); }
+
+.data-table tr:last-child td { border-bottom: none; }
+
+.data-table tr:hover td { background: var(--surface-hover); }
+
+.customer-cell { display: flex; align-items: center; gap: 0.75rem; }
+
+.status-badge { display: inline-flex; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+
+.status-badge.success { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+
+.status-badge.pending { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+
+.status-badge.failed { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+@media (max-width: 1200px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .charts-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  body { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .stats-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="url(#logoGrad)"></rect>
+          <path d="M10 16L14 20L22 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#8b5cf6"></stop>
+              <stop offset="1" stop-color="#ec4899"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>Acme Inc</span>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test6-complex-layout.html#" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+        </svg>
+        Dashboard
+      </a>
+      <a href="file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test6-complex-layout.html#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        Team
+      </a>
+      <a href="file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test6-complex-layout.html#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+        </svg>
+        Analytics
+      </a>
+      <a href="file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test6-complex-layout.html#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+        </svg>
+        Settings
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">JK</div>
+        <div class="user-info">
+          <span class="user-name">Jane Kim</span>
+          <span class="user-email">jane@acme.io</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-left">
+        <h1>Dashboard</h1>
+        <p class="header-subtitle">Welcome back, Jane! Here's what's happening.</p>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export
+        </button>
+        <button class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          New Report
+        </button>
+      </div>
+    </header>
+    
+    <!-- Stats Grid -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Revenue</span>
+          <span class="stat-value">$45,231.89</span>
+          <span class="stat-change positive">+20.1% from last month</span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Active Users</span>
+          <span class="stat-value">2,350</span>
+          <span class="stat-change positive">+180.1% from last month</span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Subscriptions</span>
+          <span class="stat-value">+12,234</span>
+          <span class="stat-change positive">+19% from last month</span>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">Active Now</span>
+          <span class="stat-value">+573</span>
+          <span class="stat-change negative">-201 since last hour</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Charts Section -->
+    <section class="charts-section">
+      <div class="chart-card large">
+        <div class="chart-header">
+          <h2>Revenue Overview</h2>
+          <div class="chart-tabs">
+            <button class="tab active">12 months</button>
+            <button class="tab">30 days</button>
+            <button class="tab">7 days</button>
+          </div>
+        </div>
+        <div class="chart-body">
+          <!-- SVG Bar Chart -->
+          <svg class="bar-chart" viewBox="0 0 600 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8b5cf6"></stop>
+                <stop offset="100%" stop-color="#6366f1"></stop>
+              </linearGradient>
+            </defs>
+            <!-- Grid lines -->
+            <line x1="0" y1="50" x2="600" y2="50" stroke="#27272a" stroke-dasharray="4"></line>
+            <line x1="0" y1="100" x2="600" y2="100" stroke="#27272a" stroke-dasharray="4"></line>
+            <line x1="0" y1="150" x2="600" y2="150" stroke="#27272a" stroke-dasharray="4"></line>
+            <!-- Bars -->
+            <rect x="20" y="120" width="30" height="80" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="70" y="100" width="30" height="100" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="120" y="80" width="30" height="120" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="170" y="60" width="30" height="140" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="220" y="90" width="30" height="110" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="270" y="70" width="30" height="130" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="320" y="40" width="30" height="160" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="370" y="55" width="30" height="145" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="420" y="30" width="30" height="170" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="470" y="45" width="30" height="155" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="520" y="20" width="30" height="180" rx="4" fill="url(#barGrad)" class="bar"></rect>
+            <rect x="570" y="10" width="30" height="190" rx="4" fill="url(#barGrad)" class="bar"></rect>
+          </svg>
+          <div class="chart-labels">
+            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+            <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-card">
+        <div class="chart-header">
+          <h2>Traffic Sources</h2>
+        </div>
+        <div class="chart-body donut-container">
+          <!-- SVG Donut Chart -->
+          <svg class="donut-chart" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#27272a" stroke-width="12"></circle>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#8b5cf6" stroke-width="12" stroke-dasharray="100 151" stroke-dashoffset="0" transform="rotate(-90 50 50)"></circle>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#22d3ee" stroke-width="12" stroke-dasharray="60 191" stroke-dashoffset="-100" transform="rotate(-90 50 50)"></circle>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#f97316" stroke-width="12" stroke-dasharray="40 211" stroke-dashoffset="-160" transform="rotate(-90 50 50)"></circle>
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="12" stroke-dasharray="51 200" stroke-dashoffset="-200" transform="rotate(-90 50 50)"></circle>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-item"><span class="dot purple"></span>Direct (40%)</div>
+            <div class="legend-item"><span class="dot cyan"></span>Organic (24%)</div>
+            <div class="legend-item"><span class="dot orange"></span>Referral (16%)</div>
+            <div class="legend-item"><span class="dot green"></span>Social (20%)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Table Section -->
+    <section class="table-section">
+      <div class="table-card">
+        <div class="table-header">
+          <h2>Recent Transactions</h2>
+          <button class="btn btn-ghost">View All</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Email</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">OW</div>
+                <span>Olivia Wilson</span>
+              </td>
+              <td>olivia@example.com</td>
+              <td>$316.00</td>
+              <td><span class="status-badge success">Completed</span></td>
+              <td>Jan 10, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">JM</div>
+                <span>Jackson Moore</span>
+              </td>
+              <td>jackson@example.com</td>
+              <td>$242.00</td>
+              <td><span class="status-badge pending">Pending</span></td>
+              <td>Jan 9, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">IN</div>
+                <span>Isabella Nguyen</span>
+              </td>
+              <td>isabella@example.com</td>
+              <td>$837.00</td>
+              <td><span class="status-badge success">Completed</span></td>
+              <td>Jan 8, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">WK</div>
+                <span>William Kim</span>
+              </td>
+              <td>will@example.com</td>
+              <td>$874.00</td>
+              <td><span class="status-badge failed">Failed</span></td>
+              <td>Jan 7, 2026</td>
+            </tr>
+            <tr>
+              <td class="customer-cell">
+                <div class="avatar small">SD</div>
+                <span>Sofia Davis</span>
+              </td>
+              <td>sofia@example.com</td>
+              <td>$721.00</td>
+              <td><span class="status-badge success">Completed</span></td>
+              <td>Jan 6, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+
+
+</body></html>

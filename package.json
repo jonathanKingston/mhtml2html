@@ -45,6 +45,11 @@
     "build:only": "npm run build:esm && npm run build:cjs && npm run build:iife",
     "pretest": "npm run build",
     "test": "mocha tests/mhtml2html.test.js && karma start karma.conf.cjs --single-run",
+    "test:chromium": "mocha tests/chromium-exports.test.js",
+    "test:all": "npm run test && npm run test:chromium",
+    "chromium:generate": "node tests/fixtures/generate-mhtml.js",
+    "chromium:compare": "node tests/fixtures/compare-visual.js",
+    "chromium:report": "open tests/fixtures/comparison-report.html",
     "compare": "node screenshot-compare.js",
     "compare:url": "node screenshot-compare.js --url",
     "compare:urls": "node screenshot-compare.js --urls"

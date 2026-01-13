@@ -83,37 +83,21 @@ function extractMimeType(contentType) {
 
 /**
  * Decode text content with charset fallback.
- * Attempts to decode using the specified charset, falls back to UTF-8.
+ * NOTE: This function only handles charset conversion for text content.
+ * Transfer encoding (base64, quoted-printable) is handled elsewhere:
+ * - quoted-printable: decoded line-by-line in getLine()
+ * - base64: kept as-is for data URI usage in convert()
  */
-function decodeWithCharset(data, charset, encoding) {
-    // First, decode the transfer encoding
-    let decoded = data;
-
-    if (encoding === 'base64') {
-        try {
-            decoded = Base64.decode(data);
-        } catch (e) {
-            console.warn('[mhtml2html] Base64 decode failed:', e.message);
-            decoded = data;
-        }
-    } else if (encoding === 'quoted-printable') {
-        try {
-            decoded = QuotedPrintable.decode(data);
-        } catch (e) {
-            console.warn('[mhtml2html] Quoted-printable decode failed:', e.message);
-            decoded = data;
-        }
-    }
-
+function decodeWithCharset(data, charset) {
     // Try to decode charset if specified and not UTF-8
     if (charset && charset !== 'utf-8' && charset !== 'utf8') {
         // In Node.js, we can use TextDecoder for common charsets
         if (typeof TextDecoder !== 'undefined') {
             try {
                 // TextDecoder expects a Uint8Array, so we need to convert
-                const bytes = new Uint8Array(decoded.length);
-                for (let i = 0; i < decoded.length; i++) {
-                    bytes[i] = decoded.charCodeAt(i) & 0xff;
+                const bytes = new Uint8Array(data.length);
+                for (let i = 0; i < data.length; i++) {
+                    bytes[i] = data.charCodeAt(i) & 0xff;
                 }
                 const decoder = new TextDecoder(charset);
                 return decoder.decode(bytes);
@@ -126,10 +110,10 @@ function decodeWithCharset(data, charset, encoding) {
 
     // Default: try to decode as UTF-8 using escape/unescape trick
     try {
-        return decodeURIComponent(escape(decoded));
+        return decodeURIComponent(escape(data));
     } catch (e) {
         // If that fails, return as-is
-        return decoded;
+        return data;
     }
 }
 
@@ -583,8 +567,11 @@ const mhtml2html = {
                         next = getLine(encoding);
                     }
 
-                    // Decode with charset support
-                    asset.data = decodeWithCharset(asset.data, asset.charset, asset.encoding);
+                    // Decode charset for non-base64 content
+                    // (base64 data stays encoded for data URI usage in convert)
+                    if (encoding !== 'base64') {
+                        asset.data = decodeWithCharset(asset.data, asset.charset);
+                    }
 
                     // Ignore assets if 'htmlOnly' is set.
                     if (htmlOnly === true && typeof index !== 'undefined') {

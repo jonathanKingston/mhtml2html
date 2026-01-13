@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 1: External CSS</title>
+  <link rel="stylesheet" href="../assets/css/test1-styles.css">
+</head>
+<body>
+  <div class="card">
+    <span class="badge">Test Case #1</span>
+    <h1>External CSS Loading</h1>
+    <p>
+      This test validates that external CSS files are properly bundled into the MHTML archive.
+      The styles should be fully preserved including CSS custom properties, gradients, 
+      and complex box shadows.
+    </p>
+    <div class="grid">
+      <div class="stat">
+        <div class="stat-value">✓</div>
+        <div class="stat-label">Variables</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">✓</div>
+        <div class="stat-label">Gradients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">✓</div>
+        <div class="stat-label">Grid Layout</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

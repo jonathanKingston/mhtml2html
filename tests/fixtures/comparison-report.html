@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mhtml2html Conversion Report</title>
+  <style>
+    :root { --bg: #0a0a0a; --surface: #141414; --border: #262626; --text: #fafafa; --muted: #737373; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .timestamp { color: var(--muted); margin-bottom: 2rem; }
+    .summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 3rem; }
+    .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; text-align: center; }
+    .summary-card .value { font-size: 2.5rem; font-weight: 700; }
+    .summary-card .label { color: var(--muted); font-size: 0.875rem; }
+    .summary-card.passed .value { color: var(--success); }
+    .summary-card.warning .value { color: var(--warning); }
+    .summary-card.failed .value { color: var(--danger); }
+    .test-results { display: flex; flex-direction: column; gap: 2rem; }
+    .test-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; }
+    .test-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .test-name { font-weight: 600; font-size: 1.125rem; }
+    .test-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    .test-badge.passed { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+    .test-badge.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+    .test-badge.failed { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+    .test-images { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); }
+    .test-image { background: var(--bg); padding: 1rem; }
+    .test-image h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.75rem; }
+    .test-image img { width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid var(--border); }
+    .test-stats { display: flex; gap: 2rem; padding: 1rem 1.5rem; background: var(--bg); font-size: 0.875rem; color: var(--muted); }
+    .test-stats strong { color: var(--text); }
+    .error-message { padding: 1rem 1.5rem; background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>mhtml2html Conversion Report</h1>
+    <p class="timestamp">Generated: 1/13/2026, 12:58:48 AM</p>
+    
+    <div class="summary">
+      <div class="summary-card">
+        <div class="value">12</div>
+        <div class="label">Total Tests</div>
+      </div>
+      <div class="summary-card passed">
+        <div class="value">11</div>
+        <div class="label">Passed (≥99%)</div>
+      </div>
+      <div class="summary-card warning">
+        <div class="value">0</div>
+        <div class="label">Warnings (95-99%)</div>
+      </div>
+      <div class="summary-card failed">
+        <div class="value">1</div>
+        <div class="label">Failed (&lt;95%)</div>
+      </div>
+      <div class="summary-card failed">
+        <div class="value">0</div>
+        <div class="label">Errors</div>
+      </div>
+    </div>
+    
+    <div class="test-results">
+      
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test1-external-css</span>
+            <span class="test-badge passed">99.62% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test1-external-css.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test1-external-css.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test1-external-css-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>4,982</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×900</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test2-images-svg</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test2-images-svg.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test2-images-svg.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test2-images-svg-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>0</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×900</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test3-webfonts-typography</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test3-webfonts-typography.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test3-webfonts-typography.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test3-webfonts-typography-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>0</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1966</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test4-css-animations</span>
+            <span class="test-badge passed">99.99% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test4-css-animations.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test4-css-animations.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test4-css-animations-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>95</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1304</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test5-iframes</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test5-iframes.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test5-iframes.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test5-iframes-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>0</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1418</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test6-complex-layout</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test6-complex-layout.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test6-complex-layout.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test6-complex-layout-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>0</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1178</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test7-nested-css-imports</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test7-nested-css-imports.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test7-nested-css-imports.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test7-nested-css-imports-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>0</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1091</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test8-custom-elements</span>
+            <span class="test-badge failed">75.46% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test8-custom-elements.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test8-custom-elements.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test8-custom-elements-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>512,478</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1450</strong></span>
+            <span style="color: var(--warning)">⚠️ Size mismatch</span>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test9-css-resources</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test9-css-resources.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test9-css-resources.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test9-css-resources-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>0</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×3003</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test10-js-modules</span>
+            <span class="test-badge passed">100% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test10-js-modules.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test10-js-modules.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test10-js-modules-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>19</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1522</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test11-image-loading</span>
+            <span class="test-badge passed">99.65% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test11-image-loading.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test11-image-loading.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test11-image-loading-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>8,326</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1656</strong></span>
+            
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-header">
+            <span class="test-name">test12-base64-edge-cases</span>
+            <span class="test-badge passed">99.96% match</span>
+          </div>
+          <div class="test-images">
+            <div class="test-image">
+              <h3>Original HTML</h3>
+              <img src="screenshots/html/test12-base64-edge-cases.png" alt="HTML screenshot">
+            </div>
+            <div class="test-image">
+              <h3>mhtml2html Output</h3>
+              <img src="screenshots/converted/test12-base64-edge-cases.png" alt="Converted screenshot">
+            </div>
+            <div class="test-image">
+              <h3>Difference</h3>
+              <img src="screenshots/diff/test12-base64-edge-cases-diff.png" alt="Diff image">
+            </div>
+          </div>
+          <div class="test-stats">
+            <span><strong>900</strong> pixels differ</span>
+            <span>Dimensions: <strong>1440×1600</strong></span>
+            
+          </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
