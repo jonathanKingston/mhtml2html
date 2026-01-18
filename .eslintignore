@@ -1,0 +1,7 @@
+dist/
+node_modules/
+*.cjs
+.debug/
+pipeline-output/
+converted-html-*/
+

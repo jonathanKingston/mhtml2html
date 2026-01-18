@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 3: Web Fonts & Typography</title>
+  <!-- Google Fonts - Tests external font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #faf7f2;
+      --bg-secondary: #f5f0e8;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --accent: #c2410c;
+      --accent-light: #fed7aa;
+      --border: #e7e0d5;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+    
+    .font-specimens {
+      display: grid;
+      gap: 2rem;
+    }
+    
+    .specimen {
+      background: var(--bg-secondary);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+    }
+    
+    .specimen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .specimen-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent);
+    }
+    
+    .specimen-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Playfair Display Specimen */
+    .playfair-specimen .sample {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .playfair-specimen .sample-large {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .playfair-specimen .sample-italic {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    
+    /* Outfit Specimen */
+    .outfit-specimen .weights {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .outfit-specimen .weight-item {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+    }
+    
+    .outfit-specimen .weight-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+    
+    .weight-300 { font-weight: 300; }
+    .weight-400 { font-weight: 400; }
+    .weight-600 { font-weight: 600; }
+    .weight-800 { font-weight: 800; }
+    
+    /* JetBrains Mono Specimen */
+    .mono-specimen pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    
+    .mono-specimen .keyword { color: #569cd6; }
+    .mono-specimen .string { color: #ce9178; }
+    .mono-specimen .function { color: #dcdcaa; }
+    .mono-specimen .comment { color: #6a9955; }
+    .mono-specimen .number { color: #b5cea8; }
+    
+    /* Typography Scale */
+    .type-scale {
+      background: var(--bg-secondary);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    
+    .type-scale h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    .scale-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    
+    .scale-item:last-child {
+      border-bottom: none;
+    }
+    
+    .scale-size {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      width: 60px;
+      flex-shrink: 0;
+    }
+    
+    .scale-h1 { font-size: 3rem; font-family: 'Playfair Display', serif; font-weight: 700; }
+    .scale-h2 { font-size: 2.25rem; font-family: 'Playfair Display', serif; font-weight: 700; }
+    .scale-h3 { font-size: 1.5rem; font-family: 'Outfit', sans-serif; font-weight: 600; }
+    .scale-body { font-size: 1rem; font-family: 'Outfit', sans-serif; }
+    .scale-small { font-size: 0.875rem; font-family: 'Outfit', sans-serif; color: var(--text-secondary); }
+    .scale-code { font-size: 0.875rem; font-family: 'JetBrains Mono', monospace; }
+    
+    /* Special characters test */
+    .special-chars {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+    }
+    
+    .special-chars h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 1rem;
+      text-align: center;
+    }
+    
+    .char-item {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+    
+    .char-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.625rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">TEST CASE #3</span>
+      <h1>Typography & <em>Web Fonts</em></h1>
+      <p class="subtitle">Testing external Google Fonts, font weights, and typographic features</p>
+    </header>
+    
+    <div class="font-specimens">
+      <!-- Playfair Display -->
+      <div class="specimen playfair-specimen">
+        <div class="specimen-header">
+          <span class="specimen-name">Playfair Display</span>
+          <span class="specimen-meta">Serif · Google Fonts</span>
+        </div>
+        <div class="sample sample-large">The Quick Brown Fox</div>
+        <div class="sample sample-italic">Jumps over the lazy dog</div>
+      </div>
+      
+      <!-- Outfit -->
+      <div class="specimen outfit-specimen">
+        <div class="specimen-header">
+          <span class="specimen-name">Outfit</span>
+          <span class="specimen-meta">Sans-Serif · Google Fonts</span>
+        </div>
+        <div class="weights">
+          <div>
+            <div class="weight-item weight-300">Aa</div>
+            <div class="weight-label">Light (300)</div>
+          </div>
+          <div>
+            <div class="weight-item weight-400">Aa</div>
+            <div class="weight-label">Regular (400)</div>
+          </div>
+          <div>
+            <div class="weight-item weight-600">Aa</div>
+            <div class="weight-label">Semi (600)</div>
+          </div>
+          <div>
+            <div class="weight-item weight-800">Aa</div>
+            <div class="weight-label">Bold (800)</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- JetBrains Mono -->
+      <div class="specimen mono-specimen">
+        <div class="specimen-header">
+          <span class="specimen-name">JetBrains Mono</span>
+          <span class="specimen-meta">Monospace · Google Fonts</span>
+        </div>
+        <pre><code><span class="comment">// MHTML serialization test</span>
+<span class="keyword">const</span> <span class="function">serialize</span> = <span class="keyword">async</span> (html) => {
+  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'data:text/html,'</span> + html);
+  <span class="keyword">return</span> response.<span class="function">text</span>();
+};</code></pre>
+      </div>
+    </div>
+    
+    <!-- Type Scale -->
+    <div class="type-scale">
+      <h3>Type Scale</h3>
+      <div class="scale-item">
+        <span class="scale-size">3rem</span>
+        <span class="scale-h1">Heading 1</span>
+      </div>
+      <div class="scale-item">
+        <span class="scale-size">2.25rem</span>
+        <span class="scale-h2">Heading 2</span>
+      </div>
+      <div class="scale-item">
+        <span class="scale-size">1.5rem</span>
+        <span class="scale-h3">Heading 3</span>
+      </div>
+      <div class="scale-item">
+        <span class="scale-size">1rem</span>
+        <span class="scale-body">Body text for paragraphs and content</span>
+      </div>
+      <div class="scale-item">
+        <span class="scale-size">0.875rem</span>
+        <span class="scale-small">Small text for captions and metadata</span>
+      </div>
+      <div class="scale-item">
+        <span class="scale-size">0.875rem</span>
+        <span class="scale-code">const code = "monospace";</span>
+      </div>
+    </div>
+    
+    <!-- Special Characters -->
+    <div class="special-chars">
+      <h3>Special Characters & Ligatures</h3>
+      <div class="char-grid">
+        <div>
+          <div class="char-item">&amp;</div>
+          <div class="char-label">Ampersand</div>
+        </div>
+        <div>
+          <div class="char-item">@</div>
+          <div class="char-label">At</div>
+        </div>
+        <div>
+          <div class="char-item">№</div>
+          <div class="char-label">Numero</div>
+        </div>
+        <div>
+          <div class="char-item">§</div>
+          <div class="char-label">Section</div>
+        </div>
+        <div>
+          <div class="char-item">¶</div>
+          <div class="char-label">Pilcrow</div>
+        </div>
+        <div>
+          <div class="char-item">†</div>
+          <div class="char-label">Dagger</div>
+        </div>
+        <div>
+          <div class="char-item">©</div>
+          <div class="char-label">Copyright</div>
+        </div>
+        <div>
+          <div class="char-item">∞</div>
+          <div class="char-label">Infinity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,540 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test9-css-resources.html
+Subject: Test 9: CSS Background Images & Resources
+Date: Sat, 10 Jan 2026 22:30:34 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----"
+
+
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/html
+Content-ID: <frame-EA78710757DE6EC9A2CA11457E335757@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test9-css-resources.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-2ca820af-20c4-4356-9211-7cee1c45d8c7@mhtml.blink" />
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 9: CSS Background Images &amp; Resources</title>
+  <link rel=3D"stylesheet" href=3D"file:///Users/jonathankingston/debugging=
+/mhtml-tests/assets/css/components.css">
+ =20
+</head>
+<body>
+  <header class=3D"hero">
+    <div class=3D"hero-content">
+      <span class=3D"badge-premium">TEST #9</span>
+      <h1>CSS Background Resources</h1>
+      <p>Testing background-image, mask-image, data URIs, and other CSS res=
+ource loading patterns</p>
+    </div>
+  </header>
+ =20
+  <main class=3D"container">
+    <section>
+      <h2>Grid Pattern (background-image)</h2>
+      <div class=3D"grid-bg-demo hero-pattern">
+        <span>background-image: url('../assets/images/grid-pattern.svg')</s=
+pan>
+      </div>
+    </section>
+   =20
+    <section>
+      <h2>Multiple Background Images</h2>
+      <div class=3D"multi-bg-demo">
+        <div class=3D"label">Mesh gradient + grid pattern layered</div>
+      </div>
+    </section>
+   =20
+    <section>
+      <h2>CSS mask-image with External SVG</h2>
+      <div class=3D"mask-demos">
+        <div class=3D"mask-demo">
+          <div class=3D"mask-icon mask-check"></div>
+          <span>mask-image: url(check.svg)</span>
+        </div>
+        <div class=3D"mask-demo">
+          <div class=3D"mask-icon mask-star"></div>
+          <span>mask-image: url(star.svg)</span>
+        </div>
+        <div class=3D"mask-demo">
+          <div class=3D"icon-check" style=3D"width: 48px; height: 48px;"></=
+div>
+          <span>From components.css</span>
+        </div>
+        <div class=3D"mask-demo">
+          <div class=3D"icon-star" style=3D"width: 48px; height: 48px;"></d=
+iv>
+          <span>From components.css</span>
+        </div>
+      </div>
+    </section>
+   =20
+    <section>
+      <h2>Inline SVG Data URI</h2>
+      <div class=3D"data-uri-bg">
+        <span>data:image/svg+xml,...</span>
+      </div>
+    </section>
+   =20
+    <section>
+      <h2>Border Image Gradient</h2>
+      <div class=3D"border-image-demo">
+        <h3 style=3D"margin-bottom: 0.5rem;">Gradient Border</h3>
+        <p>Using border-image with linear-gradient</p>
+      </div>
+    </section>
+   =20
+    <section>
+      <h2>Custom Cursor (SVG)</h2>
+      <div class=3D"cursor-demo">
+        <span>Hover here - custom star cursor</span>
+      </div>
+    </section>
+   =20
+    <section>
+      <h2>List Style with Mask Image</h2>
+      <ul class=3D"custom-list">
+        <li>External CSS resources bundled</li>
+        <li>Nested @import chains resolved</li>
+        <li>SVG masks applied correctly</li>
+        <li>Background images preserved</li>
+        <li>Data URIs inline correctly</li>
+      </ul>
+    </section>
+   =20
+    <section>
+      <h2>Backdrop Filter with Background</h2>
+      <div class=3D"filter-demo">
+        <div class=3D"filter-demo-bg"></div>
+        <div class=3D"filter-demo-content">
+          <div class=3D"glass-card">
+            <h3>Glassmorphism</h3>
+            <p>backdrop-filter: blur(16px)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+</body></html>
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap
+
+@charset "utf-8";
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 400; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0,=
+ U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 400; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+3=
+08, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20=
+AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 400; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2") format("woff2"); unicode-=
+range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+3=
+08, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+F=
+EFF, U+FFFD; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 500; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0,=
+ U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 500; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+3=
+08, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20=
+AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 500; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2") format("woff2"); unicode-=
+range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+3=
+08, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+F=
+EFF, U+FFFD; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 600; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0,=
+ U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 600; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+3=
+08, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20=
+AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 600; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2") format("woff2"); unicode-=
+range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+3=
+08, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+F=
+EFF, U+FFFD; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 700; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0,=
+ U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 700; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2") format("woff2"); unico=
+de-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+3=
+08, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20=
+AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight:=
+ 700; font-display: swap; src: url("https://fonts.gstatic.com/s/spacegrotes=
+k/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2") format("woff2"); unicode-=
+range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+3=
+08, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+F=
+EFF, U+FFFD; }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/typography-base.css
+
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css2?family=3DSpace+Grotesk:wght@=
+400;500;600;700&display=3Dswap");
+
+:root { --font-sans: 'Space Grotesk', system-ui, sans-serif; --font-mono: u=
+i-monospace, 'Cascadia Code', 'Fira Code', monospace; --text-xs: 0.75rem; -=
+-text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25=
+rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem; --leading-ti=
+ght: 1.25; --leading-normal: 1.5; --leading-relaxed: 1.75; }
+
+body { font-family: var(--font-sans); line-height: var(--leading-normal); }
+
+code, pre { font-family: var(--font-mono); }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/color-primitives.css
+
+@charset "utf-8";
+
+:root { --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --=
+slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b; --slate-600=
+: #475569; --slate-700: #334155; --slate-800: #1e293b; --slate-900: #0f172a=
+; --slate-950: #020617; --violet-50: #f5f3ff; --violet-100: #ede9fe; --viol=
+et-200: #ddd6fe; --violet-300: #c4b5fd; --violet-400: #a78bfa; --violet-500=
+: #8b5cf6; --violet-600: #7c3aed; --violet-700: #6d28d9; --violet-800: #5b2=
+1b6; --violet-900: #4c1d95; --violet-950: #2e1065; --emerald-500: #10b981; =
+--emerald-400: #34d399; --amber-500: #f59e0b; --amber-400: #fbbf24; --rose-=
+500: #f43f5e; --rose-400: #fb7185; }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/theme-colors.css
+
+@charset "utf-8";
+
+@import url("color-primitives.css");
+
+:root { --color-bg-primary: var(--slate-950); --color-bg-secondary: var(--s=
+late-900); --color-bg-tertiary: var(--slate-800); --color-text-primary: var=
+(--slate-50); --color-text-secondary: var(--slate-400); --color-text-muted:=
+ var(--slate-500); --color-border: var(--slate-700); --color-border-subtle:=
+ var(--slate-800); --color-accent: var(--violet-500); --color-accent-hover:=
+ var(--violet-400); --color-accent-muted: var(--violet-900); --color-succes=
+s: var(--emerald-500); --color-warning: var(--amber-500); --color-error: va=
+r(--rose-500); }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/base-variables.css
+
+@charset "utf-8";
+
+@import url("theme-colors.css");
+
+@import url("typography-base.css");
+
+:root { --spacing-xs: 0.25rem; --spacing-sm: 0.5rem; --spacing-md: 1rem; --=
+spacing-lg: 2rem; --spacing-xl: 4rem; --radius-sm: 0.25rem; --radius-md: 0.=
+5rem; --radius-lg: 1rem; --radius-full: 9999px; --shadow-sm: 0 1px 2px rgba=
+(0, 0, 0, 0.05); --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1); --shadow-l=
+g: 0 10px 15px -3px rgba(0, 0, 0, 0.1); --shadow-xl: 0 25px 50px -12px rgba=
+(0, 0, 0, 0.25); }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/components.css
+
+@charset "utf-8";
+
+@import url("base-variables.css");
+
+.hero-pattern { background-image: url("../images/grid-pattern.svg"); backgr=
+ound-size: 40px 40px; }
+
+.gradient-mesh { background-image: url("../images/mesh-gradient.svg"); back=
+ground-size: cover; background-position: center center; }
+
+.card { background: var(--color-bg-secondary); border: 1px solid var(--colo=
+r-border); border-radius: var(--radius-lg); padding: var(--spacing-lg); box=
+-shadow: var(--shadow-lg); }
+
+.card-header { margin-bottom: var(--spacing-md); padding-bottom: var(--spac=
+ing-md); border-bottom: 1px solid var(--color-border-subtle); }
+
+.card-title { font-size: var(--text-xl); font-weight: 600; color: var(--col=
+or-text-primary); }
+
+.card-subtitle { font-size: var(--text-sm); color: var(--color-text-muted);=
+ margin-top: var(--spacing-xs); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; =
+gap: var(--spacing-sm); padding: var(--spacing-sm) var(--spacing-md); font-=
+size: var(--text-sm); font-weight: 500; border-radius: var(--radius-md); bo=
+rder: none; cursor: pointer; transition: 0.15s; }
+
+.btn-primary { background: var(--color-accent); color: white; }
+
+.btn-primary:hover { background: var(--color-accent-hover); }
+
+.btn-ghost { background: transparent; color: var(--color-text-secondary); b=
+order: 1px solid var(--color-border); }
+
+.btn-ghost:hover { background: var(--color-bg-tertiary); color: var(--color=
+-text-primary); }
+
+.badge-premium { background-image: linear-gradient(135deg, var(--violet-600=
+), var(--rose-500)); color: white; padding: var(--spacing-xs) var(--spacing=
+-sm); border-radius: var(--radius-full); font-size: var(--text-xs); font-we=
+ight: 600; }
+
+.icon-check { width: 24px; height: 24px; background-color: var(--color-succ=
+ess); mask-image: url("../images/icons/check.svg"); mask-size: contain; mas=
+k-repeat: no-repeat; }
+
+.icon-star { width: 24px; height: 24px; background-color: var(--amber-500);=
+ mask-image: url("../images/icons/star.svg"); mask-size: contain; }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/icons/star.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 24 24" fill=3D"cur=
+rentColor">
+  <path fill-rule=3D"evenodd" d=3D"M10.788 3.21c.448-1.077 1.976-1.077 2.42=
+4 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.25=
+7 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.=
+231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5=
+.404-.433 2.082-5.006z" clip-rule=3D"evenodd"/>
+</svg>=0A
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/icons/check.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 24 24" fill=3D"cur=
+rentColor">
+  <path fill-rule=3D"evenodd" d=3D"M19.916 4.626a.75.75 0 01.208 1.04l-9 13=
+.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739=
+a.75.75 0 011.04-.208z" clip-rule=3D"evenodd"/>
+</svg>=0A
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/grid-pattern.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" width=3D"40" height=3D"40" viewBo=
+x=3D"0 0 40 40">
+  <defs>
+    <pattern id=3D"grid" width=3D"40" height=3D"40" patternUnits=3D"userSpa=
+ceOnUse">
+      <path d=3D"M 40 0 L 0 0 0 40" fill=3D"none" stroke=3D"#334155" stroke=
+-width=3D"0.5" opacity=3D"0.5"/>
+    </pattern>
+  </defs>
+  <rect width=3D"40" height=3D"40" fill=3D"url(#grid)"/>
+  <circle cx=3D"0" cy=3D"0" r=3D"1" fill=3D"#475569"/>
+  <circle cx=3D"40" cy=3D"0" r=3D"1" fill=3D"#475569"/>
+  <circle cx=3D"0" cy=3D"40" r=3D"1" fill=3D"#475569"/>
+  <circle cx=3D"40" cy=3D"40" r=3D"1" fill=3D"#475569"/>
+</svg>=0A
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/mesh-gradient.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" width=3D"800" height=3D"600" view=
+Box=3D"0 0 800 600">
+  <defs>
+    <radialGradient id=3D"g1" cx=3D"20%" cy=3D"30%">
+      <stop offset=3D"0%" stop-color=3D"#8b5cf6" stop-opacity=3D"0.4"/>
+      <stop offset=3D"100%" stop-color=3D"#8b5cf6" stop-opacity=3D"0"/>
+    </radialGradient>
+    <radialGradient id=3D"g2" cx=3D"80%" cy=3D"20%">
+      <stop offset=3D"0%" stop-color=3D"#ec4899" stop-opacity=3D"0.3"/>
+      <stop offset=3D"100%" stop-color=3D"#ec4899" stop-opacity=3D"0"/>
+    </radialGradient>
+    <radialGradient id=3D"g3" cx=3D"60%" cy=3D"80%">
+      <stop offset=3D"0%" stop-color=3D"#06b6d4" stop-opacity=3D"0.35"/>
+      <stop offset=3D"100%" stop-color=3D"#06b6d4" stop-opacity=3D"0"/>
+    </radialGradient>
+    <radialGradient id=3D"g4" cx=3D"10%" cy=3D"90%">
+      <stop offset=3D"0%" stop-color=3D"#f59e0b" stop-opacity=3D"0.25"/>
+      <stop offset=3D"100%" stop-color=3D"#f59e0b" stop-opacity=3D"0"/>
+    </radialGradient>
+  </defs>
+  <rect width=3D"800" height=3D"600" fill=3D"#020617"/>
+  <ellipse cx=3D"160" cy=3D"180" rx=3D"300" ry=3D"250" fill=3D"url(#g1)"/>
+  <ellipse cx=3D"640" cy=3D"120" rx=3D"280" ry=3D"220" fill=3D"url(#g2)"/>
+  <ellipse cx=3D"480" cy=3D"480" rx=3D"320" ry=3D"260" fill=3D"url(#g3)"/>
+  <ellipse cx=3D"80" cy=3D"540" rx=3D"250" ry=3D"200" fill=3D"url(#g4)"/>
+</svg>=0A
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-2ca820af-20c4-4356-9211-7cee1c45d8c7@mhtml.blink
+
+@charset "utf-8";
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: var(--font-sans, system-ui); background: var(--color-bg=
+-primary, #020617); color: var(--color-text-primary, #fafafa); min-height: =
+100vh; }
+
+.hero { min-height: 50vh; display: flex; flex-direction: column; align-item=
+s: center; justify-content: center; text-align: center; padding: 4rem 2rem;=
+ position: relative; }
+
+.hero::before { content: ""; position: absolute; inset: 0px; background-ima=
+ge: url("../assets/images/mesh-gradient.svg"); background-size: cover; back=
+ground-position: center center; opacity: 0.8; }
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+
+.hero p { font-size: 1.25rem; color: var(--color-text-secondary, #94a3b8); =
+max-width: 600px; }
+
+.container { max-width: 1000px; margin: 0px auto; padding: 3rem 2rem; }
+
+section { margin-bottom: 4rem; }
+
+h2 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em;=
+ color: var(--color-accent, #8b5cf6); margin-bottom: 1.5rem; }
+
+.grid-bg-demo { min-height: 200px; border-radius: 1rem; position: relative;=
+ overflow: hidden; display: flex; align-items: center; justify-content: cen=
+ter; }
+
+.grid-bg-demo::before { content: ""; position: absolute; inset: 0px; backgr=
+ound-color: var(--color-bg-secondary, #0f172a); background-image: url("../a=
+ssets/images/grid-pattern.svg"); background-size: 40px 40px; }
+
+.grid-bg-demo span { position: relative; z-index: 1; background: var(--colo=
+r-bg-tertiary, #1e293b); padding: 1rem 2rem; border-radius: 0.5rem; font-si=
+ze: 0.875rem; color: var(--color-text-secondary, #94a3b8); }
+
+.multi-bg-demo { min-height: 300px; border-radius: 1rem; background-color: =
+rgb(15, 23, 42); background-image: url("../assets/images/mesh-gradient.svg"=
+), url("../assets/images/grid-pattern.svg"); background-size: cover, 40px 4=
+0px; background-position: center center, left top; background-repeat: no-re=
+peat, repeat; display: flex; align-items: flex-end; padding: 2rem; }
+
+.multi-bg-demo .label { background: rgba(0, 0, 0, 0.7); backdrop-filter: bl=
+ur(8px); padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-size: 0.875re=
+m; }
+
+.mask-demos { display: grid; grid-template-columns: repeat(auto-fit, minmax=
+(200px, 1fr)); gap: 1.5rem; }
+
+.mask-demo { background: var(--color-bg-secondary, #1e293b); border-radius:=
+ 1rem; padding: 2rem; display: flex; flex-direction: column; align-items: c=
+enter; gap: 1rem; }
+
+.mask-icon { width: 64px; height: 64px; background: linear-gradient(135deg,=
+ var(--violet-500, #8b5cf6), var(--rose-500, #f43f5e)); mask-size: contain;=
+ mask-repeat: no-repeat; mask-position: center center; }
+
+.mask-check { mask-image: url("../assets/images/icons/check.svg"); }
+
+.mask-star { mask-image: url("../assets/images/icons/star.svg"); }
+
+.data-uri-bg { min-height: 150px; border-radius: 1rem; background-color: rg=
+b(30, 41, 59); background-image: url("data:image/svg+xml,%3Csvg xmlns=3D'ht=
+tp://www.w3.org/2000/svg' width=3D'60' height=3D'60' viewBox=3D'0 0 60 60'%=
+3E%3Cg fill=3D'none' stroke=3D'%23334155' stroke-width=3D'0.5'%3E%3Cpath d=
+=3D'M30 0v60M0 30h60'/%3E%3C/g%3E%3Ccircle cx=3D'30' cy=3D'30' r=3D'2' fill=
+=3D'%23475569'/%3E%3C/svg%3E"); background-size: 60px 60px; display: flex; =
+align-items: center; justify-content: center; }
+
+.data-uri-bg span { background: rgb(15, 23, 42); padding: 0.75rem 1.5rem; b=
+order-radius: 0.5rem; font-size: 0.875rem; font-family: monospace; color: v=
+ar(--emerald-500, #10b981); }
+
+.border-image-demo { padding: 2rem; background: var(--color-bg-secondary, #=
+1e293b); border-width: 4px; border-style: solid; border-color: initial; bor=
+der-image: linear-gradient(135deg, var(--violet-500, #8b5cf6), var(--rose-5=
+00, #f43f5e), var(--amber-500, #f59e0b)) 1; text-align: center; }
+
+.border-image-demo p { color: var(--color-text-secondary, #94a3b8); font-si=
+ze: 0.875rem; }
+
+.cursor-demo { min-height: 150px; background: var(--color-bg-secondary, #1e=
+293b); border-radius: 1rem; display: flex; align-items: center; justify-con=
+tent: center; cursor: url("data:image/svg+xml,%3Csvg xmlns=3D'http://www.w3=
+.org/2000/svg' width=3D'24' height=3D'24' viewBox=3D'0 0 24 24' fill=3D'%23=
+8b5cf6'%3E%3Cpath d=3D'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-=
+6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E") 12 12, auto; }
+
+.cursor-demo span { color: var(--color-text-muted, #64748b); font-size: 0.8=
+75rem; pointer-events: none; }
+
+.custom-list { list-style: none; padding: 2rem; background: var(--color-bg-=
+secondary, #1e293b); border-radius: 1rem; }
+
+.custom-list li { padding: 0.5rem 0px 0.5rem 2rem; position: relative; colo=
+r: var(--color-text-secondary, #94a3b8); }
+
+.custom-list li::before { content: ""; position: absolute; left: 0px; top: =
+50%; transform: translateY(-50%); width: 16px; height: 16px; background: va=
+r(--emerald-500, #10b981); mask-image: url("../assets/images/icons/check.sv=
+g"); mask-size: contain; }
+
+.filter-demo { min-height: 200px; border-radius: 1rem; position: relative; =
+overflow: hidden; }
+
+.filter-demo-bg { position: absolute; inset: 0px; background-image: url("..=
+/assets/images/mesh-gradient.svg"); background-size: cover; }
+
+.filter-demo-content { position: relative; height: 200px; display: flex; al=
+ign-items: center; justify-content: center; }
+
+.glass-card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(1=
+6px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1rem; padd=
+ing: 2rem; text-align: center; }
+
+.glass-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+
+.glass-card p { color: rgba(255, 255, 255, 0.7); font-size: 0.875rem; }
+------MultipartBoundary--iRTKjLRPeK15pDGOWfbbB2u1mg5vmNhdXBtUiuTsFW------

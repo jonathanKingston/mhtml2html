@@ -1,0 +1,99 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test1-external-css.html
+Subject: Test 1: External CSS
+Date: Sat, 10 Jan 2026 22:30:18 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--TEzHfnuy7dvLWfAcs4lQiu8zXjKLzVjSxM8gh79GFn----"
+
+
+------MultipartBoundary--TEzHfnuy7dvLWfAcs4lQiu8zXjKLzVjSxM8gh79GFn----
+Content-Type: text/html
+Content-ID: <frame-5D90ABFC81F25303B45988EFA73525D0@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test1-external-css.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8">
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 1: External CSS</title>
+  <link rel=3D"stylesheet" href=3D"file:///Users/jonathankingston/debugging=
+/mhtml-tests/assets/css/test1-styles.css">
+</head>
+<body>
+  <div class=3D"card">
+    <span class=3D"badge">Test Case #1</span>
+    <h1>External CSS Loading</h1>
+    <p>
+      This test validates that external CSS files are properly bundled into=
+ the MHTML archive.
+      The styles should be fully preserved including CSS custom properties,=
+ gradients,=20
+      and complex box shadows.
+    </p>
+    <div class=3D"grid">
+      <div class=3D"stat">
+        <div class=3D"stat-value">=E2=9C=93</div>
+        <div class=3D"stat-label">Variables</div>
+      </div>
+      <div class=3D"stat">
+        <div class=3D"stat-value">=E2=9C=93</div>
+        <div class=3D"stat-label">Gradients</div>
+      </div>
+      <div class=3D"stat">
+        <div class=3D"stat-value">=E2=9C=93</div>
+        <div class=3D"stat-label">Grid Layout</div>
+      </div>
+    </div>
+  </div>
+
+
+</body></html>
+------MultipartBoundary--TEzHfnuy7dvLWfAcs4lQiu8zXjKLzVjSxM8gh79GFn----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/css/test1-styles.css
+
+@charset "utf-8";
+
+:root { --primary: #0f172a; --accent: #f97316; --surface: #1e293b; --text: =
+#f8fafc; --gradient-start: #7c3aed; --gradient-end: #db2777; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, -apple-system, sans-serif; background: var(-=
+-primary); color: var(--text); min-height: 100vh; display: flex; flex-direc=
+tion: column; align-items: center; justify-content: center; padding: 2rem; =
+}
+
+.card { background: var(--surface); border-radius: 1.5rem; padding: 3rem; m=
+ax-width: 600px; box-shadow: rgba(0, 0, 0, 0.5) 0px 25px 50px -12px, rgba(2=
+55, 255, 255, 0.05) 0px 0px 0px 1px; }
+
+.card h1 { font-size: 2.5rem; font-weight: 800; background-image: ; backgro=
+und-position-x: ; background-position-y: ; background-size: ; background-re=
+peat: ; background-attachment: ; background-origin: ; background-color: ; -=
+webkit-text-fill-color: transparent; background-clip: text; margin-bottom: =
+1rem; }
+
+.card p { font-size: 1.125rem; line-height: 1.75; color: rgb(148, 163, 184)=
+; margin-bottom: 1.5rem; }
+
+.badge { display: inline-block; background: var(--accent); color: var(--pri=
+mary); padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; font-=
+size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; ma=
+rgin-top: 2rem; }
+
+.stat { background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radi=
+us: 1rem; text-align: center; }
+
+.stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); }
+
+.stat-label { font-size: 0.75rem; text-transform: uppercase; color: rgb(100=
+, 116, 139); margin-top: 0.25rem; }
+------MultipartBoundary--TEzHfnuy7dvLWfAcs4lQiu8zXjKLzVjSxM8gh79GFn------

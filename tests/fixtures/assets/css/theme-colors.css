@@ -1,0 +1,24 @@
+/* Theme Colors - Level 2 import (nested) */
+@import url('color-primitives.css');
+
+:root {
+  /* Semantic colors derived from primitives */
+  --color-bg-primary: var(--slate-950);
+  --color-bg-secondary: var(--slate-900);
+  --color-bg-tertiary: var(--slate-800);
+  
+  --color-text-primary: var(--slate-50);
+  --color-text-secondary: var(--slate-400);
+  --color-text-muted: var(--slate-500);
+  
+  --color-border: var(--slate-700);
+  --color-border-subtle: var(--slate-800);
+  
+  --color-accent: var(--violet-500);
+  --color-accent-hover: var(--violet-400);
+  --color-accent-muted: var(--violet-900);
+  
+  --color-success: var(--emerald-500);
+  --color-warning: var(--amber-500);
+  --color-error: var(--rose-500);
+}

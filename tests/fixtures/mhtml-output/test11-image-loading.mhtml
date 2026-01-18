@@ -1,0 +1,1386 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test11-image-loading.html
+Subject: Test 11: Comprehensive Image Loading
+Date: Mon, 12 Jan 2026 23:49:52 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----"
+
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: text/html
+Content-ID: <frame-9312EE232CFF255187FDBCD85DA1CD0A@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test11-image-loading.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-ddec5e77-e2d6-42e8-a2c5-fc342445dac5@mhtml.blink" />
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 11: Comprehensive Image Loading</title>
+  <!-- Favicon and icons -->
+  <link rel=3D"icon" type=3D"image/svg+xml" href=3D"file:///Users/jonathank=
+ingston/debugging/mhtml-tests/assets/images/icons/star.svg">
+  <link rel=3D"apple-touch-icon" href=3D"file:///Users/jonathankingston/deb=
+ugging/mhtml-tests/assets/images/apple-touch-icon.png">
+ =20
+</head>
+<body>
+  <h1>Test 11: Image Loading</h1>
+  <p class=3D"subtitle">Comprehensive test of image loading scenarios for M=
+HTML serialization</p>
+ =20
+  <div class=3D"test-grid">
+    <!-- 1. Basic PNG image -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">PNG Image</span>
+        <span class=3D"test-tag">Raster</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/sample-photo.png" alt=3D"Sample PNG photo" width=3D"200" height=
+=3D"150">
+      </div>
+      <div class=3D"test-footer">src=3D"../assets/images/sample-photo.png"<=
+/div>
+    </div>
+   =20
+    <!-- 2. JPG image -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">JPEG Image</span>
+        <span class=3D"test-tag">Raster</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/sample-photo.jpg" alt=3D"Sample JPEG photo">
+      </div>
+      <div class=3D"test-footer">src=3D"../assets/images/sample-photo.jpg"<=
+/div>
+    </div>
+   =20
+    <!-- 3. WebP image -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">WebP Image</span>
+        <span class=3D"test-tag">Modern</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/sample-photo.webp" alt=3D"Sample WebP photo">
+      </div>
+      <div class=3D"test-footer">src=3D"../assets/images/sample-photo.webp"=
+</div>
+    </div>
+   =20
+    <!-- 4. GIF (animated) -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Animated GIF</span>
+        <span class=3D"test-tag">Animation</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/loading-spinner.gif" alt=3D"Loading spinner animation">
+      </div>
+      <div class=3D"test-footer">src=3D"../assets/images/loading-spinner.gi=
+f"</div>
+    </div>
+   =20
+    <!-- 5. Lazy loading -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Lazy Loading</span>
+        <span class=3D"test-tag">Performance</span>
+      </div>
+      <div class=3D"test-body" style=3D"position: relative;">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/lazy-image.png" alt=3D"Lazy loaded image" loading=3D"lazy" widt=
+h=3D"200" height=3D"150">
+      </div>
+      <div class=3D"test-footer">loading=3D"lazy"</div>
+    </div>
+   =20
+    <!-- 6. Srcset with sizes -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Srcset + Sizes</span>
+        <span class=3D"test-tag">Responsive</span>
+      </div>
+      <div class=3D"test-body srcset-demo">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/responsive-300.png" alt=3D"Responsive image with srcset">
+      </div>
+      <div class=3D"test-footer">srcset with 300w, 600w, 900w</div>
+    </div>
+   =20
+    <!-- 7. Picture with multiple sources -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Picture Element</span>
+        <span class=3D"test-tag">Art Direction</span>
+      </div>
+      <div class=3D"test-body">
+        <picture>
+          <source srcset=3D"../assets/images/hero-dark.png" media=3D"(prefe=
+rs-color-scheme: dark)">
+          <source srcset=3D"../assets/images/hero-wide.svg" media=3D"(min-w=
+idth: 600px)" type=3D"image/svg+xml">
+          <source srcset=3D"../assets/images/hero-narrow.svg" type=3D"image=
+/svg+xml">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/hero-fallback.png" alt=3D"Hero with multiple sources">
+        </picture>
+      </div>
+      <div class=3D"test-footer">&lt;picture&gt; with 3 sources + fallback<=
+/div>
+    </div>
+   =20
+    <!-- 8. Figure with figcaption -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Figure + Caption</span>
+        <span class=3D"test-tag">Semantic</span>
+      </div>
+      <div class=3D"test-body">
+        <figure>
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/figure-image.png" alt=3D"Figure example" width=3D"180" height=
+=3D"120">
+          <figcaption>This is a figure caption</figcaption>
+        </figure>
+      </div>
+      <div class=3D"test-footer">&lt;figure&gt; + &lt;figcaption&gt;</div>
+    </div>
+   =20
+    <!-- 9. Image gallery -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Image Gallery</span>
+        <span class=3D"test-tag">Multiple</span>
+      </div>
+      <div class=3D"test-body">
+        <div class=3D"gallery">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/gallery/thumb-1.png" alt=3D"Thumbnail 1">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/gallery/thumb-2.png" alt=3D"Thumbnail 2">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/gallery/thumb-3.png" alt=3D"Thumbnail 3">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/gallery/thumb-4.png" alt=3D"Thumbnail 4">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/gallery/thumb-5.png" alt=3D"Thumbnail 5">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/gallery/thumb-6.png" alt=3D"Thumbnail 6">
+        </div>
+      </div>
+      <div class=3D"test-footer">6 images in subdirectory</div>
+    </div>
+   =20
+    <!-- 10. Object tag -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Object Tag</span>
+        <span class=3D"test-tag">Legacy</span>
+      </div>
+      <div class=3D"test-body">
+        <div class=3D"object-container">
+          <object data=3D"cid:frame-AF9AD473618C54C442C3066B095ECA5C@mhtml.=
+blink" type=3D"image/svg+xml">
+            <img src=3D"file:///Users/jonathankingston/debugging/mhtml-test=
+s/assets/images/fallback.png" alt=3D"Fallback for object">
+          </object>
+        </div>
+      </div>
+      <div class=3D"test-footer">&lt;object data=3D"..."&gt; with fallback<=
+/div>
+    </div>
+   =20
+    <!-- 11. Embed tag -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Embed Tag</span>
+        <span class=3D"test-tag">Legacy</span>
+      </div>
+      <div class=3D"test-body">
+        <div class=3D"object-container">
+          <embed src=3D"file:///Users/jonathankingston/debugging/mhtml-test=
+s/assets/images/mesh-gradient.svg" type=3D"image/svg+xml">
+        </div>
+      </div>
+      <div class=3D"test-footer">&lt;embed src=3D"..."&gt;</div>
+    </div>
+   =20
+    <!-- 12. Image with decode attribute -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Decode Async</span>
+        <span class=3D"test-tag">Performance</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/decode-test.png" alt=3D"Async decode" decoding=3D"async" width=
+=3D"200" height=3D"150">
+      </div>
+      <div class=3D"test-footer">decoding=3D"async"</div>
+    </div>
+   =20
+    <!-- 13. CSS background in inline style -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Inline Background</span>
+        <span class=3D"test-tag">CSS</span>
+      </div>
+      <div class=3D"test-body">
+        <div style=3D"width: 200px; height: 120px; background-image: url('.=
+./assets/images/pattern-bg.svg'); background-size: 30px 30px; border-radius=
+: 0.5rem;"></div>
+      </div>
+      <div class=3D"test-footer">style=3D"background-image: url(...)"</div>
+    </div>
+   =20
+    <!-- 14. Multiple backgrounds -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Multiple Backgrounds</span>
+        <span class=3D"test-tag">CSS</span>
+      </div>
+      <div class=3D"test-body">
+        <div style=3D"
+          width: 200px;=20
+          height: 120px;=20
+          background-image:=20
+            url('../assets/images/icons/star.svg'),
+            url('../assets/images/grid-pattern.svg');
+          background-size: 40px, 30px;
+          background-position: center, top left;
+          background-repeat: no-repeat, repeat;
+          background-color: #1e293b;
+          border-radius: 0.5rem;
+        "></div>
+      </div>
+      <div class=3D"test-footer">Multiple background-image layers</div>
+    </div>
+   =20
+    <!-- 15. Image with usemap -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Image Map</span>
+        <span class=3D"test-tag">Interactive</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/imagemap.png" alt=3D"Image map example" usemap=3D"#imagemap" wi=
+dth=3D"200" height=3D"120">
+        <map name=3D"imagemap">
+          <area shape=3D"rect" coords=3D"0,0,100,60" alt=3D"Top left" href=
+=3D"file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test1=
+1-image-loading.html#topleft">
+          <area shape=3D"rect" coords=3D"100,0,200,60" alt=3D"Top right" hr=
+ef=3D"file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/tes=
+t11-image-loading.html#topright">
+          <area shape=3D"rect" coords=3D"0,60,100,120" alt=3D"Bottom left" =
+href=3D"file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/t=
+est11-image-loading.html#bottomleft">
+          <area shape=3D"rect" coords=3D"100,60,200,120" alt=3D"Bottom righ=
+t" href=3D"file:///Users/jonathankingston/debugging/mhtml-tests/html-source=
+s/test11-image-loading.html#bottomright">
+        </map>
+      </div>
+      <div class=3D"test-footer">&lt;img usemap=3D"#..."&gt; + &lt;map&gt;<=
+/div>
+    </div>
+   =20
+    <!-- 16. Broken image (intentional) -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Missing Image</span>
+        <span class=3D"test-tag">Error</span>
+      </div>
+      <div class=3D"test-body"><div class=3D"img-error">Image not found</di=
+v></div>
+      <div class=3D"test-footer">onerror handler for missing images</div>
+    </div>
+   =20
+    <!-- 17. Dynamic image via JS -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">JavaScript Image</span>
+        <span class=3D"test-tag">Dynamic</span>
+      </div>
+      <div class=3D"test-body" id=3D"js-image-container"><img src=3D"file:/=
+//Users/jonathankingston/debugging/mhtml-tests/assets/images/js-loaded.png"=
+ alt=3D"Loaded via JavaScript" style=3D"max-width: 200px; max-height: 150px=
+;"></div>
+      <div class=3D"test-footer">new Image() + appendChild</div>
+    </div>
+   =20
+    <!-- 18. Content-type via data-uri variants -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Data URI Variants</span>
+        <span class=3D"test-tag">Inline</span>
+      </div>
+      <div class=3D"test-body">
+        <div class=3D"gallery">
+          <!-- SVG data URI -->
+          <img src=3D"data:image/svg+xml,%3Csvg xmlns=3D'http://www.w3.org/=
+2000/svg' width=3D'60' height=3D'60'%3E%3Crect fill=3D'%2322c55e' width=3D'=
+60' height=3D'60' rx=3D'8'/%3E%3C/svg%3E" alt=3D"SVG data URI">
+          <!-- PNG data URI (tiny 1x1) -->
+          <img src=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA=
+BCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=3D=3D" alt=
+=3D"PNG data URI" style=3D"background: #3b82f6; width: 60px; height: 60px;"=
+>
+          <!-- GIF data URI (tiny 1x1) -->
+          <img src=3D"data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAE=
+AAAAALAAAAAABAAEAAAICRAEAOw=3D=3D" alt=3D"GIF data URI" style=3D"background=
+: #f59e0b; width: 60px; height: 60px;">
+        </div>
+      </div>
+      <div class=3D"test-footer">SVG, PNG, GIF as data: URIs</div>
+    </div>
+  </div>
+ =20
+ =20
+
+
+</body></html>
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/js-loaded.png
+
+iVBORw0KGgoAAAANSUhEUgAAAMgAAACWCAIAAAAUvlBOAAAE1klEQVR42u3SxxGANgJAUZfnuOvs
+XedYFD1aSEhEIcA35hdgOP2ZV8L74O8Pu1uAHiIkGCBDgREmmGGBFTaosEODA0649LoPjCVjGctY
+xjKWsfRArI+6W4AeIiQYIEOBESaYYYEVNqiwQ4MDTrj0OmPJWMYylrGMZSw9Eevj7haghwgJBshQ
+YIQJZlhghQ0q7NDggBMuvc5YMpaxjGUsYxlLT8T6pLsF6CFCggEyFBhhghkWWGGDCjs0OOCES68z
+loxlLGMZy1jG0hOxPu1uAXqIkGCADAVGmGCGBVbYoMIODQ444dLrjCVjGctYxjKWsfRErM+6W4Ae
+IiQYIEOBESaYYYEVNqiwQ4MDTrj0OmPJWMYylrGMZSw9Ees/3S1ADxESDJChwAgTzLDAChtU2KHB
+ASdcep2xZCxjGctYxjKWnoj13+4WoIcICQbIUGCECWZYYIUNKuzQ4IATLr3OWDKWsYxlLGMZS0/E
++ry7BeghQoIBMhQYYYIZFlhhgwo7NDjghEuvM5aMZSxjGctYxtITsb7obgF6iJBggAwFRphghgVW
+2KDCDg0OOOHS64wlYxnLWMYylrH0RKwvu1uAHiIkGCBDgREmmGGBFTaosEODA0649DpjyVjGMpax
+jGUsPRHrq+4WoIcICQbIUGCECWZYYIUNKuzQ4IATLr3OWDKWsYxlLGMZS0/E+rq7BeghQoIBMhQY
+YYIZFlhhgwo7NDjghEuvM5aMZSxjGctYxtITsb7pbgF6iJBggAwFRphghgVW2KDCDg0OOOHS64wl
+YxnLWMYylrH0RKxvu1uAHiIkGCBDgREmmGGBFTaosEODA0649DpjyVjGMpaxjGUsPRHru+4WoIcI
+CQbIUGCECWZYYIUNKuzQ4IATLr3OWDKWsYxlLGMZS0/E+l93C9BDhAQDZCgwwgQzLLDCBhV2aHDA
+CZdeZywZy1jGMpaxjKUnYv2/uwXoIUKCATIUGGGCGRZYYYMKOzQ44IRLrzOWjGUsYxnLWMbSE7G+
+724BeoiQYIAMBUaYYIYFVtigwg4NDjjh0uuMJWMZy1jGMpax9ESsH7pbgB4iJBggQ4ERJphhgRU2
+qLBDgwNOuPQ6Y8lYxjKWsYxlLD0R68fuFqCHCAkGyFBghAlmWGCFDSrs0OCAEy69zlgylrGMZSxj
+GUtPxPqpuwXoIUKCATIUGGGCGRZYYYMKOzQ44IRLrzOWjGUsYxnLWMbSE7F+7m4BeoiQYIAMBUaY
+YIYFVtigwg4NDjjh0uuMJWMZy1jGMpax9ESsX7pbgB4iJBggQ4ERJphhgRU2qLBDgwNOuPQ6Y8lY
+xjKWsYxlLD0R69fuFqCHCAkGyFBghAlmWGCFDSrs0OCAEy69zlgylrGMZSxjGUtPxPqtuwXoIUKC
+ATIUGGGCGRZYYYMKOzQ44IRLrzOWjGUsYxnLWMbSE7F+724BeoiQYIAMBUaYYIYFVtigwg4NDjjh
+0uuMJWMZy1jGMpax9ESsP7pbgB4iJBggQ4ERJphhgRU2qLBDgwNOuPQ6Y8lYxjKWsYxlLD0R68/u
+FqCHCAkGyFBghAlmWGCFDSrs0OCAEy69zlgylrGMZSxjGUtPxPqruwXoIUKCATIUGGGCGRZYYYMK
+OzQ44IRLrzOWjGUsYxnLWMbSv+8f8vOtCUX4tF8AAAAASUVORK5CYII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/imagemap.png
+
+iVBORw0KGgoAAAANSUhEUgAAAMgAAAB4CAIAAAA48Cq8AAAJeklEQVR42u3d17HrOBBAwRfJynvv
+DSnvff7Z7NdltWLQsDqE84ECiMG//xpJJoc8CiiihDIqqKKGOhpoooU2Ouiihz4GGGKEMSaYYoY5
+Flh+S/6kWGGNDbbYYY8DjjjhjAuuuOGOB5544Y0P/kVYEVaEFWFFWBHWr4fVTDI55FFAESWUUUEV
+NdTRQBMttNFBFz30McAQI4wxwRQzzLHA8lvyJ8UKa2ywxQ57HHDECWdccMUNdzzwxAtvfBBhRVgR
+VoQVYUVYPx9WK8nkkEcBRZRQRgVV1FBHA0200EYHXfTQxwBDjDDGBFPMMMcCy2/JnxQrrLHBFjvs
+ccARJ5xxwRU33PHAEy+88UGEFWFFWBFWhBVh/XxY7SSTQx4FFFFCGRVUUUMdDTTRQhsddNFDHwMM
+McIYE0wxwxwLLL8lf1KssMYGW+ywxwFHnHDGBVfccMcDT7zwxgcRVoQVYUVYEVaE9fNhdZJMDnkU
+UEQJZVRQRQ11NNBEC2100EUPfQwwxAhjTDDFDHMssPyW/EmxwhobbLHDHgccccIZF1xxwx0PPPHC
+Gx9EWBFWhBVhRVgR1s+H1U0yOeRRQBEllFFBFTXU0UATLbTRQRc99DHAECOMMcEUM8yxwPJb8ifF
+CmtssMUOexxwxAlnXHDFDXc88MQLb3wQYUVYEVaEFWFFWD8fVi/J5JBHAUWUUEYFVdRQRwNNtNBG
+B1300McAQ4wwxgRTzDDHAstvyZ8UK6yxwRY77HHAESecccEVN9zxwBMvvPFBhBVhRVgRVoQVYf18
+WP0kk0MeBRRRQhkVVFFDHQ000UIbHXTRQx8DDDHCGBNMMcMcCyy/JX9SrLDGBlvssMcBR5xwxgVX
+3HDHA0+88MYHEVaEFWFFWBFWhPXzYQ2STA55FFBECWVUUEUNdTTQRAttdNBFD30MMMQIY0wwxQxz
+LLD8lvxJscIaG2yxwx4HHHHCGRdcccMdDzzxwhsfRFgRVoQVYUVYEdbPhzVMMjnkUUARJZRRQRU1
+1NFAEy200UEXPfQxwBAjjDHBFDPMscDyW/InxQprbLDFDnsccMQJZ1xwxQ13PPDEC298EGFFWBFW
+hBVhRVg/H9YoyeSQRwFFlFBGBVXUUEcDTbTQRgdd9NDHAEOMMMYEU8wwxwLLb8mfFCusscEWO+xx
+wBEnnHHBFTfc8cATL7zxQYQVYUVYEVaEFWH9fFjjJJNDHgUUUUIZFVRRQx0NNNFCGx100UMfAwwx
+whgTTDHDHAssvyV/UqywxgZb7LDHAUeccMYFV9xwxwNPvPDGBxFWhBVhRVgRVoT182FNkkwOeRRQ
+RAllVFBFDXU00EQLbXTQRQ99DDDECGNMMMUMcyyw/Jb8SbHCGhtsscMeBxxxwhkXXHHDHQ888cIb
+H0RYEVaEFWFFWBHWz4c1TTI55FFAESWUUUEVNdTRQBMttNFBFz30McAQI4wxwRQzzLHA8lvyJ8UK
+a2ywxQ57HHDECWdccMUNdzzwxAtvfBBhRVgRVoQVYUVYPx/WLMnkkEcBRZRQRgVV1FBHA0200EYH
+XfTQxwBDjDDGBFPMMMcCy2/JnxQrrLHBFjvsccARJ5xxwRU33PHAEy+88UGEFWFFWBFWhBVh/XxY
+8ySTQx4FFFFCGRVUUUMdDTTRQhsddNFDHwMMMcIYE0wxwxwLLL8lf1KssMYGW+ywxwFHnHDGBVfc
+cMcDT7zwxgcRVoQVYUVYEVaE9fNhLZJMDnkUUEQJZVRQRQ11NNBEC2100EUPfQwwxAhjTDDFDHMs
+sPyW/EmxwhobbLHDHgccccIZF1xxwx0PPPHCGx9EWBFWhBVhRVgR1s+HtUwyOeRRQBEllFFBFTXU
+0UATLbTRQRc99DHAECOMMcEUM8yxwPJb8ifFCmtssMUOexxwxAlnXHDFDXc88MQLb3wQYUVYEVaE
+FWFFWD8fVpJkcsijgCJKKKOCKmqoo4EmWmiDN7wT3ppMeBMpYXZ/wozZhFloCTM7Eu6WJtyBSPhX
+L+FMOWHvM2GNniy/ZV+KFdbYYIsd9jjgiBPOuOCKG+544IkX3vggwoqwIqwIK8KKsH4+rDTJ5JBH
+AUWUUEYFVdRQRwNNtNBGB1300McAQ4wwxgRTzDDHAstvWU0pVlhjgy122OOAI04444IrbrjjgSde
+eOODCCvCirAirAgrwvr5sFZJJoc8CiiihDIqqKKGOhpoooU2Ouiihz4GGGKEMSaYYoY5Flh+y1bp
+KVZYY4MtdtjjgCNOOOOCK26444EnXnjjgwgrwoqwIqwIK8L6+bDWSSaHPAooooQyKqiihjoaaKKF
+Njroooc+BhhihDEmmGKGORZYfst2P1OssMYGW+ywxwFHnHDGBVfccMcDT7zwxgcRVoQVYUVYEVaE
+9fNhbZJMDnkUUEQJZVRQRQ11NNBEC2100EUPfQwwxAhjTDDFDHMssPyWnSqnWGGNDbbYYY8Djjjh
+jAuuuOGOB5544Y0PIqwIK8KKsCKsCOvnw9ommRzyKKCIEsqooIoa6migiRba6KCLHvoYYIgRxphg
+ihnmWGD5LftbL8UKa2ywxQ57HHDECWdccMUNdzzwxAtvfBBhRVgRVoQVYUVYPx/WLsnkkEcBRZRQ
+RgVV1FBHA0200EYHXfTQxwBDjDDGBFPMMMcCy2/ZLYgUK6yxwRY77HHAESecccEVN9zxwBMvvPFB
+hBVhRVgRVoQVYf18WPskk0MeBRRRQhkVVFFDHQ000UIbHXTRQx8DDDHCGBNMMcMcCyy/ZbdLU6yw
+xgZb7LDHAUeccMYFV9xwxwNPvPDGBxFWhBVhRVgRVoT182EdkkwOeRRQRAllVFBFDXU00EQLbXTQ
+RQ99DDDECGNMMMUMcyyw/JZN7UixwhobbLHDHgccccIZF1xxwx0PPPHCGx9EWBFWhBVhRVgR1s+H
+dUwyOeRRQBEllFFBFTXU0UATLbTRQRc99DHAECOMMcEUM8yxwPJbNg0txQprbLDFDnsccMQJZ1xw
+xQ13PPDEC298EGFFWBFWhBVhRVg/H9YpyeSQRwFFlFBGBVXUUEcDTbTQRgdd9NDHAEOMMMYEU8ww
+xwLLb9mU2RQrrLHBFjvsccARJ5xxwRU33PHAEy+88UGEFWFFWBFWhBVh/XxY5ySTQx4FFFFCGRVU
+UUMdDTTRQhsddNFDHwMMMcIYE0wxwxwLLL9l0/tTrLDGBlvssMcBR5xwxgVX3HDHA0+88MYHEVaE
+FWFFWBFWhPXjYf0PNIDm3PbTn/0AAAAASUVORK5CYII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/grid-pattern.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" width=3D"40" height=3D"40" viewBo=
+x=3D"0 0 40 40">
+  <defs>
+    <pattern id=3D"grid" width=3D"40" height=3D"40" patternUnits=3D"userSpa=
+ceOnUse">
+      <path d=3D"M 40 0 L 0 0 0 40" fill=3D"none" stroke=3D"#334155" stroke=
+-width=3D"0.5" opacity=3D"0.5"/>
+    </pattern>
+  </defs>
+  <rect width=3D"40" height=3D"40" fill=3D"url(#grid)"/>
+  <circle cx=3D"0" cy=3D"0" r=3D"1" fill=3D"#475569"/>
+  <circle cx=3D"40" cy=3D"0" r=3D"1" fill=3D"#475569"/>
+  <circle cx=3D"0" cy=3D"40" r=3D"1" fill=3D"#475569"/>
+  <circle cx=3D"40" cy=3D"40" r=3D"1" fill=3D"#475569"/>
+</svg>=0A
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/icons/star.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 24 24" fill=3D"cur=
+rentColor">
+  <path fill-rule=3D"evenodd" d=3D"M10.788 3.21c.448-1.077 1.976-1.077 2.42=
+4 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.25=
+7 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.=
+231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5=
+.404-.433 2.082-5.006z" clip-rule=3D"evenodd"/>
+</svg>=0A
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/pattern-bg.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" width=3D"60" height=3D"60" viewBo=
+x=3D"0 0 60 60">
+  <defs>
+    <pattern id=3D"grid" width=3D"20" height=3D"20" patternUnits=3D"userSpa=
+ceOnUse">
+      <path d=3D"M 20 0 L 0 0 0 20" fill=3D"none" stroke=3D"#334155" stroke=
+-width=3D"0.5"/>
+    </pattern>
+    <pattern id=3D"dots" width=3D"20" height=3D"20" patternUnits=3D"userSpa=
+ceOnUse">
+      <circle cx=3D"10" cy=3D"10" r=3D"1.5" fill=3D"#475569"/>
+    </pattern>
+  </defs>
+  <rect width=3D"60" height=3D"60" fill=3D"#1e293b"/>
+  <rect width=3D"60" height=3D"60" fill=3D"url(#grid)"/>
+  <rect width=3D"60" height=3D"60" fill=3D"url(#dots)"/>
+</svg>=0A
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/decode-test.png
+
+iVBORw0KGgoAAAANSUhEUgAAAMgAAACWCAIAAAAUvlBOAAADSElEQVR42u3SRw4QNgAAQe7+/5VQ
+Qieh93fhXrhZ+wB8sVaaJ8yD3w/DFiFBhgIVGnQYMGHpag+MJWPJWMYylrF0INY/YYuQIEOBCg06
+DJiwdDVjyVgylrGMZSydiPUobBESZChQoUGHAROWrmYsGUvGMpaxjKUTsR6HLUKCDAUqNOgwYMLS
+1YwlY8lYxjKWsXQi1pOwRUiQoUCFBh0GTFi6mrFkLBnLWMYylk7Eehq2CAkyFKjQoMOACUtXM5aM
+JWMZy1jG0olY/4YtQoIMBSo06DBgwtLVjCVjyVjGMpaxdCLWs7BFSJChQIUGHQZMWLqasWQsGctY
+xjKWTsR6HrYICTIUqNCgw4AJS1czlowlYxnLWMbSiVgvwhYhQYYCFRp0GDBh6WrGkrFkLGMZy1g6
+Eetl2CIkyFCgQoMOAyYsXc1YMpaMZSxjGUsnYr0KW4QEGQpUaNBhwISlqxlLxpKxjGUsY+lErNdh
+i5AgQ4EKDToMmLB0NWPJWDKWsYxlLJ2I9SZsERJkKFChQYcBE5auZiwZS8YylrGMpROx3oYtQoIM
+BSo06DBgwtLVjCVjyVjGMpaxdCLWf2GLkCBDgQoNOgyYsHQ1Y8lYMpaxjGUsnYj1f9giJMhQoEKD
+DgMmLF3NWDKWjGUsYxlLJ2K9C1uEBBkKVGjQYcCEpasZS8aSsYxlLGPpRKz3YYuQIEOBCg06DJiw
+dDVjyVgylrGMZSydiPUhbBESZChQoUGHAROWrmYsGUvGMpaxjKUTsT6GLUKCDAUqNOgwYMLS1Ywl
+Y8lYxjKWsXQi1qewRUiQoUCFBh0GTFi6mrFkLBnLWMYylk7E+hy2CAkyFKjQoMOACUtXM5aMJWMZ
+y1jG0olYX8IWIUGGAhUadBgwYelqxpKxZCxjGctYOhHra9giJMhQoEKDDgMmLF3NWDKWjGUsYxlL
+J2J9C1uEBBkKVGjQYcCEpasZS8aSsYxlLGPpRKzvYYuQIEOBCg06DJiwdDVjyVgylrGMZSydiPUj
+bBESZChQoUGHAROWrmYsGUvGMpaxjKUTsX6GLUKCDAUqNOgwYMLS1YwlY8lYxjKWsXQi1q+wRUiQ
+oUCFBh0GTFi6mrFkLBnLWMYylv6+P6nsRYlu5CxCAAAAAElFTkSuQmCC
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/fallback.png
+
+iVBORw0KGgoAAAANSUhEUgAAAMgAAACWCAIAAAAUvlBOAAAEX0lEQVR42u3SRxLoJgJAwX84nNM4
+2zMO4/svDAgkFADvVO8AVpUWr6qP0B/+DuEWIUGGBQpUWGGDBjsccMIFHQZMvdIHY8lYxjKWsYxl
+LD0Q66Nwi5AgwwIFKqywQYMdDjjhgg4Dpl7JWDKWsYxlLGMZS0/E+jjcIiTIsECBCits0GCHA064
+oMOAqVcyloxlLGMZy1jG0hOxPgm3CAkyLFCgwgobNNjhgBMu6DBg6pWMJWMZy1jGMpax9ESsT8Mt
+QoIMCxSosMIGDXY44IQLOgyYeiVjyVjGMpaxjGUsPRHrs3CLkCDDAgUqrLBBgx0OOOGCDgOmXslY
+MpaxjGUsYxlLT8T6PNwiJMiwQIEKK2zQYIcDTrigw4CpVzKWjGUsYxnLWMbSE7G+CLcICTIsUKDC
+Chs02OGAEy7oMGDqlYwlYxnLWMYylrH0RKwvwy1CggwLFKiwwgYNdjjghAs6DJh6JWPJWMYylrGM
+ZSw9EeurcIuQIMMCBSqssEGDHQ444YIOA6ZeyVgylrGMZSxjGUtPxPo63CIkyLBAgQorbNBghwNO
+uKDDgKlXMpaMZSxjGctYxtITsb4JtwgJMixQoMIKGzTY4YATLugwYOqVjCVjGctYxjKWsfRErP+E
+W4QEGRYoUGGFDRrscMAJF3QYMPVKxpKxjGUsYxnLWHoi1rfhFiFBhgUKVFhhgwY7HHDCBR0GTL2S
+sWQsYxnLWMYylp6I9V24RUiQYYECFVbYoMEOB5xwQYcBU69kLBnLWMYylrGMpSdifR9uERJkWKBA
+hRU2aLDDASdc0GHA1CsZS8YylrGMZSxj6YlYP4RbhAQZFihQYYUNGuxwwAkXdBgw9UrGkrGMZSxj
+GctYeiLWj+EWIUGGBQpUWGGDBjsccMIFHQZMvZKxZCxjGctYxjKWnoj1U7hFSJBhgQIVVtigwQ4H
+nHBBhwFTr2QsGctYxjKWsYylJ2L9HG4REmRYoECFFTZosMMBJ1zQYcDUKxlLxjKWsYxlLGPpiVi/
+hFuEBBkWKFBhhQ0a7HDACRd0GDD1SsaSsYxlLGMZy1h6Itav4RYhQYYFClRYYYMGOxxwwgUdBky9
+krFkLGMZy1jGMpaeiPXfcIuQIMMCBSqssEGDHQ444YIOA6ZeyVgylrGMZSxjGUtPxPpfuEVIkGGB
+AhVW2KDBDgeccEGHAVOvZCwZy1jGMpaxjKUnYv0WbhESZFigQIUVNmiwwwEnXNBhwNQrGUvGMpax
+jGUsY+mJWL+HW4QEGRYoUGGFDRrscMAJF3QYMPVKxpKxjGUsYxnLWHoi1h/hFiFBhgUKVFhhgwY7
+HHDCBR0GTL2SsWQsYxnLWMYylp6I9We4RUiQYYECFVbYoMEOB5xwQYcBU69kLBnLWMYylrGMpSdi
+/T/cIiTIsECBCits0GCHA064oMOAqVcyloxlLGMZy1jG0hOx/gq3CAkyLFCgwgobNNjhgBMu6DBg
+6pWMJWMZy1jGMpax9O/7BzK+a5H5AK3HAAAAAElFTkSuQmCC
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/gallery/thumb-6.png
+
+iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAIAAAC2BqGFAAAEDklEQVR42u3QZw6oNhqG0bu8lEmd
+9J6ZZFHsMeCCwcYFIj3o3QA/0SedFZwP/3w03WYs4uARJGKVhA27ZBQ5UNGkY8iJ69U+WLRFW7RF
+P4n+eLrNWMTBI0jEKgkbdskocqCiSceQE9erWbRFW7RFP4r+ZLrNWMTBI0jEKgkbdskocqCiSceQ
+E9erWbRFW7RFP4r+dLrNWMTBI0jEKgkbdskocqCiSceQE9erWbRFW7RFP4r+z3SbsYiDR5CIVRI2
+7JJR5EBFk44hJ65Xs2iLtmiLfhT92XSbsYiDR5CIVRI27JJR5EBFk44hJ65Xs2iLtmiLfhT9+XSb
+sYiDR5CIVRI27JJR5EBFk44hJ65Xs2iLtmiLfhT9xXSbsYiDR5CIVRI27JJR5EBFk44hJ65Xs2iL
+tmiLfhT95XSbsYiDR5CIVRI27JJR5EBFk44hJ65Xs2iLtmiLfhT91XSbsYiDR5CIVRI27JJR5EBF
+k44hJ65Xs2iLtmiLfhT99XSbsYiDR5CIVRI27JJR5EBFk44hJ65Xs2iLtmiLfhT93+k2YxEHjyAR
+qyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6m+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6
+2+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6u+k2YxEHjyARqyRs2CWjyIGKJh1DTlyv
+ZtEWbdEW/Sj6++k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6h+k2YxEHjyARqyRs2CWj
+yIGKJh1DTlyvZtEWbdEW/Sj6x+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6p+k2YxEH
+jyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj65+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW
+/Sj6l+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj61+k2YxEHjyARqyRs2CWjyIGKJh1D
+TlyvZtEWbdEW/Sj6t+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj69+k2YxEHjyARqyRs
+2CWjyIGKJh1DTlyvZtEWbdEW/Sj6j+k2YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6z+k2
+YxEHjyARqyRs2CWjyIGKJh1DTlyvZtEWbdEW/Sj6f9NtxiIOHkEiVknYsEtGkQMVTTqGnLhezaIt
+2qIt+lH0/6fbjEUcPIJErJKwYZeMIgcqmnQMOXG9mkVbtEVb9KPov6bbjEUcPIJErJKwYZeMIgcq
+mnQMOXG9mkVbtEVb9KPov6fbjEUcPIJErJKwYZeMIgcqmnQMOXG9mkVbtEVb9AP/ArYo1GYNiNPj
+AAAAAElFTkSuQmCC
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/gallery/thumb-5.png
+
+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
+YII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/gallery/thumb-4.png
+
+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
+YII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/gallery/thumb-3.png
+
+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
+YII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/gallery/thumb-2.png
+
+iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAIAAAC2BqGFAAAB/0lEQVR42u3Q2a0QSAxFwReFEwWG
+ddh3ZoB0cXtBui0n4O8jVQT18OeRXS5nhKTUaGw9EE000dhEP7bL5YyQlBqNLaKJJhqr6Cd2uZwR
+klKjsUU00URjFf2PXS5nhKTUaGwRTTTRWEU/tcvljJCUGo0tookmGqvoZ3a5nBGSUqOxRTTRRGMV
+/dwulzNCUmo0togmmmisol/Y5XJGSEqNxhbRRBONVfRLu1zOCEmp0dgimmiisYp+ZZfLGSEpNRpb
+RBNNNFbR/9rlckZISo3GFtFEE41V9Gu7XM4ISanR2CKaaKKxin5jl8sZISk1GltEE000VtFv7XI5
+IySlRmOLaKKJxir6nV0uZ4Sk1GhsEU000VhFv7fL5YyQlBqNLaKJJhqr6A92uZwRklKjsUU00URj
+Ff3RLpczQlJqNLaIJpporKI/2eVyRkhKjcYW0UQTjVX0Z7tczghJqdHYIppoorGK/mKXyxkhKTUa
+W0QTTTRW0V/tcjkjJKVGY4tooonGKvqbXS5nhKTUaGwRTTTRWEV/t8vljJCUGo0tookmGqvoH3a5
+nBGSUqOxRTTRRGMV/Z9dLmeEpNRobBFNNNFYRf9vl8sZISk1GltEE000VtE/7XI5IySlRmOLaKKJ
+xir6l10uZ4Sk1GhsEU000VhF/7bL5YyQlBqNLaKJJhoLfwEe/T4Aj/+ZYAAAAABJRU5ErkJggg==
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/gallery/thumb-1.png
+
+iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAIAAAC2BqGFAAADk0lEQVR42u3QRw7AJhRF0SyO9N57
+2/8ggA3GpkW66G2Aqb90VnA++M+5xSNIxIFTErJcKLjlQZWGjiHzfT6waIu2aIveif7QLR5BIg6c
+kpDlQsEtD6o0dAyZ72PRFm3RFr0V/ZFbPIJEHDglIcuFglseVGnoGDLfx6It2qIteiv6Y7d4BIk4
+cEpClgsFtzyo0tAxZL6PRVu0RVv0VvQnbvEIEnHglIQsFwpueVCloWPIfB+LtmiLtuit6E/d4hEk
+4sApCVkuFNzyoEpDx5D5PhZt0RZt0VvRn7nFI0jEgVMSslwouOVBlYaOIfN9LNqiLdqit6I/d4tH
+kIgDpyRkuVBwy4MqDR1D5vtYtEVbtEVvRX/hFo8gEQdOSchyoeCWB1UaOobM97Foi7Zoi96K/tIt
+HkEiDpySkOVCwS0PqjR0DJnvY9EWbdEWvRX9lVs8gkQcOCUhy4WCWx5UaegYMt/Hoi3aoi16K/pr
+t3gEiThwSkKWCwW3PKjS0DFkvo9FW7RFW/RW9Ddu8QgSceCUhCwXCm55UKWhY8h8H4u2aIu26K3o
+b93iESTiwCkJWS4U3PKgSkPHkPk+Fm3RFm3RW9HfucUjSMSBUxKyXCi45UGVho4h830s2qIt2qK3
+or93i0eQiAOnJGS5UHDLgyoNHUPm+1i0RVu0RW9F/+AWjyARB05JyHKh4JYHVRo6hsz3sWiLtmiL
+3or+0S0eQSIOnJKQ5ULBLQ+qNHQMme9j0RZt0Ra9Ff2TWzyCRBw4JSHLhYJbHlRp6Bgy38eiLdqi
+LXor+me3eASJOHBKQpYLBbc8qNLQMWS+j0VbtEVb9Fb0L27xCBJx4JSELBcKbnlQpaFjyHwfi7Zo
+i7borehf3eIRJOLAKQlZLhTc8qBKQ8eQ+T4WbdEWbdFb0b+5xSNIxIFTErJcKLjlQZWGjiHzfSza
+oi3aoreif3eLR5CIA6ckZLlQcMuDKg0dQ+b7WLRFW7RFb0X/4RaPIBEHTknIcqHglgdVGjqGzPex
+aIu2aIveiv7TLR5BIg6ckpDlQsEtD6o0dAyZ72PRFm3RFr0V/ZdbPIJEHDglIcuFglseVGnoGDLf
+x6It2qIteiv6b7d4BIk4cEpClgsFtzyo0tAxZL6PRVu0RVv0VvQ/bvEIEnHglIQsFwpueVCloWPI
+fB+LtmiLtuit6H/d4hEk4sApCVkuFNzyoEpDx5D5PhZt0RZt0Rv+ByX5gnFdHs/ZAAAAAElFTkSu
+QmCC
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/figure-image.png
+
+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
+YII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/hero-dark.png
+
+iVBORw0KGgoAAAANSUhEUgAAAZAAAADICAIAAABJdyC1AAAOPElEQVR42u3dx3ErCg5FwQnj03vv
+nUTvJFJi/glNAuzd2+miOoazQgH/+++/0lsFKEIJylCBKtSgDg1oQgva0IEu9KAPAxjCCMYwgSnM
+YA4LWMIK1rZ55wM+YQs72MMBjnCCM1zgCje4wxd8wwOe8AO/8IL/JVgJVoKVYCVYCVaClWAlWAlW
+gpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoL154JVKL1VgCKUoAwVqEIN6tCAJrSgDR3oQg/6
+MIAhjGAME5jCDOawgCWsYG2bdz7gE7awgz0c4AgnOMMFrnCDO3zBNzzgCT/wCy9IsBKsBCvBSrAS
+rAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBOvvBatYeqsARShBGSpQhRrUoQFN
+aEEbOtCFHvRhAEMYwRgmMIUZzGEBS1jB2jbvfMAnbGEHezjAEU5whgtc4QZ3+IJveMATfuAXXpBg
+JVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAnWPwsW7ixoUUFp0pShAlWoQR0a
+0IQWtKEDXehBHwYwhBGMYQJTmMEcFrCEFaxt884HfMIWdrCHAxzhBGe4wBVucIcv+IYHPOEHfuEF
+CVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWD9vWCVS28VoAgq
+UxkqUIUa1KEBTWhBGzrQhR70YQBDGMEYJjCFGcxhAUtYwdo273zAJ2xhB3s4wBFOcIYLXOEGd/iC
+b3jAE37gF16QYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCdbf
+C1al9FYBiqDFqjJUoAo1qEMDmtCCNnSgCz3owwCGMIIxTGAKM5jDApawgrVt3vmAT9jCDvZwgCOc
+4AwXuMIN7vAF3/CAJ/zAL7wgwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrAS
+rH8WrGrprQIUQWcWylCBKtSgDg1oQgva0IEu9KAPAxjCCMYwgSnMYA4LWMIK1rZ55wM+YQs72MMB
+jnCCM1zgCje4wxd8wwOe8AO/8IIEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQr
+wUqwEqwEK8FKsP5esGqltwpQBH2JKEMFqlCDOjSgCS1oQwe60IM+DGAIIxjDBKYwgzksYAkrWNvm
+nQ/4hC3sYA8HOMIJznCBK9zgDl/wDQ94wg/8wgsSrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqw
+EqwEK8FKsBKsBCvBSrASrAQrwfp7waqX3ipAEUpQhgpUoQZ1aEATWtCGDnShB30YwBBGMIYJTGEG
+c1jAElawts07H/AJW9jBHg5whBOc4QJXuMEdvuAbHvCEH/iFFyRYCVaClWAlWAlWgpVgJVgJVoKV
+YCVYCVaClWAlWAlWgpVgJVgJVoL1z4LVKL1VgCKUoAwVqEIN6tCAJrSgDR3oQg/6MIAhjGAME5jC
+DOawgCWsYG2bdz7gE7awgz0c4AgnOMMFrnCDO3zBNzzgCT/wCy9IsBKsBCvBSrASrAQrwUqwEqwE
+K8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBOvvBatZeqsARShBGSpQhRrUoQFNaEEbOtCFHvRh
+AEMYwRgmMIUZzGEBS1jB2jbvfMAnbGEHezjAEU5whgtc4QZ3+IJveMATfuAXXpBgJVgJVoKVYCVY
+CVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJ1t8LVqv0VgGKUIIyVKAKNahDA5rQ
+gjZ0oAs96MMAhjCCMUxgCjOYwwKWsIK1bd75gE/Ywg72cIAjnOAMF7jCDe7wBd/wgCf8wC+8IMFK
+sBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqx/Fqx26a0CFKEEZahAFWpQhwY0
+oQVt6EAXetCHAQxhBGOYwBRmMIcFLGEFa9u88wGfsIUd7OEARzjBGS5whRvc4Qu+4QFP+IFfeEGC
+lWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWH8vWJ3SWwUoQgnK
+UIEq1KAODWhCC9rQgS70oA8DGMIIxjCBKcxgDgtYwgrWtnnnAz5hCzvYwwGOcIIzXOAKN7jDF3zD
+A57wA7/wggQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqw/l6w
+uqW3ClCEEpShAlWoQR0a0IQWtKEDXehBHwYwhBGMYQJTmMEcFrCEFaxt884HfMIWdrCHAxzhBGe4
+wBVucIcv+IYHPOEHfuEFCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYP2z
+YPVKbxWgCCUoQwWqUIM6NKAJLWhDB7rQgz4MYAgjGMMEpjCDOSxgCStY2+adD/iELexgDwc4wgnO
+cIEr3OAOX/AND3jCD/zCCxKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FK
+sBKsBCvB+nvB6pfeKkARSlCGClShBnVoQBNa0IYOdKEHfRjAEEYwhglMYQZzWMASVrC2zTsf8Alb
+2MEeDnCEE5zhAle4wR2+4Bse8IQf+IUXJFgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaC
+lWAlWAlWgpVgJVgJVoL194I1KL1VgCKUoAwVqEIN6tCAJrSgDR3oQg/6MIAhjGAME5jCDOawgCWs
+YG2bdz7gE7awgz0c4AgnOMMFrnCDO3zBNzzgCT/wCy9IsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKs
+BCvBSrASrAQrwUqwEqwE658Fa1h6qwBFKEEZKlCFGtShAU1oQRs60IUe9GEAQxjBGCYwhRnMYQFL
+WMHaNu98wCdsYQd7OMARTnCGC1zhBnf4gm94wBN+4BdekGAlWAlWgpVgJVgJVoKVYCVYCVaClWAl
+WAlWgpVgJVgJVoKVYCVYCVaClWAlWAnW3wvWqPRWAYpQgjJUoAo1qEMDmtCCNnSgCz3owwCGMIIx
+TGAKM5jDApawgrVt3vmAT9jCDvZwgCOc4AwXuMIN7vAF3/CAJ/zAL7wgwUqwEqwEK8FKsBKsBCvB
+SrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqy/F6xx6a0CFKEEZahAFWpQhwY0oQVt6EAX
+etCHAQxhBGOYwBRmMIcFLGEFa9u88wGfsIUd7OEARzjBGS5whRvc4Qu+4QFP+IFfeEGClWAlWAlW
+gpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVY/yxYk9JbBShCCcpQgSrUoA4NaEIL2tCB
+LvSgDwMYwgjGMIEpzGAOC1jCCta2eecDPmELO9jDAY5wgjNc4Ao3uMMXfMMDnvADv/CCBCvBSrAS
+rAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrD+XrCmpbcKUIQSlKECVahB
+HRrQhBa0oQNd6EEfBjCEEYxhAlOYwRwWsIQVrG3zzgd8whZ2sIcDHOEEZ7jAFW5why/4hgc84Qd+
+4QUJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYP29YM1KbxWg
+CCUoQwWqUIM6NKAJLWhDB7rQgz4MYAgjGMMEpjCDOSxgCStY2+adD/iELexgDwc4wgnOcIEr3OAO
+X/AND3jCD/zCCxKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8H6Z8Gal94q
+QBFKUIYKVKEGdWhAE1rQhg50oQd9GMAQRjCGCUxhBnNYwBJWsLbNOx/wCVvYwR4OcIQTnOECV7jB
+Hb7gGx7whB/4hRckWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlW
+gvX3grUovVWAIpSgDBWoQg3q0IAmtKANHehCD/owgCGMYAwTmMIM5rCAJaxgbZt3PuATtrCDPRzg
+CCc4wwWucIM7fME3POAJP/ALL0iwEqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrAS
+rAQrwUqwEqwE6+8Fa1l6qwBFKEEZKlCFGtShAU1oQRs60IUe9GEAQxjBGCYwhRnMYQFLWMHaNu98
+wCdsYQd7OMARTnCGC1zhBnf4gm94wBN+4BdekGAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVg
+JVgJVoKVYCVYCdY/C9aq9FYBilCCMlSgCjWoQwOa0II2dKALPejDAIYwgjFMYAozmMMClrCCtW3e
++YBP2MIO9nCAI5zgDBe4wg3u8AXf8IAn/MAvvCDBSrASrAQrwUqwEqwEK8FKsBKsBCvBSrASrAQr
+wUqwEqwEK8FKsBKsBCvBSrASrL8XrHXprQIUoQRlqEAValCHBjShBW3oQBd60IcBDGEEY5jAFGYw
+hwUsYQVr27zzAZ+whR3s4QBHOMEZLnCFG9zhC77hAU/4gV94QYKVYCVYCVaClWAlWAlWgpVgJVgJ
+VoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYfy9Ym9JbBShCCcpQgSrUoA4NaEIL2tCBLvSgDwMY
+wgjGMIEpzGAOC1jCCta2eecDPmELO9jDAY5wgjNc4Ao3uMMXfMMDnvADv/CCBCvBSrASrAQrwUqw
+EqwEK8FKsBKsBCvBSrASrAQrwUqwEqwEK8FKsP5RsP4PkmIgvoew9ucAAAAASUVORK5CYII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/responsive-300.png
+
+iVBORw0KGgoAAAANSUhEUgAAA4QAAAJYCAIAAAC1p7+MAAAYNElEQVR42u3W1xXCioFAwVeewzqu
+c/auXRQ9GoFAiCAh3MP94UNzzhQxP/znR4fgmAzJKTknY3JJrsmU3JI5uSeP5Jm8kiVZk3eyJR8A
++KofZFRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmV
+URmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRG
+ZRQAZFRGZVRGZRQAGZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgGQURmVURmVUQCQURmVURmVUQD2
+lNEfH4JjMiSn5JyMySW5JlNyS+bknjySZ/JKlmRN3smWfADgq2RURmVURgFARmVURmVURgGQURmV
+URmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRG
+AUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFABmV
+URmVURkFQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAdpXRnxyCYzIkp+ScjMkluSZTckvm5J48
+kmfySpZkTd7JlnwA4KtkVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQA
+ZFRGZVRGZRQAGZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmV
+URmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAZBRGZVRGZVR
+AJBRGZVRGZVRAHaV0Z8egmMyJKfknIzJJbkmU3JL5uSePJJn8kqWZE3eyZZ8AOCrZFRGZVRGAUBG
+ZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFABmVURmV
+URkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQA
+GZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgGQURmVURmVUQCQURmVURmVUQB2ldH/OQTHZEhOyTkZ
+k0tyTabklszJPXkkz+SVLMmavJMt+QDAV8mojMqojAKAjMqojMqojAIgozIqozIqowAgozIqozIq
+owDIqIzKqIzKKADIqIzKqIzKKAAyKqMyKqMyCgAyKqMyKqMyCoCMyqiMyqiMAoCMyqiMyqiMAiCj
+MiqjMiqjACCjMiqjMiqjAMiojMqojMooAMiojMqojMooADIqozIqozIKADIqozIqozIKgIzKqIzK
+qIwCIKMyKqMyKqMAIKMyKqMyKqMA7CqjPzsEx2RITsk5GZNLck2m5JbMyT15JM/klSzJmryTLfkA
+wFfJqIzKqIwCgIzKqIzKqIwCIKMyKqMyKqMAIKMyKqMyKqMAyKiMyqiMyigAyKiMyqiMyigAMiqj
+MiqjMgoAMiqjMiqjMgqAjMqojMqojAKAjMqojMqojAIgozIqozIqowAgozIqozIqowDIqIzKqIzK
+KADIqIzKqIzKKAAyKqMyKqMyCgAyKqMyKqMyCoCMyqiMyqiMAiCjMiqjMiqjACCjMiqjMiqjAOwq
+oz8/BMdkSE7JORmTS3JNpuSWzMk9eSTP5JUsyZq8ky35AMBXyaiMyqiMAoCMyqiMyqiMAiCjMiqj
+MiqjACCjMiqjMiqjAMiojMqojMooAMiojMqojMooADIqozIqozIKADIqozIqozIKgIzKqIzKqIwC
+gIzKqIzKqIwCIKMyKqMyKqMAIKMyKqMyKqMAyKiMyqiMyigAyKiMyqiMyigAMiqjMiqjMgoAMiqj
+MiqjMgqAjMqojMqojAIgozIqozIqowAgozIqozIqowDsKqO/OATHZEhOyTkZk0tyTabklszJPXkk
+z+SVLMmavJMt+QDAV8mojMqojAKAjMqojMqojAIgozIqozIqowAgozIqozIqowDIqIzKqIzKKADI
+qIzKqIzKKAAyKqMyKqMyCgAyKqMyKqMyCoCMyqiMyqiMAoCMyqiMyqiMAiCjMiqjMiqjACCjMiqj
+MiqjAMiojMqojMooAMiojMqojMooADIqozIqozIKADIqozIqozIKgIzKqIzKqIwCIKMyKqMyKqMA
+IKMyKqMyKqMA7CqjvzwEx2RITsk5GZNLck2m5JbMyT15JM/klSzJmryTLfkAwFfJqIzKqIwCgIzK
+qIzKqIwCIKMyKqMyKqMAIKMyKqMyKqMAyKiMyqiMyigAyKiMyqiMyigAMiqjMiqjMgoAMiqjMiqj
+MgqAjMqojMqojAKAjMqojMqojAIgozIqozIqowAgozIqozIqowDIqIzKqIzKKADIqIzKqIzKKAAy
+KqMyKqMyCgAyKqMyKqMyCoCMyqiMyqiMAiCjMiqjMiqjACCjMiqjMiqjAOwqo786BMdkSE7JORmT
+S3JNpuSWzMk9eSTP5JUsyZq8ky35AMBXyaiMyqiMAoCMyqiMyqiMAiCjMiqjMiqjACCjMiqjMiqj
+AMiojMqojMooAMiojMqojMooADIqozIqozIKADIqozIqozIKgIzKqIzKqIwCgIzKqIzKqIwCIKMy
+KqMyKqMAIKMyKqMyKqMAyKiMyqiMyigAyKiMyqiMyigAMiqjMiqjMgoAMiqjMiqjMgqAjMqojMqo
+jAIgozIqozIqowAgozIqozIqowDsKqO/PgTHZEhOyTkZk0tyTabklszJPXkkz+SVLMmavJMt+QDA
+V8mojMqojAKAjMqojMqojAIgozIqozIqowAgozIqozIqowDIqIzKqIzKKADIqIzKqIzKKAAyKqMy
+KqMyCgAyKqMyKqMyCoCMyqiMyqiMAoCMyqiMyqiMAiCjMiqjMiqjACCjMiqjMiqjAMiojMqojMoo
+AMiojMqojMooADIqozIqozIKADIqozIqozIKgIzKqIzKqIwCIKMyKqMyKqMAIKMyKqMyKqMA7Cqj
+/3sIjsmQnJJzMiaX5JpMyS2Zk3vySJ7JK1mSNXknW/IBgK+SURmVURkFABmVURmVURkFQEZlVEZl
+VEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQUA
+GZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZl
+VEZlFAAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAdhVRn9zCI7JkJySczIml+SaTMktmZN78kie
+yStZkjV5J1vyAYCvklEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBR
+GZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZl
+VEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQVARmVURmVURgFA
+RmVURmVURgHYVUZ/ewiOyZCcknMyJpfkmkzJLZmTe/JInskrWZI1eSdb8gGAr5JRGZVRGQUAGZVR
+GZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZlVEZl
+FAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRU
+RmVURmUUAGRURmVURmUUABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYB2FVGf3cIjsmQnJJzMiaX
+5JpMyS2Zk3vySJ7JK1mSNXknW/IBgK+SURmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYB
+kFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQUAGZVRGZVRGQVARmVU
+RmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZ
+BUBGZVRGZVRGAUBGZVRGZVRGAdhVRn9/CI7JkJySczIml+SaTMktmZN78kieyStZkjV5J1vyAYCv
+klEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVU
+RmUUAGRURmVURmUUABmVURmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEA
+kFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQVARmVURmVURgFARmVURmVURgHYVUb/
+cAiOyZCcknMyJpfkmkzJLZmTe/JInskrWZI1eSdb8gGAr5JRGZVRGQUAGZVRGZVRGQVARmVURmVU
+RgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZ
+lVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVU
+RmUUABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYB2FVG/3gIjsmQnJJzMiaX5JpMyS2Zk3vySJ7J
+K1mSNXknW/IBgK+SURmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZ
+lVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVU
+RgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBUBGZVRGZVRGAUBG
+ZVRGZVRGAdhVRv90CI7JkJySczIml+SaTMktmZN78kieyStZkjV5J1vyAYCvklEZlVEZBQAZlVEZ
+lVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUU
+ABmVURmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRG
+ZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQVARmVURmVURgFARmVURmVURgHYVUb/fAiOyZCcknMyJpfk
+mkzJLZmTe/JInskrWZI1eSdb8gGAr5JRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQ
+URmVURmVUQCQURmVURmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRG
+ZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkF
+QEZlVEZlVEYBQEZlVEZlVEYB2FVG/3IIjsmQnJJzMiaX5JpMyS2Zk3vySJ7JK1mSNXknW/IBgK+S
+URmVURkFABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRG
+ZRQAZFRGZVRGZRQAGZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQ
+URmVURmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAdhVRv96
+CI7JkJySczIml+SaTMktmZN78kieyStZkjV5J1vyAYCvklEZlVEZBQAZlVEZlVEZBUBGZVRGZVRG
+AUBGZVRGZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFABmV
+URmVURkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRG
+ZRQAGZVRGZVRGQVARmVURmVURgFARmVURmVURgHYVUb/dgiOyZCcknMyJpfkmkzJLZmTe/JInskr
+WZI1eSdb8gGAr5JRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmV
+URmVUQBkVEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRG
+AZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFQEZlVEZlVEYBQEZl
+VEZlVEYB2FVG/34IjsmQnJJzMiaX5JpMyS2Zk3vySJ7JK1mSNXknW/IBgK+SURmVURkFABmVURmV
+URkFQEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQA
+GZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZl
+VEZlFABkVEZlVEZlFAAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAdhVRv9xCI7JkJySczIml+Sa
+TMktmZN78kieyStZkjV5J1vyAYCvklEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBR
+GZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFABmVURmVURkFQEZlVEZl
+VEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVRGQVA
+RmVURmVURgFARmVURmVURgHYVUb/eQiOyZCcknMyJpfkmkzJLZmTe/JInskrWZI1eSdb8gGAr5JR
+GZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZl
+FABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVRGZVRAJBR
+GZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFQEZlVEZlVEYBQEZlVEZlVEYB2FVG/+8Q
+HJMhOSXnZEwuyTWZklsyJ/fkkTyTV7Ika/JOtuQDAF8lozIqozIKADIqozIqozIKgIzKqIzKqIwC
+gIzKqIzKqIwCIKMyKqMyKqMAIKMyKqMyKqMAyKiMyqiMyigAyKiMyqiMyigAMiqjMiqjMgoAMiqj
+MiqjMgqAjMqojMqojAKAjMqojMqojAIgozIqozIqowAgozIqozIqowDIqIzKqIzKKADIqIzKqIzK
+KAAyKqMyKqMyCoCMyqiMyqiMAoCMyqiMyqiMArCrjP7/ITgmQ3JKzsmYXJJrMiW3ZE7uySN5Jq9k
+SdbknWzJBwC+SkZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRG
+ZVRGAZBRGZVRGZVRAJBRGZVRGZVRAGRURmVURmUUAGRURmVURmUUABmVURmVURkFABmVURmVURkF
+QEZlVEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAGZVRGZVRGQUAGZVR
+GZVRGQVgVxn91yE4JkNySs7JmFySazIlt2RO7skjeSavZEnW5J1syQcAvkpGZVRGZRQAZFRGZVRG
+ZRQAGZVRGZVRGQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBk
+VEZlVEZlFABkVEZlVEZlFAAZlVEZlVEZBQAZlVEZlVEZBUBGZVRGZVRGAUBGZVRGZVRGAZBRGZVR
+GZVRAJBRGZVRGZVRAGRURmVURmUUABmVURmVURkFABmVURmVURkFYFcZ/fchOCZDckrOyZhckmsy
+JbdkTu7JI3kmr2RJ1uSdbMkHAL5KRmVURmUUAGRURmVURmUUABmVURmVURkFABmVURmVURkFQEZl
+VEZlVEYBQEZlVEZlVEYBkFEZlVEZlVEAkFEZlVEZlVEAZFRGZVRGZRQAZFRGZVRGZRQAGZVRGZVR
+GQUAGZVRGZVRGQVARmVURmVURgFARmVURmVURgGQURmVURmVUQCQURmVURmVUQBkVEZlVEZlFAAZ
+lVEZlVEZBQAZlVEZlVEZBWBH/guRbStFW/lyQwAAAABJRU5ErkJggg==
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/lazy-image.png
+
+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
+VsT678f6D7h+qWUG+yKnAAAAAElFTkSuQmCC
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/loading-spinner.gif
+
+R0lGODlhQABAAPAAADuC9h4pOyH/C05FVFNDQVBFMi4wAwEAAAAh+QQEMgAAACwAAAAAQABAAAAC
+/wQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8A
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAA
+AAAAACgAIfkEBDIAAAAsAAAAAEAAQAAAAv9MkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiT/SZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk/0mSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJP9JkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiT/SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIk/0mSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS
+JEmSJEmSJEmSJEmSJEmSJEmSJEmSJAdJkiRJkiQpADs=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/webp
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/sample-photo.webp
+
+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
+rP9+rP8Avy0Byatn01YAAAAASUVORK5CYII=
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/sample-photo.jpg
+
+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
+AABJRU5ErkJggg==
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/sample-photo.png
+
+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
+AABJRU5ErkJggg==
+
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-ddec5e77-e2d6-42e8-a2c5-fc342445dac5@mhtml.blink
+
+@charset "utf-8";
+
+:root { --bg: #0f0f0f; --surface: #1a1a1a; --border: #2e2e2e; --text: #fafa=
+fa; --muted: #888; --success: #22c55e; --warning: #f59e0b; --error: #ef4444=
+; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: var(--bg); color: va=
+r(--text); min-height: 100vh; padding: 2rem; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 2rem; }
+
+.test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax=
+(320px, 1fr)); gap: 1.5rem; }
+
+.test-card { background: var(--surface); border: 1px solid var(--border); b=
+order-radius: 1rem; overflow: hidden; }
+
+.test-header { padding: 1rem; border-bottom: 1px solid var(--border); displ=
+ay: flex; justify-content: space-between; align-items: center; }
+
+.test-title { font-size: 0.875rem; font-weight: 600; }
+
+.test-tag { font-size: 0.625rem; padding: 0.25rem 0.5rem; border-radius: 0.=
+25rem; background: var(--border); color: var(--muted); text-transform: uppe=
+rcase; letter-spacing: 0.05em; }
+
+.test-body { padding: 1rem; min-height: 180px; display: flex; align-items: =
+center; justify-content: center; background: rgb(10, 10, 10); }
+
+.test-body img { max-width: 100%; max-height: 160px; object-fit: contain; }
+
+.test-footer { padding: 0.75rem 1rem; font-size: 0.75rem; color: var(--mute=
+d); border-top: 1px solid var(--border); font-family: monospace; }
+
+.gallery { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: ce=
+nter; }
+
+.gallery img { width: 60px; height: 60px; object-fit: cover; border-radius:=
+ 0.25rem; }
+
+.srcset-demo img { width: 100%; height: auto; }
+
+.lazy-status { position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0=
+.625rem; padding: 0.125rem 0.375rem; background: var(--warning); color: bla=
+ck; border-radius: 0.125rem; }
+
+.img-error { display: flex; flex-direction: column; align-items: center; ga=
+p: 0.5rem; color: var(--error); font-size: 0.75rem; }
+
+.img-error::before { content: "=E2=9A=A0"; font-size: 2rem; }
+
+.object-container { width: 100%; height: 120px; }
+
+.object-container object, .object-container embed { width: 100%; height: 10=
+0%; }
+
+figure { margin: 0px; text-align: center; }
+
+figure img { border-radius: 0.5rem; }
+
+figcaption { margin-top: 0.5rem; font-size: 0.75rem; color: var(--muted); }
+
+.path-info { font-family: monospace; font-size: 0.625rem; color: var(--mute=
+d); word-break: break-all; }
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/svg+xml
+Content-ID: <frame-AF9AD473618C54C442C3066B095ECA5C@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/external-graphic.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 200 100">
+  <defs>
+    <linearGradient id=3D"bgGrad" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=3D"100=
+%">
+      <stop offset=3D"0%" style=3D"stop-color:#1e293b"/>
+      <stop offset=3D"100%" style=3D"stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id=3D"lineGrad" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=3D"0=
+%">
+      <stop offset=3D"0%" style=3D"stop-color:#06b6d4"/>
+      <stop offset=3D"50%" style=3D"stop-color:#8b5cf6"/>
+      <stop offset=3D"100%" style=3D"stop-color:#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width=3D"200" height=3D"100" fill=3D"url(#bgGrad)" rx=3D"8"/>
+  <path d=3D"M10 70 Q50 20 100 50 T190 30" stroke=3D"url(#lineGrad)" stroke=
+-width=3D"3" fill=3D"none" stroke-linecap=3D"round"/>
+  <circle cx=3D"30" cy=3D"65" r=3D"6" fill=3D"#06b6d4"/>
+  <circle cx=3D"100" cy=3D"50" r=3D"6" fill=3D"#8b5cf6"/>
+  <circle cx=3D"170" cy=3D"35" r=3D"6" fill=3D"#ec4899"/>
+  <text x=3D"100" y=3D"90" text-anchor=3D"middle" fill=3D"#64748b" font-fam=
+ily=3D"system-ui" font-size=3D"10">External SVG Graphic</text>
+</svg>
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1----
+Content-Type: image/svg+xml
+Content-ID: <frame-A83DFBAF35B3D6D3AF643F15B5884FD4@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/mesh-gradient.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" width=3D"800" height=3D"600" view=
+Box=3D"0 0 800 600">
+  <defs>
+    <radialGradient id=3D"g1" cx=3D"20%" cy=3D"30%">
+      <stop offset=3D"0%" stop-color=3D"#8b5cf6" stop-opacity=3D"0.4"/>
+      <stop offset=3D"100%" stop-color=3D"#8b5cf6" stop-opacity=3D"0"/>
+    </radialGradient>
+    <radialGradient id=3D"g2" cx=3D"80%" cy=3D"20%">
+      <stop offset=3D"0%" stop-color=3D"#ec4899" stop-opacity=3D"0.3"/>
+      <stop offset=3D"100%" stop-color=3D"#ec4899" stop-opacity=3D"0"/>
+    </radialGradient>
+    <radialGradient id=3D"g3" cx=3D"60%" cy=3D"80%">
+      <stop offset=3D"0%" stop-color=3D"#06b6d4" stop-opacity=3D"0.35"/>
+      <stop offset=3D"100%" stop-color=3D"#06b6d4" stop-opacity=3D"0"/>
+    </radialGradient>
+    <radialGradient id=3D"g4" cx=3D"10%" cy=3D"90%">
+      <stop offset=3D"0%" stop-color=3D"#f59e0b" stop-opacity=3D"0.25"/>
+      <stop offset=3D"100%" stop-color=3D"#f59e0b" stop-opacity=3D"0"/>
+    </radialGradient>
+  </defs>
+  <rect width=3D"800" height=3D"600" fill=3D"#020617"/>
+  <ellipse cx=3D"160" cy=3D"180" rx=3D"300" ry=3D"250" fill=3D"url(#g1)"/>
+  <ellipse cx=3D"640" cy=3D"120" rx=3D"280" ry=3D"220" fill=3D"url(#g2)"/>
+  <ellipse cx=3D"480" cy=3D"480" rx=3D"320" ry=3D"260" fill=3D"url(#g3)"/>
+  <ellipse cx=3D"80" cy=3D"540" rx=3D"250" ry=3D"200" fill=3D"url(#g4)"/>
+</svg>
+------MultipartBoundary--OTKRkVz6oSMQsxvFntcxJq8H7gb9QpkNmwGisYdHa1------

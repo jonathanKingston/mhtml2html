@@ -1,0 +1,76 @@
+/* External CSS for Iframe B - Tests CSS loading in nested iframes */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #0a0a0a;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.widget {
+  background: #171717;
+  border: 1px solid #262626;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid #262626;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.widget-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a855f7;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: #737373;
+  margin-top: 0.25rem;
+}
+
+.widget-footer {
+  padding: 0.75rem 1rem;
+  background: #0f0f0f;
+  font-size: 0.75rem;
+  color: #525252;
+  text-align: center;
+}

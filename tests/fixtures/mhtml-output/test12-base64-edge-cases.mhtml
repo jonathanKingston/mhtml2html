@@ -1,0 +1,496 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test12-base64-edge-cases.html
+Subject: Test 12: Base64 Edge Cases
+Date: Tue, 13 Jan 2026 00:22:26 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--fcDFJD0656REVaRMRMOxx8t2T0TVkfK7vCzKJ6htg0----"
+
+
+------MultipartBoundary--fcDFJD0656REVaRMRMOxx8t2T0TVkfK7vCzKJ6htg0----
+Content-Type: text/html
+Content-ID: <frame-6AB49581AA61BD84F2781BA1C807C8E7@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test12-base64-edge-cases.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-97c99ddd-b0d7-4c34-9f5e-0d20b537b9a8@mhtml.blink" /><l=
+ink rel=3D"stylesheet" type=3D"text/css" href=3D"cid:css-04bcdae8-2251-497f=
+-ae8a-7407b1b9fcf9@mhtml.blink" />
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 12: Base64 Edge Cases</title>
+ =20
+</head>
+<body>
+  <h1>Test 12: Base64 Edge Cases</h1>
+  <p class=3D"subtitle">Testing base64 encoding variations that may cause p=
+arser issues</p>
+ =20
+  <div class=3D"test-grid">
+    <!-- 1. Standard base64 PNG (valid) -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Standard Base64 PNG</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Simple 8x8 red square PNG -->
+        <img src=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIC=
+AIAAABLbSncAAAADklEQVQI12P4z8DAwMAAAA0ABQID3P8AAAAASUVORK5CYII=3D" alt=3D"S=
+tandard base64">
+      </div>
+      <div class=3D"test-footer">Standard PNG, proper padding (=3D=3D)</div=
+>
+    </div>
+   =20
+    <!-- 2. Base64 with single padding -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Single Padding (=3D)</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- PNG with single =3D padding -->
+        <img src=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEC=
+AIAAAAmkwkpAAAAEUlEQVQI12Ng+M/AwPCfgQEABR4B/fF58vsAAAAASUVORK5CYII=3D" alt=
+=3D"Single padding">
+      </div>
+      <div class=3D"test-footer">Ends with single =3D padding</div>
+    </div>
+   =20
+    <!-- 3. Base64 with no padding -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">No Padding</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Some decoders accept base64 without padding -->
+        <img src=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABC=
+AYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9aw" alt=3D"No padding">
+      </div>
+      <div class=3D"test-footer">Missing padding (some parsers add it)</div=
+>
+    </div>
+   =20
+    <!-- 4. Base64 SVG (text content) -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Base64 SVG</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- SVG encoded as base64 -->
+        <img src=3D"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3d=
+y53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzNi=
+ODJmNiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iOCIvPjwvc3ZnPg=3D=3D" alt=3D"Ba=
+se64 SVG">
+      </div>
+      <div class=3D"test-footer">SVG as base64 (text =E2=86=92 binary =E2=
+=86=92 base64)</div>
+    </div>
+   =20
+    <!-- 5. Very long base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Long Base64 String</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Larger image to test long base64 strings -->
+        <img src=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkC=
+AYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADsklEQVR4nO2dW5KDIBBFz/5X7S0kMwlq=
+QjfQPM7U+ZMSwO5LgwhiSgkAAAAAAAAAAAAAAAAAAAAAAAAAAKDk8u0CAAAghYQAAAAAAADAOK7=
+x+gAiSMkJAACA/+O/3y4AqJCQEwAAAP+F+O0CgAoJOQEAAPCLhPyQbxfgDRICAACgQWJ+yLcL8A=
+YJAQAAECExP+TbBXiDhAAAAIgQH/LtArxBQgAAAESID/l2Ad4gIQAAACLEh3y7AG+QEAAAABHiQ=
+75dgDdICAAAQITYZ89vl+ANEgIAACAi9tnz2yV4g4QAAABEiH32/HYJ3iAhAAAAEWKfPb9dgjdI=
+CAAAABFinz2/XYI3SAgAAICI2GfPb5fgDRICAAAgIvbZ89sleIOEAAAAiIh99vx2Cd4gIQAAACJ=
+inz2/XYI3SAgAAICI2GfPb5fgDRICAADQJOyHPOQFEgIAANAk7Ic85AUSAgAA0CTshzzkBRICAA=
+DQJOyHPOQFEgIAANAk7Ic85AUSAgAA0CTshzzkBRICAADQJOyHPOQFEgIAANAk7Ic85AUSAgAA0=
+CTshzzkBRICAADQJOyHPOQFEgLwIOTbBXgjOofxIQ+FQ0IAHoR8uwBvROcwPuShcEgIwIOQbxfg=
+jegcxoc8FA4JAXgQ8u0CvBGdw/iQh8IhIQAPQr5dgDeicxgf8lA4JATgQci3C/BGdA7jQx4Kh4Q=
+APAj5dgHeiM5hfMhD4ZAQgAch3y7AG9E5jA95KBwSAvAg5NsFeIPGBAAAQJPgNbFvl+AN2lsAAA=
+CaBK+JfbsEb9DeAgAA0CR4TezbJXiD9hYAAIAmwWti3y7BG7S3AAAAmgSviX27BG/Q3gIAANAke=
+E3s2yV4g/YWAACAJsFrYt8uwRu0twAAADSJvUXA3Xf7eY6EAAAAiIjdcB1y8QYJAQAAECEuZJeL=
+N0gIAACAiOgNd0LxBgkBAACAhhHuJO7bgENCAAAARERPuO+6DwMOCQEAABARPeG+6z4MOCQEAAB=
+ARPS/9N1lHwYcEgIAACBCSi7i59yeRxwSAgAAICJKLuLn3J5HHBICAAAQId95NuA6DOCQEAAAAB=
+HR/4rDdRjAISEAAAAi4v5Taq4kBwMOCQEAAOgR+9I24r6LBgwSAgAA0CP2pW3EfRcNGCQEAACgR=
++xL24j7LhowSAgAAECP2Je2EfddNGCQEAAAgB6xL20j7rtowCAhAAAAPWJf2kbcd9GAQUIAHoR8=
+uwBvROcwPuSh8H/4fkq85U5fGgAAAABJRU5ErkJggg=3D=3D" alt=3D"Long base64" style=
+=3D"max-height: 80px;">
+      </div>
+      <div class=3D"test-footer">100x100 PNG, ~1KB base64 string</div>
+    </div>
+   =20
+    <!-- 6. URL-encoded base64 characters -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">URL-safe Base64</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Base64 with + and / which might get URL encoded -->
+        <img src=3D"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3d=
+y53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDUg=
+TDU1IDUwIEw1IDUwIFoiIGZpbGw9IiNmNTllMGIiLz48L3N2Zz4=3D" alt=3D"URL-safe">
+      </div>
+      <div class=3D"test-footer">Contains + and / (might get URL-encoded)</=
+div>
+    </div>
+   =20
+    <!-- 7. GIF base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">GIF as Base64</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Minimal GIF -->
+        <img src=3D"data:image/gif;base64,R0lGODlhCAAIAIAAAAAAAP///yH5BAEAA=
+AEALAAAAAAIAAgAAAINjI+py+0Po5y02ouz3gUAOw=3D=3D" alt=3D"GIF base64" style=
+=3D"width: 64px; height: 64px; image-rendering: pixelated;">
+      </div>
+      <div class=3D"test-footer">GIF87a format as base64</div>
+    </div>
+   =20
+    <!-- 8. WebP base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">WebP as Base64</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Minimal WebP (might not render in all browsers) -->
+        <img src=3D"data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCd=
+ASoIAAgAAkA4JYgCdAEO/hOMAAD++O9u7f7tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAAA=3D" alt=3D"WebP base64" style=3D"width: 64px; height: 64px; im=
+age-rendering: pixelated;">
+      </div>
+      <div class=3D"test-footer">WebP format (modern browsers only)</div>
+    </div>
+   =20
+    <!-- 9. ICO base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">ICO as Base64</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Minimal ICO -->
+        <img src=3D"data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAAC=
+gAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAA4ODv8ODg7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAAAAOQ3L/DkNy/w4ODv8ODg7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAFCf5f8OQ3L/DkNy/w4ODv8ODg7/AAAAAAAAAAAAAAAAAAAA=
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" alt=3D"ICO base64" style=3D"w=
+idth: 32px; height: 32px;">
+      </div>
+      <div class=3D"test-footer">ICO format as base64</div>
+    </div>
+   =20
+    <!-- 10. CSS background with base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">CSS url() Base64</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <div class=3D"bg-base64" style=3D"background-image: url('data:image=
+/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHR=
+oPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjUiIGZpbGw9Ii=
+NlYzQ4OTkiLz48L3N2Zz4=3D');"></div>
+      </div>
+      <div class=3D"test-footer">background-image: url(data:...base64...)</=
+div>
+    </div>
+   =20
+    <!-- 11. Base64 in srcset -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Base64 in srcset</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3d=
+y53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+PHJlY3QgZmlsbD0iIzZi=
+NzI4MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIi8+PC9zdmc+" alt=3D"Base64 srcset" wid=
+th=3D"30" height=3D"30">
+      </div>
+      <div class=3D"test-footer">srcset with base64 data URIs</div>
+    </div>
+   =20
+    <!-- 12. Base64 with charset -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Base64 with Charset</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <img src=3D"data:image/svg+xml;charset=3Dutf-8;base64,PHN2ZyB4bWxuc=
+z0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHRl=
+eHQgeD0iMTUiIHk9IjM1IiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjI0Ij7wn4+gPC90ZXh0Pjw=
+vc3ZnPg=3D=3D" alt=3D"Charset base64">
+      </div>
+      <div class=3D"test-footer">charset=3Dutf-8 before base64</div>
+    </div>
+   =20
+    <!-- 13. Empty/minimal base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Minimal Base64</span>
+        <span class=3D"test-tag tricky">Tricky</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- 1x1 transparent GIF - smallest possible image -->
+        <img src=3D"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAA=
+AAALAAAAAABAAEAAAIBRAA7" alt=3D"1x1 GIF" style=3D"width: 60px; height: 60px=
+; background: #333;">
+      </div>
+      <div class=3D"test-footer">1x1 transparent GIF (minimal)</div>
+    </div>
+   =20
+    <!-- 14. Base64 with special characters in decoded content -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Unicode in SVG Base64</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- SVG with unicode characters -->
+        <img src=3D"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3d=
+y53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzFm=
+MjkzNyIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIi8+PHRleHQgeD0iMTgiIHk9IjQwIiBmaWxsPSJ=
+3aGl0ZSIgZm9udC1zaXplPSIzMCI+4pyTPC90ZXh0Pjwvc3ZnPg=3D=3D" alt=3D"Unicode S=
+VG">
+      </div>
+      <div class=3D"test-footer">SVG with =E2=9C=93 unicode character</div>
+    </div>
+   =20
+    <!-- 15. Quoted vs unquoted in CSS -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Unquoted CSS url()</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <div class=3D"bg-base64" style=3D"background-image: url(data:image/=
+svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRo=
+PSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzA2YjZkNCIgd2lkdGg9IjYwIiBoZWlnaHQ=
+9IjYwIiByeD0iMzAiLz48L3N2Zz4=3D);"></div>
+      </div>
+      <div class=3D"test-footer">url() without quotes around data URI</div>
+    </div>
+   =20
+    <!-- 16. Double-encoded edge case -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">Plain SVG Data URI</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Non-base64 data URI for comparison -->
+        <img src=3D"data:image/svg+xml,%3Csvg xmlns=3D'http://www.w3.org/20=
+00/svg' width=3D'60' height=3D'60'%3E%3Crect fill=3D'%23a855f7' width=3D'60=
+' height=3D'60' rx=3D'8'/%3E%3C/svg%3E" alt=3D"URL-encoded SVG">
+      </div>
+      <div class=3D"test-footer">URL-encoded SVG (not base64)</div>
+    </div>
+   =20
+    <!-- 17. JPEG base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">JPEG Base64</span>
+        <span class=3D"test-tag valid">Valid</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Minimal JPEG -->
+        <img src=3D"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBD=
+AAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8=
+XGBYUGBIUFRT/wAALCAAIAAgBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAA=
+AAAAAAAAAAAAD/2gAIAQEAAD8AVN//2Q=3D=3D" alt=3D"JPEG base64">
+      </div>
+      <div class=3D"test-footer">Minimal JPEG (SOI + headers + EOI)</div>
+    </div>
+   =20
+    <!-- 18. BMP base64 -->
+    <div class=3D"test-card">
+      <div class=3D"test-header">
+        <span class=3D"test-title">BMP Base64</span>
+        <span class=3D"test-tag edge">Edge</span>
+      </div>
+      <div class=3D"test-body">
+        <!-- Minimal BMP -->
+        <img src=3D"data:image/bmp;base64,Qk1GAAAAAAAAAD4AAAAoAAAACAAAAAgAA=
+AABAAEAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+AAAAAA=3D=3D" alt=3D"BMP base64" style=3D"width: 64px; height: 64px; image-=
+rendering: pixelated;">
+      </div>
+      <div class=3D"test-footer">BMP format as base64</div>
+    </div>
+  </div>
+ =20
+  <!-- Additional tests in CSS -->
+ =20
+ =20
+  <!-- Additional test section for CSS-based base64 -->
+  <div style=3D"margin-top: 2rem;">
+    <h2 style=3D"font-size: 1rem; margin-bottom: 1rem; color: var(--muted);=
+">CSS Base64 Tests</h2>
+    <div class=3D"test-grid">
+      <div class=3D"test-card">
+        <div class=3D"test-header">
+          <span class=3D"test-title">Multiple BG Images</span>
+          <span class=3D"test-tag edge">Edge</span>
+        </div>
+        <div class=3D"test-body">
+          <div class=3D"multi-b64-test" style=3D"width: 100%; height: 80px;=
+"></div>
+        </div>
+        <div class=3D"test-footer">Two base64 images layered in CSS</div>
+      </div>
+     =20
+      <div class=3D"test-card">
+        <div class=3D"test-header">
+          <span class=3D"test-title">Base64 Cursor</span>
+          <span class=3D"test-tag edge">Edge</span>
+        </div>
+        <div class=3D"test-body">
+          <div class=3D"cursor-b64-test" style=3D"width: 100%; height: 80px=
+; background: #1f2937; border-radius: 0.5rem; display: flex; align-items: c=
+enter; justify-content: center; color: var(--muted); font-size: 0.75rem;">H=
+over for custom cursor</div>
+        </div>
+        <div class=3D"test-footer">cursor: url(data:...base64...)</div>
+      </div>
+     =20
+      <div class=3D"test-card">
+        <div class=3D"test-header">
+          <span class=3D"test-title">List Style Image</span>
+          <span class=3D"test-tag edge">Edge</span>
+        </div>
+        <div class=3D"test-body">
+          <ul class=3D"list-b64-test" style=3D"padding-left: 2rem; color: v=
+ar(--text);">
+            <li>Item one</li>
+            <li>Item two</li>
+            <li>Item three</li>
+          </ul>
+        </div>
+        <div class=3D"test-footer">list-style-image: url(data:...)</div>
+      </div>
+     =20
+      <div class=3D"test-card">
+        <div class=3D"test-header">
+          <span class=3D"test-title">Border Image</span>
+          <span class=3D"test-tag tricky">Tricky</span>
+        </div>
+        <div class=3D"test-body">
+          <div class=3D"border-b64-test" style=3D"width: 100px; height: 60p=
+x; margin: auto;"></div>
+        </div>
+        <div class=3D"test-footer">border-image: url(data:...base64...)</di=
+v>
+      </div>
+    </div>
+  </div>
+
+
+</body></html>
+------MultipartBoundary--fcDFJD0656REVaRMRMOxx8t2T0TVkfK7vCzKJ6htg0----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-04bcdae8-2251-497f-ae8a-7407b1b9fcf9@mhtml.blink
+
+@charset "utf-8";
+
+.multi-b64-test { background-image: url("data:image/svg+xml;base64,PHN2ZyB4=
+bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI=
++PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iNSIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PS=
+IwLjIiLz48L3N2Zz4=3D"), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0=
+cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3QgZml=
+sbD0iIzMzNCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIi8+PC9zdmc+"); }
+
+.cursor-b64-test { cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0ia=
+HR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNs=
+ZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiNmOTdlMGIiLz48L3N2Zz4=3D") 12 12,=
+ auto; }
+
+.list-b64-test { list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4b=
+Wxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxj=
+aXJjbGUgY3g9IjQiIGN5PSI0IiByPSIzIiBmaWxsPSIjMjJjNTVlIi8+PC9zdmc+"); }
+
+.border-b64-test { border-width: 10px; border-style: solid; border-color: t=
+ransparent; border-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaH=
+R0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+PGRlZnM+P=
+GxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAl=
+Ij48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PHN0b3Agb2Zmc2V0PSI=
+xMDAlIiBzdG9wLWNvbG9yPSIjZWM0ODk5Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3=
+QgZmlsbD0idXJsKCNnKSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIi8+PC9zdmc+") 10 / 1 / 0=
+ round; }
+------MultipartBoundary--fcDFJD0656REVaRMRMOxx8t2T0TVkfK7vCzKJ6htg0----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-97c99ddd-b0d7-4c34-9f5e-0d20b537b9a8@mhtml.blink
+
+@charset "utf-8";
+
+:root { --bg: #0a0a0a; --surface: #141414; --border: #262626; --text: #fafa=
+fa; --muted: #737373; --success: #22c55e; --warning: #f59e0b; --error: #ef4=
+444; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: var(--bg); color: va=
+r(--text); min-height: 100vh; padding: 2rem; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 2rem; }
+
+.test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax=
+(300px, 1fr)); gap: 1.5rem; }
+
+.test-card { background: var(--surface); border: 1px solid var(--border); b=
+order-radius: 0.75rem; overflow: hidden; }
+
+.test-header { padding: 1rem; border-bottom: 1px solid var(--border); displ=
+ay: flex; justify-content: space-between; align-items: center; }
+
+.test-title { font-size: 0.875rem; font-weight: 600; }
+
+.test-tag { font-size: 0.625rem; padding: 0.25rem 0.5rem; border-radius: 0.=
+25rem; text-transform: uppercase; }
+
+.test-tag.valid { background: rgba(34, 197, 94, 0.2); color: var(--success)=
+; }
+
+.test-tag.edge { background: rgba(245, 158, 11, 0.2); color: var(--warning)=
+; }
+
+.test-tag.tricky { background: rgba(239, 68, 68, 0.2); color: var(--error);=
+ }
+
+.test-body { padding: 1rem; min-height: 120px; display: flex; align-items: =
+center; justify-content: center; background: rgb(15, 15, 15); }
+
+.test-body img { max-width: 100%; max-height: 100px; }
+
+.test-footer { padding: 0.75rem 1rem; font-size: 0.7rem; color: var(--muted=
+); border-top: 1px solid var(--border); font-family: monospace; word-break:=
+ break-all; }
+
+.bg-base64 { width: 100%; height: 80px; background-repeat: no-repeat; backg=
+round-position: center center; background-size: contain; }
+
+.bg-multiline { width: 100%; height: 80px; background-image: url("data:imag=
+e/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZH=
+RoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzIyYzU1ZSIgd2lkdGg9IjYwIiBoZWlna=
+HQ9IjYwIiByeD0iOCIvPjwvc3ZnPg=3D=3D"); background-repeat: no-repeat; backgr=
+ound-position: center center; background-size: contain; }
+------MultipartBoundary--fcDFJD0656REVaRMRMOxx8t2T0TVkfK7vCzKJ6htg0------

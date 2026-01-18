@@ -1,0 +1,332 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test2-images-svg.html
+Subject: Test 2: Images and SVG
+Date: Sat, 10 Jan 2026 22:30:21 +0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK----"
+
+
+------MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK----
+Content-Type: text/html
+Content-ID: <frame-813DD983FD9EA248F4E8AB4DF085FBAE@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/html-sources/test2-images-svg.html
+
+<!DOCTYPE html><html lang=3D"en"><head><meta http-equiv=3D"Content-Type" co=
+ntent=3D"text/html; charset=3DUTF-8"><link rel=3D"stylesheet" type=3D"text/=
+css" href=3D"cid:css-87d8f359-9563-494d-a481-b43276501914@mhtml.blink" />
+ =20
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Test 2: Images and SVG</title>
+ =20
+</head>
+<body>
+  <h1>Test 2: Images &amp; SVG Graphics</h1>
+  <p class=3D"subtitle">Testing external images, inline SVG, data URIs, and=
+ CSS background images</p>
+ =20
+  <div class=3D"test-grid">
+    <!-- Inline SVG Test -->
+    <div class=3D"test-section">
+      <h2>Inline SVG</h2>
+      <div class=3D"inline-svg">
+        <!-- Geometric shapes with gradients -->
+        <svg viewBox=3D"0 0 100 100" xmlns=3D"http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id=3D"grad1" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=
+=3D"100%">
+              <stop offset=3D"0%" style=3D"stop-color:#10b981"></stop>
+              <stop offset=3D"100%" style=3D"stop-color:#06b6d4"></stop>
+            </linearGradient>
+          </defs>
+          <circle cx=3D"50" cy=3D"50" r=3D"45" fill=3D"url(#grad1)"></circl=
+e>
+        </svg>
+       =20
+        <svg viewBox=3D"0 0 100 100" xmlns=3D"http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id=3D"grad2" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=
+=3D"100%">
+              <stop offset=3D"0%" style=3D"stop-color:#f97316"></stop>
+              <stop offset=3D"100%" style=3D"stop-color:#eab308"></stop>
+            </linearGradient>
+          </defs>
+          <rect x=3D"10" y=3D"10" width=3D"80" height=3D"80" rx=3D"15" fill=
+=3D"url(#grad2)"></rect>
+        </svg>
+       =20
+        <svg viewBox=3D"0 0 100 100" xmlns=3D"http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id=3D"grad3" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=
+=3D"100%">
+              <stop offset=3D"0%" style=3D"stop-color:#8b5cf6"></stop>
+              <stop offset=3D"100%" style=3D"stop-color:#ec4899"></stop>
+            </linearGradient>
+          </defs>
+          <polygon points=3D"50,5 95,75 5,75" fill=3D"url(#grad3)"></polygo=
+n>
+        </svg>
+       =20
+        <svg viewBox=3D"0 0 100 100" xmlns=3D"http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id=3D"grad4" cx=3D"50%" cy=3D"50%" r=3D"50%">
+              <stop offset=3D"0%" style=3D"stop-color:#fbbf24"></stop>
+              <stop offset=3D"100%" style=3D"stop-color:#dc2626"></stop>
+            </radialGradient>
+          </defs>
+          <path d=3D"M50 5 L61 40 L98 40 L68 62 L79 95 L50 75 L21 95 L32 62=
+ L2 40 L39 40 Z" fill=3D"url(#grad4)"></path>
+        </svg>
+      </div>
+      <p class=3D"status">=E2=9C=93 Gradients, shapes, and paths should ren=
+der correctly</p>
+    </div>
+   =20
+    <!-- External SVG as img -->
+    <div class=3D"test-section">
+      <h2>External SVG (img src)</h2>
+      <div class=3D"image-container">
+        <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/as=
+sets/images/external-graphic.svg" alt=3D"External SVG graphic" width=3D"230=
+" height=3D"115">
+      </div>
+      <p class=3D"status">External SVG file loaded via &lt;img&gt; tag</p>
+    </div>
+   =20
+    <!-- Data URI PNG -->
+    <div class=3D"test-section">
+      <h2>Data URI (Base64 PNG)</h2>
+      <div class=3D"image-container data-uri-test">
+        <!-- Small 8x8 gradient PNG as data URI -->
+        <img src=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAC=
+AYAAADDPmHLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF0WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAA=
+AAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4=
+gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIE=
+NvcmUgNy4yLWMwMDAgNzkuMWI2NWE3OWI0LCAyMDIyLzA2LzEzLTIyOjAxOjAxICAgICAgICAiP=
+iA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5=
+bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+IDwvcmRmOlJERj4gPC9=
+4OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7GmE7AAAAG2UlEQVR4nO2dW5LbMAwAuZ37H7=
+l7mmSSxBJFPkCK3JnJTP71AAIgKMmO9/f9/r7v+74/Pj5+/Fz/fvz4cb8/Pz/v7xGmxfb4eP7+9=
+7xaPr+e68fHx/d3c/7//H25fs77OP8e/l7OU7+/j9dz/ux8jvU4+/X7cz7V86n38fz+nvvLz8d5=
+rOc+1+/3PMf0OD1f15+/X8+V3+u5z/O41/M+rvPn67z7PI/fz0/O/fWerscq17nO6TF9nn1Oj8c=
+6js/l//dxfH13rOexz3WNvL5e99fyPkf+G8tr3OfI52iOcz2O73E6x3Ku9Xo/J36efO3LtV3ndZ=
+z/O59iX49r5PPv8/55e37P81iPeR3r+T7v52j3vc/7+3s7xj6f13O/99eel/v9WNeYn7se47k6v=
+j+fy6M7z3Mux3p+vs/p47m8rs9pe31d1/Oe59u8/t7e/37O+7pf5++/t+3Y2/XndpxRz/F8DPez=
+5fXrOY51f+7Pudf79n4cj/u+nmu577Gu93H/Pt+P53Jc63E9jvV4bvf13M5xrtf1vs9tOu45PZ7=
+r/fd57ut1+/w9l2u93tc5nuc5jue4f97f63lej/ve13au93mdY/36fpy/n79ex/XYzrme+zmPY+=
+3n+xrHsT7ec7zXcxzrOe7/n//7Hu5xrPu+X+u5Xut5P9f7vg/Hce7X/Tnv53K/tsdtf677vt/PZ=
+e3n+f7u51j3dR7PsZ7n877ue7vfz+1e7+u8nus+HMd5f8/3udzvY32sY93P5X6u53p87ufxvJ/r=
+Pq/nup/b/f7+/NzO+7ke93Nd633dx2u93+/7ct3n/bn+/X7O5Xpc93U/t/t9H+/XfQ/3c7ne93H=
+//3pc93E/l/u9Xdd5bOe5H9t5rsf9+vza78+1n+/rPl7n9djux3pc9/d2HMex3J/7ut/X/b2e67=
+me67key3oe93Xft2N9H4/n8r7u43qe93Xfr+M+ruM47sc6Hvd5P9e+juN57vs+juNej8d1vJbX+=
+93HfV7L+/0+n8tz7O8xfZ7n+/F8X/d53cf13Mfx3M/nOu/nOo/nuY/H8zGOY/1e+3mc6/G87s9j=
+3+9zPa7rup/L+37c5/U81vdz3ce5Hus+Hsf5vN7nfZ33cxzHer2P676O6zqPY39d9/e6zuNxfV3=
+nsp/P+1if9/P5nMs+n8v13O/7OZZ9bMd6HMu+n/dxnMe6r/v4vNb7Po/7OZb7ON/3+/3+HO/lcb=
+/ux77fj32cx7mux34f1+O879dyrPu+3+/lfs7lHI/zuB7ruR7neizHvK/j/n6dx+N6roe633O/j=
+8d57Ndze+77Po7ruO77PK/juj7Oc72v47rvzz6v4zi367qex3ne5+M4rse678vxvs/7vB77edz3=
+47i/7+t8nOvz8X5u67G/ruu5H4/7Oq/XdV/X83i+77PvY73udRzP97ke937O5djf53Ws13Ldy3G=
+s93kf5+NY79t1H8+xn/v7udw6j+u5btd9HtvzOs77Mdd1Hse5X/e17tdjHeuxHMtz3+/7OdbzXK=
+/HeizHe/15nOuxH9f7cT3ey7kfx+s4l8dxn891nPdzOa7H/Xqv43le67ke5/Fc7/f3+7ieY91/H=
+9dxLNd97c9juY71uI77cXy/l+N+7ud9u97ndn+u6/G81/u+z+V6nMd5vNf7XF/ndizH+n4+1+t6=
+b8d6nOu5X8+xnO9zXcd1X+u5H/f3cR3ndh3LeuzneRzHfr6X67rP834e53Fd1+M6lvtY93ksx7E=
+s933e5+N+rPd9fe7n/X6/l/W4P9fzfZ/HdV3Pebm/z8d97Me1Ps/lfp/n+7qW6zye63Ue9+NY3+=
+t9HcfxfNz3+7ge27mfx7nex7Gex/Lc5/U8luu+7uM4n89j3cd1nMe5HO/zei77ul3P+3lt9/N+n=
+M/t/j6363qey/m4z/Vcn9d1Po7lOI77uR7H+jjX+30+7+f9eu73a93X7X4s13a/t+M4rmU9jvO5=
+Lu/reazncT7u67zP+3o913mt+7mu+7ie17ps9/d5Pe7juO73ut/X+Vh+P87zuq/ne7u+jud1L9d=
+5H9tyP8/t+t7Pc7me67Ufy/NY9+W5rvtyrPe5H9f6fJzH/Xpfj+16rtf9XK/t/jzu+1zO47rs9/=
+P+vJ7ncb+363pd1308l+t4Xsd1X8f6XK/zOZb79V7P+3lc5/5+nsvzXO/3eT/vY7u/7+u57vt9H=
+I/1Pte13Y/7tp7btR3n9TjO9bjX9bzuxzqO5bp+P9Zzu5/Hcqz7fq7H+biW+7G97/dz3a7jdT/v=
+4/qcyz7f1/6+P9dznPt5H8dzP8/18biv27me5+O+3sd2v8/rfK7r9VzPa72P+3a8r/t5nMv5fK/=
+H83g+53J/7+O4H8/j/n4t93W8z+VcjnU7tuP5Xvf9vO7z/jzO5bif9+N6Ha/9fn1tx/Wx/Q/lTM=
+HKw4PmMwAAAABJRU5ErkJggg=3D=3D" alt=3D"Data URI encoded image">
+      </div>
+      <p class=3D"status">=E2=9C=93 Base64 encoded PNG should display corre=
+ctly</p>
+    </div>
+   =20
+    <!-- Complex SVG with filters -->
+    <div class=3D"test-section">
+      <h2>SVG with Filters</h2>
+      <div class=3D"image-container">
+        <svg viewBox=3D"0 0 200 100" xmlns=3D"http://www.w3.org/2000/svg" s=
+tyle=3D"width: 100%; max-width: 300px;">
+          <defs>
+            <filter id=3D"glow">
+              <feGaussianBlur stdDeviation=3D"3" result=3D"coloredBlur"></f=
+eGaussianBlur>
+              <feMerge>
+                <feMergeNode in=3D"coloredBlur"></feMergeNode>
+                <feMergeNode in=3D"SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+            <filter id=3D"shadow">
+              <feDropShadow dx=3D"2" dy=3D"4" stdDeviation=3D"3" flood-colo=
+r=3D"#000" flood-opacity=3D"0.5"></feDropShadow>
+            </filter>
+          </defs>
+          <rect x=3D"10" y=3D"20" width=3D"60" height=3D"60" rx=3D"10" fill=
+=3D"#10b981" filter=3D"url(#glow)"></rect>
+          <circle cx=3D"140" cy=3D"50" r=3D"35" fill=3D"#f97316" filter=3D"=
+url(#shadow)"></circle>
+        </svg>
+      </div>
+      <p class=3D"status">=E2=9C=93 SVG filters (blur, glow, shadow) should=
+ work</p>
+    </div>
+   =20
+    <!-- Picture element with srcset -->
+    <div class=3D"test-section">
+      <h2>Picture Element</h2>
+      <div class=3D"image-container">
+        <picture>
+          <source srcset=3D"../assets/images/hero-wide.svg" media=3D"(min-w=
+idth: 600px)">
+          <img src=3D"file:///Users/jonathankingston/debugging/mhtml-tests/=
+assets/images/hero-narrow.svg" alt=3D"Responsive hero image" width=3D"0" he=
+ight=3D"0">
+        </picture>
+      </div>
+      <p class=3D"status">Picture with &lt;source&gt; and media queries</p>
+    </div>
+   =20
+    <!-- CSS Background Image -->
+    <div class=3D"test-section">
+      <h2>CSS Background Image</h2>
+      <div class=3D"bg-image-test" style=3D"background-image: url('../asset=
+s/images/pattern-bg.svg');">
+        <span>background-image: url()</span>
+      </div>
+      <p class=3D"status">CSS background-image property test</p>
+    </div>
+  </div>
+
+
+</body></html>
+------MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/pattern-bg.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" width=3D"60" height=3D"60" viewBo=
+x=3D"0 0 60 60">
+  <defs>
+    <pattern id=3D"grid" width=3D"20" height=3D"20" patternUnits=3D"userSpa=
+ceOnUse">
+      <path d=3D"M 20 0 L 0 0 0 20" fill=3D"none" stroke=3D"#334155" stroke=
+-width=3D"0.5"/>
+    </pattern>
+    <pattern id=3D"dots" width=3D"20" height=3D"20" patternUnits=3D"userSpa=
+ceOnUse">
+      <circle cx=3D"10" cy=3D"10" r=3D"1.5" fill=3D"#475569"/>
+    </pattern>
+  </defs>
+  <rect width=3D"60" height=3D"60" fill=3D"#1e293b"/>
+  <rect width=3D"60" height=3D"60" fill=3D"url(#grid)"/>
+  <rect width=3D"60" height=3D"60" fill=3D"url(#dots)"/>
+</svg>=0A
+------MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/hero-wide.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 400 100">
+  <defs>
+    <linearGradient id=3D"wideGrad" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=3D"0=
+%">
+      <stop offset=3D"0%" style=3D"stop-color:#10b981"/>
+      <stop offset=3D"100%" style=3D"stop-color:#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width=3D"400" height=3D"100" fill=3D"#0f172a" rx=3D"8"/>
+  <rect x=3D"20" y=3D"20" width=3D"360" height=3D"60" fill=3D"url(#wideGrad=
+)" rx=3D"4" opacity=3D"0.2"/>
+  <text x=3D"200" y=3D"58" text-anchor=3D"middle" fill=3D"#10b981" font-fam=
+ily=3D"system-ui" font-size=3D"16" font-weight=3D"bold">WIDE VARIANT (=E2=
+=89=A5600px)</text>
+</svg>=0A
+------MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK----
+Content-Type: image/svg+xml
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///Users/jonathankingston/debugging/mhtml-tests/assets/images/external-graphic.svg
+
+<svg xmlns=3D"http://www.w3.org/2000/svg" viewBox=3D"0 0 200 100">
+  <defs>
+    <linearGradient id=3D"bgGrad" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=3D"100=
+%">
+      <stop offset=3D"0%" style=3D"stop-color:#1e293b"/>
+      <stop offset=3D"100%" style=3D"stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id=3D"lineGrad" x1=3D"0%" y1=3D"0%" x2=3D"100%" y2=3D"0=
+%">
+      <stop offset=3D"0%" style=3D"stop-color:#06b6d4"/>
+      <stop offset=3D"50%" style=3D"stop-color:#8b5cf6"/>
+      <stop offset=3D"100%" style=3D"stop-color:#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width=3D"200" height=3D"100" fill=3D"url(#bgGrad)" rx=3D"8"/>
+  <path d=3D"M10 70 Q50 20 100 50 T190 30" stroke=3D"url(#lineGrad)" stroke=
+-width=3D"3" fill=3D"none" stroke-linecap=3D"round"/>
+  <circle cx=3D"30" cy=3D"65" r=3D"6" fill=3D"#06b6d4"/>
+  <circle cx=3D"100" cy=3D"50" r=3D"6" fill=3D"#8b5cf6"/>
+  <circle cx=3D"170" cy=3D"35" r=3D"6" fill=3D"#ec4899"/>
+  <text x=3D"100" y=3D"90" text-anchor=3D"middle" fill=3D"#64748b" font-fam=
+ily=3D"system-ui" font-size=3D"10">External SVG Graphic</text>
+</svg>=0A
+------MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: cid:css-87d8f359-9563-494d-a481-b43276501914@mhtml.blink
+
+@charset "utf-8";
+
+:root { --bg: #0c0a09; --surface: #1c1917; --border: #292524; --text: #fafa=
+f9; --muted: #a8a29e; --emerald: #10b981; --cyan: #06b6d4; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg=
+); color: var(--text); min-height: 100vh; padding: 3rem; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 3rem; }
+
+.test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(=
+300px, 1fr)); gap: 2rem; }
+
+.test-section { background: var(--surface); border: 1px solid var(--border)=
+; border-radius: 1rem; padding: 1.5rem; }
+
+.test-section h2 { font-size: 0.875rem; text-transform: uppercase; letter-s=
+pacing: 0.1em; color: var(--emerald); margin-bottom: 1rem; display: flex; a=
+lign-items: center; gap: 0.5rem; }
+
+.test-section h2::before { content: ""; width: 8px; height: 8px; background=
+: var(--emerald); border-radius: 50%; }
+
+.image-container { background: var(--bg); border-radius: 0.5rem; padding: 1=
+rem; display: flex; align-items: center; justify-content: center; min-heigh=
+t: 150px; }
+
+.image-container img { max-width: 100%; height: auto; border-radius: 0.25re=
+m; }
+
+.inline-svg { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: c=
+enter; }
+
+.inline-svg svg { width: 80px; height: 80px; }
+
+.data-uri-test img { width: 100%; max-width: 200px; }
+
+.bg-image-test { height: 150px; border-radius: 0.5rem; background-size: cov=
+er; background-position: center center; display: flex; align-items: flex-en=
+d; padding: 1rem; }
+
+.bg-image-test span { background: rgba(0, 0, 0, 0.7); padding: 0.25rem 0.75=
+rem; border-radius: 0.25rem; font-size: 0.75rem; }
+
+.status { margin-top: 1rem; font-size: 0.75rem; color: var(--muted); }
+------MultipartBoundary--jtYXyhLYJeRr4Hp3fpVbrbe53Aa0cAcKlFgY7QErGK------

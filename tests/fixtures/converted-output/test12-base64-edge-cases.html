@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en"><head><base target="_parent"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "utf-8";
+
+:root { --bg: #0a0a0a; --surface: #141414; --border: #262626; --text: #fafafa; --muted: #737373; --success: #22c55e; --warning: #f59e0b; --error: #ef4444; }
+
+* { margin: 0px; padding: 0px; box-sizing: border-box; }
+
+body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem; }
+
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.subtitle { color: var(--muted); margin-bottom: 2rem; }
+
+.test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+
+.test-card { background: var(--surface); border: 1px solid var(--border); border-radius: 0.75rem; overflow: hidden; }
+
+.test-header { padding: 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+.test-title { font-size: 0.875rem; font-weight: 600; }
+
+.test-tag { font-size: 0.625rem; padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-transform: uppercase; }
+
+.test-tag.valid { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+
+.test-tag.edge { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+
+.test-tag.tricky { background: rgba(239, 68, 68, 0.2); color: var(--error); }
+
+.test-body { padding: 1rem; min-height: 120px; display: flex; align-items: center; justify-content: center; background: rgb(15, 15, 15); }
+
+.test-body img { max-width: 100%; max-height: 100px; }
+
+.test-footer { padding: 0.75rem 1rem; font-size: 0.7rem; color: var(--muted); border-top: 1px solid var(--border); font-family: monospace; word-break: break-all; }
+
+.bg-base64 { width: 100%; height: 80px; background-repeat: no-repeat; background-position: center center; background-size: contain; }
+
+.bg-multiline { width: 100%; height: 80px; background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzIyYzU1ZSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iOCIvPjwvc3ZnPg=="); background-repeat: no-repeat; background-position: center center; background-size: contain; }
+</style><style type="text/css">@charset "utf-8";
+
+.multi-b64-test { background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iNSIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjIiLz48L3N2Zz4="), url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHJlY3QgZmlsbD0iIzMzNCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIi8+PC9zdmc+"); }
+
+.cursor-b64-test { cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiNmOTdlMGIiLz48L3N2Zz4=") 12 12, auto; }
+
+.list-b64-test { list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxjaXJjbGUgY3g9IjQiIGN5PSI0IiByPSIzIiBmaWxsPSIjMjJjNTVlIi8+PC9zdmc+"); }
+
+.border-b64-test { border-width: 10px; border-style: solid; border-color: transparent; border-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjOGI1Y2Y2Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZWM0ODk5Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNnKSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIi8+PC9zdmc+") 10 / 1 / 0 round; }
+</style>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test 12: Base64 Edge Cases</title>
+  
+</head>
+<body>
+  <h1>Test 12: Base64 Edge Cases</h1>
+  <p class="subtitle">Testing base64 encoding variations that may cause parser issues</p>
+  
+  <div class="test-grid">
+    <!-- 1. Standard base64 PNG (valid) -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Standard Base64 PNG</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- Simple 8x8 red square PNG -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAADklEQVQI12P4z8DAwMAAAA0ABQID3P8AAAAASUVORK5CYII=" alt="Standard base64">
+      </div>
+      <div class="test-footer">Standard PNG, proper padding (==)</div>
+    </div>
+    
+    <!-- 2. Base64 with single padding -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Single Padding (=)</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- PNG with single = padding -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAEUlEQVQI12Ng+M/AwPCfgQEABR4B/fF58vsAAAAASUVORK5CYII=" alt="Single padding">
+      </div>
+      <div class="test-footer">Ends with single = padding</div>
+    </div>
+    
+    <!-- 3. Base64 with no padding -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">No Padding</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <!-- Some decoders accept base64 without padding -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9aw" alt="No padding">
+      </div>
+      <div class="test-footer">Missing padding (some parsers add it)</div>
+    </div>
+    
+    <!-- 4. Base64 SVG (text content) -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Base64 SVG</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- SVG encoded as base64 -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzNiODJmNiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iOCIvPjwvc3ZnPg==" alt="Base64 SVG">
+      </div>
+      <div class="test-footer">SVG as base64 (text → binary → base64)</div>
+    </div>
+    
+    <!-- 5. Very long base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Long Base64 String</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <!-- Larger image to test long base64 strings -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAADsklEQVR4nO2dW5KDIBBFz/5X7S0kMwlqQjfQPM7U+ZMSwO5LgwhiSgkAAAAAAAAAAAAAAAAAAAAAAAAAAKDk8u0CAAAghYQAAAAAAADAOK7x+gAiSMkJAACA/+O/3y4AqJCQEwAAAP+F+O0CgAoJOQEAAPCLhPyQbxfgDRICAACgQWJ+yLcL8AYJAQAAECExP+TbBXiDhAAAAIgQH/LtArxBQgAAAESID/l2Ad4gIQAAACLEh3y7AG+QEAAAABHiQ75dgDdICAAAQITYZ89vl+ANEgIAACAi9tnz2yV4g4QAAABEiH32/HYJ3iAhAAAAEWKfPb9dgjdICAAAABFinz2/XYI3SAgAAICI2GfPb5fgDRICAAAgIvbZ89sleIOEAAAAiIh99vx2Cd4gIQAAACJinz2/XYI3SAgAAICI2GfPb5fgDRICAADQJOyHPOQFEgIAANAk7Ic85AUSAgAA0CTshzzkBRICAADQJOyHPOQFEgIAANAk7Ic85AUSAgAA0CTshzzkBRICAADQJOyHPOQFEgIAANAk7Ic85AUSAgAA0CTshzzkBRICAADQJOyHPOQFEgLwIOTbBXgjOofxIQ+FQ0IAHoR8uwBvROcwPuShcEgIwIOQbxfgjegcxoc8FA4JAXgQ8u0CvBGdw/iQh8IhIQAPQr5dgDeicxgf8lA4JATgQci3C/BGdA7jQx4Kh4QAPAj5dgHeiM5hfMhD4ZAQgAch3y7AG9E5jA95KBwSAvAg5NsFeIPGBAAAQJPgNbFvl+AN2lsAAACaBK+JfbsEb9DeAgAA0CR4TezbJXiD9hYAAIAmwWti3y7BG7S3AAAAmgSviX27BG/Q3gIAANAkeE3s2yV4g/YWAACAJsFrYt8uwRu0twAAADSJvUXA3Xf7eY6EAAAAiIjdcB1y8QYJAQAAECEuZJeLN0gIAACAiOgNd0LxBgkBAACAhhHuJO7bgENCAAAARERPuO+6DwMOCQEAABARPeG+6z4MOCQEAABARPS/9N1lHwYcEgIAACBCSi7i59yeRxwSAgAAICJKLuLn3J5HHBICAAAQId95NuA6DOCQEAAAABHR/4rDdRjAISEAAAAi4v5Taq4kBwMOCQEAAOgR+9I24r6LBgwSAgAA0CP2pW3EfRcNGCQEAACgR+xL24j7LhowSAgAAECP2Je2EfddNGCQEAAAgB6xL20j7rtowCAhAAAAPWJf2kbcd9GAQUIAHoR8uwBvROcwPuSh8H/4fkq85U5fGgAAAABJRU5ErkJggg==" alt="Long base64" style="max-height: 80px;">
+      </div>
+      <div class="test-footer">100x100 PNG, ~1KB base64 string</div>
+    </div>
+    
+    <!-- 6. URL-encoded base64 characters -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">URL-safe Base64</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <!-- Base64 with + and / which might get URL encoded -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDUgTDU1IDUwIEw1IDUwIFoiIGZpbGw9IiNmNTllMGIiLz48L3N2Zz4=" alt="URL-safe">
+      </div>
+      <div class="test-footer">Contains + and / (might get URL-encoded)</div>
+    </div>
+    
+    <!-- 7. GIF base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">GIF as Base64</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- Minimal GIF -->
+        <img src="data:image/gif;base64,R0lGODlhCAAIAIAAAAAAAP///yH5BAEAAAEALAAAAAAIAAgAAAINjI+py+0Po5y02ouz3gUAOw==" alt="GIF base64" style="width: 64px; height: 64px; image-rendering: pixelated;">
+      </div>
+      <div class="test-footer">GIF87a format as base64</div>
+    </div>
+    
+    <!-- 8. WebP base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">WebP as Base64</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- Minimal WebP (might not render in all browsers) -->
+        <img src="data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCdASoIAAgAAkA4JYgCdAEO/hOMAAD++O9u7f7tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" alt="WebP base64" style="width: 64px; height: 64px; image-rendering: pixelated;">
+      </div>
+      <div class="test-footer">WebP format (modern browsers only)</div>
+    </div>
+    
+    <!-- 9. ICO base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">ICO as Base64</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <!-- Minimal ICO -->
+        <img src="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ODv8ODg7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOQ3L/DkNy/w4ODv8ODg7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCf5f8OQ3L/DkNy/w4ODv8ODg7/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" alt="ICO base64" style="width: 32px; height: 32px;">
+      </div>
+      <div class="test-footer">ICO format as base64</div>
+    </div>
+    
+    <!-- 10. CSS background with base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">CSS url() Base64</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <div class="bg-base64" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMjUiIGZpbGw9IiNlYzQ4OTkiLz48L3N2Zz4=');"></div>
+      </div>
+      <div class="test-footer">background-image: url(data:...base64...)</div>
+    </div>
+    
+    <!-- 11. Base64 in srcset -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Base64 in srcset</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+PHJlY3QgZmlsbD0iIzZiNzI4MCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIi8+PC9zdmc+" alt="Base64 srcset" width="30" height="30">
+      </div>
+      <div class="test-footer">srcset with base64 data URIs</div>
+    </div>
+    
+    <!-- 12. Base64 with charset -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Base64 with Charset</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHRleHQgeD0iMTUiIHk9IjM1IiBmaWxsPSIjZmZmIiBmb250LXNpemU9IjI0Ij7wn4+gPC90ZXh0Pjwvc3ZnPg==" alt="Charset base64">
+      </div>
+      <div class="test-footer">charset=utf-8 before base64</div>
+    </div>
+    
+    <!-- 13. Empty/minimal base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Minimal Base64</span>
+        <span class="test-tag tricky">Tricky</span>
+      </div>
+      <div class="test-body">
+        <!-- 1x1 transparent GIF - smallest possible image -->
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="1x1 GIF" style="width: 60px; height: 60px; background: #333;">
+      </div>
+      <div class="test-footer">1x1 transparent GIF (minimal)</div>
+    </div>
+    
+    <!-- 14. Base64 with special characters in decoded content -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Unicode in SVG Base64</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <!-- SVG with unicode characters -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzFmMjkzNyIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIi8+PHRleHQgeD0iMTgiIHk9IjQwIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIzMCI+4pyTPC90ZXh0Pjwvc3ZnPg==" alt="Unicode SVG">
+      </div>
+      <div class="test-footer">SVG with ✓ unicode character</div>
+    </div>
+    
+    <!-- 15. Quoted vs unquoted in CSS -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Unquoted CSS url()</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <div class="bg-base64" style="background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHJlY3QgZmlsbD0iIzA2YjZkNCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMzAiLz48L3N2Zz4=);"></div>
+      </div>
+      <div class="test-footer">url() without quotes around data URI</div>
+    </div>
+    
+    <!-- 16. Double-encoded edge case -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">Plain SVG Data URI</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- Non-base64 data URI for comparison -->
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23a855f7' width='60' height='60' rx='8'/%3E%3C/svg%3E" alt="URL-encoded SVG">
+      </div>
+      <div class="test-footer">URL-encoded SVG (not base64)</div>
+    </div>
+    
+    <!-- 17. JPEG base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">JPEG Base64</span>
+        <span class="test-tag valid">Valid</span>
+      </div>
+      <div class="test-body">
+        <!-- Minimal JPEG -->
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wAALCAAIAAgBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AVN//2Q==" alt="JPEG base64">
+      </div>
+      <div class="test-footer">Minimal JPEG (SOI + headers + EOI)</div>
+    </div>
+    
+    <!-- 18. BMP base64 -->
+    <div class="test-card">
+      <div class="test-header">
+        <span class="test-title">BMP Base64</span>
+        <span class="test-tag edge">Edge</span>
+      </div>
+      <div class="test-body">
+        <!-- Minimal BMP -->
+        <img src="data:image/bmp;base64,Qk1GAAAAAAAAAD4AAAAoAAAACAAAAAgAAAABAAEAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==" alt="BMP base64" style="width: 64px; height: 64px; image-rendering: pixelated;">
+      </div>
+      <div class="test-footer">BMP format as base64</div>
+    </div>
+  </div>
+  
+  <!-- Additional tests in CSS -->
+  
+  
+  <!-- Additional test section for CSS-based base64 -->
+  <div style="margin-top: 2rem;">
+    <h2 style="font-size: 1rem; margin-bottom: 1rem; color: var(--muted);">CSS Base64 Tests</h2>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-header">
+          <span class="test-title">Multiple BG Images</span>
+          <span class="test-tag edge">Edge</span>
+        </div>
+        <div class="test-body">
+          <div class="multi-b64-test" style="width: 100%; height: 80px;"></div>
+        </div>
+        <div class="test-footer">Two base64 images layered in CSS</div>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-header">
+          <span class="test-title">Base64 Cursor</span>
+          <span class="test-tag edge">Edge</span>
+        </div>
+        <div class="test-body">
+          <div class="cursor-b64-test" style="width: 100%; height: 80px; background: #1f2937; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.75rem;">Hover for custom cursor</div>
+        </div>
+        <div class="test-footer">cursor: url(data:...base64...)</div>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-header">
+          <span class="test-title">List Style Image</span>
+          <span class="test-tag edge">Edge</span>
+        </div>
+        <div class="test-body">
+          <ul class="list-b64-test" style="padding-left: 2rem; color: var(--text);">
+            <li>Item one</li>
+            <li>Item two</li>
+            <li>Item three</li>
+          </ul>
+        </div>
+        <div class="test-footer">list-style-image: url(data:...)</div>
+      </div>
+      
+      <div class="test-card">
+        <div class="test-header">
+          <span class="test-title">Border Image</span>
+          <span class="test-tag tricky">Tricky</span>
+        </div>
+        <div class="test-body">
+          <div class="border-b64-test" style="width: 100px; height: 60px; margin: auto;"></div>
+        </div>
+        <div class="test-footer">border-image: url(data:...base64...)</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body></html>
