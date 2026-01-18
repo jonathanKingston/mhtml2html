@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
  * Visual Comparison Script
- * 
+ *
  * Compares original HTML vs mhtml2html-converted output using screenshots.
  * This validates that the MHTML → HTML conversion preserves visual fidelity.
- * 
+ *
  * Usage:
  *   node compare-visual.js
- * 
+ *
  * Output:
  *   - screenshots/html/     - Original HTML screenshots
  *   - screenshots/converted/ - mhtml2html output screenshots
@@ -34,249 +34,289 @@ const SCREENSHOTS_DIR = path.join(__dirname, 'screenshots');
 const CONVERTED_DIR = path.join(__dirname, 'converted-output');
 
 const TEST_CASES = [
-  'test1-external-css',
-  'test2-images-svg',
-  'test3-webfonts-typography',
-  'test4-css-animations',
-  'test5-iframes',
-  'test6-complex-layout',
-  'test7-nested-css-imports',
-  'test8-custom-elements',
-  'test9-css-resources',
-  'test10-js-modules',
-  'test11-image-loading',
-  'test12-base64-edge-cases',
+    'test1-external-css',
+    'test2-images-svg',
+    'test3-webfonts-typography',
+    'test4-css-animations',
+    'test5-iframes',
+    'test6-complex-layout',
+    'test7-nested-css-imports',
+    'test8-custom-elements',
+    'test9-css-resources',
+    'test10-js-modules',
+    'test11-image-loading',
+    'test12-base64-edge-cases',
 ];
 
 const VIEWPORT = { width: 1440, height: 900 };
 
 async function ensureDirectories() {
-  const dirs = [
-    path.join(SCREENSHOTS_DIR, 'html'),
-    path.join(SCREENSHOTS_DIR, 'converted'),
-    path.join(SCREENSHOTS_DIR, 'diff'),
-    CONVERTED_DIR,
-  ];
-  
-  for (const dir of dirs) {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    const dirs = [
+        path.join(SCREENSHOTS_DIR, 'html'),
+        path.join(SCREENSHOTS_DIR, 'converted'),
+        path.join(SCREENSHOTS_DIR, 'diff'),
+        CONVERTED_DIR,
+    ];
+
+    for (const dir of dirs) {
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
     }
-  }
 }
 
 async function convertMhtmlToHtml(mhtmlPath, outputPath) {
-  // Dynamic import for ESM
-  const { default: mhtml2html } = await import(mhtml2htmlPath);
-  const { JSDOM } = await import('jsdom');
-  
-  const mhtmlContent = fs.readFileSync(mhtmlPath, 'utf8');
-  const parseDOM = (html) => new JSDOM(html);
-  
-  const result = mhtml2html.convert(mhtmlContent, { parseDOM, convertIframes: true });
-  const html = result.window.document.documentElement.outerHTML;
-  
-  fs.writeFileSync(outputPath, `<!DOCTYPE html>\n${html}`);
-  return outputPath;
+    // Dynamic import for ESM
+    const { default: mhtml2html } = await import(mhtml2htmlPath);
+    const { JSDOM } = await import('jsdom');
+
+    const mhtmlContent = fs.readFileSync(mhtmlPath, 'utf8');
+    const parseDOM = (html) => new JSDOM(html);
+
+    const result = mhtml2html.convert(mhtmlContent, { parseDOM, convertIframes: true });
+    const html = result.window.document.documentElement.outerHTML;
+
+    fs.writeFileSync(outputPath, `<!DOCTYPE html>\n${html}`);
+    return outputPath;
+}
+
+/**
+ * Wait for the page to be fully ready (fonts loaded, images loaded, layout stable).
+ * Uses proper browser APIs instead of arbitrary setTimeout.
+ */
+async function waitForPageReady(page) {
+    await page.evaluate(async () => {
+        // Wait for all fonts to load
+        if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+        }
+
+        // Wait for images to load
+        const images = Array.from(document.images);
+        await Promise.all(
+            images
+                .filter((img) => !img.complete)
+                .map(
+                    (img) =>
+                        new Promise((resolve) => {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        })
+                )
+        );
+
+        // Wait for next animation frame to ensure layout is stable
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+    });
 }
 
 async function captureScreenshot(page, url, outputPath) {
-  await page.goto(url, { 
-    waitUntil: 'networkidle0',
-    timeout: 30000 
-  });
-  
-  // Wait for fonts/animations to settle
-  await new Promise(resolve => setTimeout(resolve, 1500));
-  
-  await page.screenshot({ 
-    path: outputPath,
-    fullPage: true,
-  });
-  
-  return outputPath;
+    await page.goto(url, {
+        waitUntil: 'networkidle0',
+        timeout: 30000,
+    });
+
+    // Wait for fonts, images, and layout to stabilize
+    await waitForPageReady(page);
+
+    await page.screenshot({
+        path: outputPath,
+        fullPage: true,
+    });
+
+    return outputPath;
 }
 
 function compareImages(img1Path, img2Path, diffPath) {
-  const img1 = PNG.sync.read(fs.readFileSync(img1Path));
-  const img2 = PNG.sync.read(fs.readFileSync(img2Path));
-  
-  const width = Math.max(img1.width, img2.width);
-  const height = Math.max(img1.height, img2.height);
-  
-  const canvas1 = new PNG({ width, height });
-  const canvas2 = new PNG({ width, height });
-  const diff = new PNG({ width, height });
-  
-  // Fill with white background
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const idx = (width * y + x) << 2;
-      canvas1.data[idx] = canvas1.data[idx + 1] = canvas1.data[idx + 2] = 255;
-      canvas1.data[idx + 3] = 255;
-      canvas2.data[idx] = canvas2.data[idx + 1] = canvas2.data[idx + 2] = 255;
-      canvas2.data[idx + 3] = 255;
+    const img1 = PNG.sync.read(fs.readFileSync(img1Path));
+    const img2 = PNG.sync.read(fs.readFileSync(img2Path));
+
+    const width = Math.max(img1.width, img2.width);
+    const height = Math.max(img1.height, img2.height);
+
+    const canvas1 = new PNG({ width, height });
+    const canvas2 = new PNG({ width, height });
+    const diff = new PNG({ width, height });
+
+    // Fill with white background
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const idx = (width * y + x) << 2;
+            canvas1.data[idx] = canvas1.data[idx + 1] = canvas1.data[idx + 2] = 255;
+            canvas1.data[idx + 3] = 255;
+            canvas2.data[idx] = canvas2.data[idx + 1] = canvas2.data[idx + 2] = 255;
+            canvas2.data[idx + 3] = 255;
+        }
     }
-  }
-  
-  PNG.bitblt(img1, canvas1, 0, 0, img1.width, img1.height, 0, 0);
-  PNG.bitblt(img2, canvas2, 0, 0, img2.width, img2.height, 0, 0);
-  
-  const mismatchedPixels = pixelmatch(
-    canvas1.data, 
-    canvas2.data, 
-    diff.data, 
-    width, 
-    height, 
-    { threshold: 0.1, includeAA: false, alpha: 0.5 }
-  );
-  
-  fs.writeFileSync(diffPath, PNG.sync.write(diff));
-  
-  const totalPixels = width * height;
-  const matchPercentage = ((totalPixels - mismatchedPixels) / totalPixels * 100).toFixed(2);
-  
-  return {
-    width,
-    height,
-    totalPixels,
-    mismatchedPixels,
-    matchPercentage: parseFloat(matchPercentage),
-    sizeDifference: img1.width !== img2.width || img1.height !== img2.height,
-  };
+
+    PNG.bitblt(img1, canvas1, 0, 0, img1.width, img1.height, 0, 0);
+    PNG.bitblt(img2, canvas2, 0, 0, img2.width, img2.height, 0, 0);
+
+    const mismatchedPixels = pixelmatch(canvas1.data, canvas2.data, diff.data, width, height, {
+        threshold: 0.1,
+        includeAA: false,
+        alpha: 0.5,
+    });
+
+    fs.writeFileSync(diffPath, PNG.sync.write(diff));
+
+    const totalPixels = width * height;
+    const matchPercentage = (((totalPixels - mismatchedPixels) / totalPixels) * 100).toFixed(2);
+
+    return {
+        width,
+        height,
+        totalPixels,
+        mismatchedPixels,
+        matchPercentage: parseFloat(matchPercentage),
+        sizeDifference: img1.width !== img2.width || img1.height !== img2.height,
+    };
 }
 
 async function main() {
-  console.log('🔍 mhtml2html Visual Comparison');
-  console.log('================================\n');
-  
-  await ensureDirectories();
-  
-  console.log('🌐 Launching Chrome...\n');
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    channel: 'chrome',
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--allow-file-access-from-files',
-      '--disable-web-security',
-    ]
-  });
-  
-  const results = [];
-  
-  for (const testName of TEST_CASES) {
-    const htmlPath = path.join(HTML_DIR, `${testName}.html`);
-    const mhtmlPath = path.join(MHTML_DIR, `${testName}.mhtml`);
-    
-    if (!fs.existsSync(htmlPath)) {
-      console.log(`⚠️  Skipping ${testName}: HTML not found`);
-      continue;
-    }
-    
-    if (!fs.existsSync(mhtmlPath)) {
-      console.log(`⚠️  Skipping ${testName}: MHTML not found`);
-      continue;
-    }
-    
-    console.log(`📸 ${testName}`);
-    
-    // Convert MHTML to HTML using mhtml2html
-    const convertedPath = path.join(CONVERTED_DIR, `${testName}.html`);
-    console.log(`   Converting MHTML → HTML...`);
-    try {
-      await convertMhtmlToHtml(mhtmlPath, convertedPath);
-    } catch (err) {
-      console.log(`   ❌ Conversion failed: ${err.message}`);
-      results.push({
-        test: testName,
-        error: err.message,
-        matchPercentage: 0,
-      });
-      continue;
-    }
-    
-    const page = await browser.newPage();
-    await page.setViewport(VIEWPORT);
-    
-    // Screenshot original HTML
-    const htmlScreenshot = path.join(SCREENSHOTS_DIR, 'html', `${testName}.png`);
-    console.log(`   HTML → ${path.basename(htmlScreenshot)}`);
-    await captureScreenshot(page, `file://${htmlPath}`, htmlScreenshot);
-    
-    // Screenshot converted HTML
-    const convertedScreenshot = path.join(SCREENSHOTS_DIR, 'converted', `${testName}.png`);
-    console.log(`   Converted → ${path.basename(convertedScreenshot)}`);
-    await captureScreenshot(page, `file://${convertedPath}`, convertedScreenshot);
-    
-    await page.close();
-    
-    // Compare
-    const diffPath = path.join(SCREENSHOTS_DIR, 'diff', `${testName}-diff.png`);
-    const comparison = compareImages(htmlScreenshot, convertedScreenshot, diffPath);
-    
-    const status = comparison.matchPercentage >= 99 ? '✅' : 
-                   comparison.matchPercentage >= 95 ? '⚠️' : '❌';
-    
-    console.log(`   ${status} Match: ${comparison.matchPercentage}% (${comparison.mismatchedPixels.toLocaleString()} pixels differ)\n`);
-    
-    results.push({
-      test: testName,
-      ...comparison,
-      files: {
-        html: `html/${testName}.png`,
-        converted: `converted/${testName}.png`,
-        diff: `diff/${testName}-diff.png`,
-      }
+    console.log('🔍 mhtml2html Visual Comparison');
+    console.log('================================\n');
+
+    await ensureDirectories();
+
+    console.log('🌐 Launching Chrome...\n');
+    const browser = await puppeteer.launch({
+        headless: 'new',
+        channel: 'chrome',
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--allow-file-access-from-files',
+            '--disable-web-security',
+        ],
     });
-  }
-  
-  await browser.close();
-  
-  // Generate report
-  const report = {
-    timestamp: new Date().toISOString(),
-    viewport: VIEWPORT,
-    results,
-    summary: {
-      total: results.length,
-      passed: results.filter(r => r.matchPercentage >= 99).length,
-      warnings: results.filter(r => r.matchPercentage >= 95 && r.matchPercentage < 99).length,
-      failed: results.filter(r => r.matchPercentage < 95).length,
-      errors: results.filter(r => r.error).length,
-      averageMatch: results.filter(r => !r.error).length > 0 
-        ? (results.filter(r => !r.error).reduce((sum, r) => sum + r.matchPercentage, 0) / results.filter(r => !r.error).length).toFixed(2)
-        : 0,
+
+    const results = [];
+
+    for (const testName of TEST_CASES) {
+        const htmlPath = path.join(HTML_DIR, `${testName}.html`);
+        const mhtmlPath = path.join(MHTML_DIR, `${testName}.mhtml`);
+
+        if (!fs.existsSync(htmlPath)) {
+            console.log(`⚠️  Skipping ${testName}: HTML not found`);
+            continue;
+        }
+
+        if (!fs.existsSync(mhtmlPath)) {
+            console.log(`⚠️  Skipping ${testName}: MHTML not found`);
+            continue;
+        }
+
+        console.log(`📸 ${testName}`);
+
+        // Convert MHTML to HTML using mhtml2html
+        const convertedPath = path.join(CONVERTED_DIR, `${testName}.html`);
+        console.log(`   Converting MHTML → HTML...`);
+        try {
+            await convertMhtmlToHtml(mhtmlPath, convertedPath);
+        } catch (err) {
+            console.log(`   ❌ Conversion failed: ${err.message}`);
+            results.push({
+                test: testName,
+                error: err.message,
+                matchPercentage: 0,
+            });
+            continue;
+        }
+
+        const page = await browser.newPage();
+        await page.setViewport(VIEWPORT);
+
+        // Screenshot original HTML
+        const htmlScreenshot = path.join(SCREENSHOTS_DIR, 'html', `${testName}.png`);
+        console.log(`   HTML → ${path.basename(htmlScreenshot)}`);
+        await captureScreenshot(page, `file://${htmlPath}`, htmlScreenshot);
+
+        // Screenshot converted HTML
+        const convertedScreenshot = path.join(SCREENSHOTS_DIR, 'converted', `${testName}.png`);
+        console.log(`   Converted → ${path.basename(convertedScreenshot)}`);
+        await captureScreenshot(page, `file://${convertedPath}`, convertedScreenshot);
+
+        await page.close();
+
+        // Compare
+        const diffPath = path.join(SCREENSHOTS_DIR, 'diff', `${testName}-diff.png`);
+        const comparison = compareImages(htmlScreenshot, convertedScreenshot, diffPath);
+
+        const status =
+            comparison.matchPercentage >= 99
+                ? '✅'
+                : comparison.matchPercentage >= 95
+                  ? '⚠️'
+                  : '❌';
+
+        console.log(
+            `   ${status} Match: ${comparison.matchPercentage}% (${comparison.mismatchedPixels.toLocaleString()} pixels differ)\n`
+        );
+
+        results.push({
+            test: testName,
+            ...comparison,
+            files: {
+                html: `html/${testName}.png`,
+                converted: `converted/${testName}.png`,
+                diff: `diff/${testName}-diff.png`,
+            },
+        });
     }
-  };
-  
-  const reportPath = path.join(__dirname, 'comparison-report.json');
-  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
-  
-  // Print summary
-  console.log('================================');
-  console.log('📊 Summary');
-  console.log('================================');
-  console.log(`Total tests:    ${report.summary.total}`);
-  console.log(`✅ Passed:      ${report.summary.passed} (≥99% match)`);
-  console.log(`⚠️  Warnings:    ${report.summary.warnings} (95-99% match)`);
-  console.log(`❌ Failed:      ${report.summary.failed} (<95% match)`);
-  console.log(`💥 Errors:      ${report.summary.errors}`);
-  console.log(`Average match:  ${report.summary.averageMatch}%`);
-  console.log(`\n📄 Report: ${reportPath}`);
-  
-  await generateHtmlReport(report);
-  
-  console.log('\n✨ Done!');
-  
-  if (report.summary.failed > 0 || report.summary.errors > 0) {
-    process.exit(1);
-  }
+
+    await browser.close();
+
+    // Generate report
+    const report = {
+        timestamp: new Date().toISOString(),
+        viewport: VIEWPORT,
+        results,
+        summary: {
+            total: results.length,
+            passed: results.filter((r) => r.matchPercentage >= 99).length,
+            warnings: results.filter((r) => r.matchPercentage >= 95 && r.matchPercentage < 99)
+                .length,
+            failed: results.filter((r) => r.matchPercentage < 95).length,
+            errors: results.filter((r) => r.error).length,
+            averageMatch:
+                results.filter((r) => !r.error).length > 0
+                    ? (
+                          results
+                              .filter((r) => !r.error)
+                              .reduce((sum, r) => sum + r.matchPercentage, 0) /
+                          results.filter((r) => !r.error).length
+                      ).toFixed(2)
+                    : 0,
+        },
+    };
+
+    const reportPath = path.join(__dirname, 'comparison-report.json');
+    fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+
+    // Print summary
+    console.log('================================');
+    console.log('📊 Summary');
+    console.log('================================');
+    console.log(`Total tests:    ${report.summary.total}`);
+    console.log(`✅ Passed:      ${report.summary.passed} (≥99% match)`);
+    console.log(`⚠️  Warnings:    ${report.summary.warnings} (95-99% match)`);
+    console.log(`❌ Failed:      ${report.summary.failed} (<95% match)`);
+    console.log(`💥 Errors:      ${report.summary.errors}`);
+    console.log(`Average match:  ${report.summary.averageMatch}%`);
+    console.log(`\n📄 Report: ${reportPath}`);
+
+    await generateHtmlReport(report);
+
+    console.log('\n✨ Done!');
+
+    if (report.summary.failed > 0 || report.summary.errors > 0) {
+        process.exit(1);
+    }
 }
 
 async function generateHtmlReport(report) {
-  const html = `<!DOCTYPE html>
+    const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -342,9 +382,10 @@ async function generateHtmlReport(report) {
     </div>
     
     <div class="test-results">
-      ${report.results.map(r => {
-        if (r.error) {
-          return `
+      ${report.results
+          .map((r) => {
+              if (r.error) {
+                  return `
           <div class="test-card">
             <div class="test-header">
               <span class="test-name">${r.test}</span>
@@ -352,9 +393,14 @@ async function generateHtmlReport(report) {
             </div>
             <div class="error-message">${r.error}</div>
           </div>`;
-        }
-        const status = r.matchPercentage >= 99 ? 'passed' : r.matchPercentage >= 95 ? 'warning' : 'failed';
-        return `
+              }
+              const status =
+                  r.matchPercentage >= 99
+                      ? 'passed'
+                      : r.matchPercentage >= 95
+                        ? 'warning'
+                        : 'failed';
+              return `
         <div class="test-card">
           <div class="test-header">
             <span class="test-name">${r.test}</span>
@@ -380,18 +426,19 @@ async function generateHtmlReport(report) {
             ${r.sizeDifference ? '<span style="color: var(--warning)">⚠️ Size mismatch</span>' : ''}
           </div>
         </div>`;
-      }).join('')}
+          })
+          .join('')}
     </div>
   </div>
 </body>
 </html>`;
 
-  const reportPath = path.join(__dirname, 'comparison-report.html');
-  fs.writeFileSync(reportPath, html);
-  console.log(`🌐 HTML Report: ${reportPath}`);
+    const reportPath = path.join(__dirname, 'comparison-report.html');
+    fs.writeFileSync(reportPath, html);
+    console.log(`🌐 HTML Report: ${reportPath}`);
 }
 
-main().catch(err => {
-  console.error('Error:', err);
-  process.exit(1);
+main().catch((err) => {
+    console.error('Error:', err);
+    process.exit(1);
 });

@@ -87,6 +87,36 @@ function sanitizeFilename(url) {
         .substring(0, 100);
 }
 
+/**
+ * Wait for the page to be fully ready (fonts loaded, images loaded, layout stable).
+ * Uses proper browser APIs instead of arbitrary setTimeout.
+ */
+async function waitForPageReady(page) {
+    await page.evaluate(async () => {
+        // Wait for all fonts to load
+        if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+        }
+
+        // Wait for images to load
+        const images = Array.from(document.images);
+        await Promise.all(
+            images
+                .filter((img) => !img.complete)
+                .map(
+                    (img) =>
+                        new Promise((resolve) => {
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        })
+                )
+        );
+
+        // Wait for next animation frame to ensure layout is stable
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+    });
+}
+
 async function processURL(browser, url, index, results) {
     const safeName = sanitizeFilename(url);
     const pageDir = path.join(OUTPUT_DIR, `${index.toString().padStart(3, '0')}_${safeName}`);
@@ -122,8 +152,8 @@ async function processURL(browser, url, index, results) {
             timeout: TIMEOUT,
         });
 
-        // Wait a bit for any late-loading content
-        await page.evaluate(() => new Promise((r) => setTimeout(r, 1000)));
+        // Wait for fonts, images, and layout to stabilize
+        await waitForPageReady(page);
 
         // Take screenshot of original
         await takeScreenshot(page, originalScreenshot);
@@ -153,7 +183,8 @@ async function processURL(browser, url, index, results) {
             timeout: TIMEOUT,
         });
 
-        await page.evaluate(() => new Promise((r) => setTimeout(r, 500)));
+        // Wait for fonts, images, and layout to stabilize
+        await waitForPageReady(page);
         await takeScreenshot(page, convertedScreenshot);
         console.log(`[${index}] Converted screenshot captured`);
 

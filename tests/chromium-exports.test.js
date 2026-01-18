@@ -1,6 +1,6 @@
 /**
  * Chromium Export Tests
- * 
+ *
  * Tests mhtml2html against real Chromium-generated MHTML files.
  * These test files cover various HTML features and edge cases.
  */
@@ -44,8 +44,8 @@ if (isNode) {
 
     readMHTML = function readMHTML(file, callback) {
         fetch('/fixtures/mhtml-output/' + file)
-            .then(response => response.blob())
-            .then(mhtmlBlob => {
+            .then((response) => response.blob())
+            .then((mhtmlBlob) => {
                 const reader = new FileReader();
                 reader.addEventListener('loadend', function () {
                     callback(this.result);
@@ -64,7 +64,7 @@ const TEST_CASES = [
         checks: (doc, html) => {
             chai.expect(html).to.include('External CSS Loading');
             chai.expect(html).to.include('<style');
-        }
+        },
     },
     {
         file: 'test2-images-svg.mhtml',
@@ -72,7 +72,7 @@ const TEST_CASES = [
         description: 'Tests various image formats including SVG',
         checks: (doc, html) => {
             chai.expect(html).to.include('data:image');
-        }
+        },
     },
     {
         file: 'test3-webfonts-typography.mhtml',
@@ -80,7 +80,7 @@ const TEST_CASES = [
         description: 'Tests @font-face and typography styles',
         checks: (doc, html) => {
             chai.expect(html).to.include('Typography');
-        }
+        },
     },
     {
         file: 'test4-css-animations.mhtml',
@@ -88,7 +88,7 @@ const TEST_CASES = [
         description: 'Tests CSS keyframe animations',
         checks: (doc, html) => {
             chai.expect(html).to.include('Animation');
-        }
+        },
     },
     {
         file: 'test5-iframes.mhtml',
@@ -96,15 +96,15 @@ const TEST_CASES = [
         description: 'Tests iframe content preservation',
         checks: (doc, html) => {
             chai.expect(html).to.include('iframe');
-        }
+        },
     },
     {
         file: 'test6-complex-layout.mhtml',
         name: 'Complex Layout',
         description: 'Tests complex CSS Grid/Flexbox layouts',
-        checks: (doc, html) => {
+        checks: (doc) => {
             chai.expect(doc.window.document.querySelector('body')).to.not.be.null;
-        }
+        },
     },
     {
         file: 'test7-nested-css-imports.mhtml',
@@ -112,15 +112,15 @@ const TEST_CASES = [
         description: 'Tests CSS @import chains',
         checks: (doc, html) => {
             chai.expect(html).to.include('<style');
-        }
+        },
     },
     {
         file: 'test8-custom-elements.mhtml',
         name: 'Custom Elements',
         description: 'Tests web components and custom elements',
-        checks: (doc, html) => {
+        checks: (doc) => {
             chai.expect(doc.window.document.querySelector('body')).to.not.be.null;
-        }
+        },
     },
     {
         file: 'test9-css-resources.mhtml',
@@ -128,15 +128,15 @@ const TEST_CASES = [
         description: 'Tests url() references in CSS (backgrounds, cursors)',
         checks: (doc, html) => {
             chai.expect(html).to.include('<style');
-        }
+        },
     },
     {
         file: 'test10-js-modules.mhtml',
         name: 'JS Modules',
         description: 'Tests JavaScript module loading',
-        checks: (doc, html) => {
+        checks: (doc) => {
             chai.expect(doc.window.document.querySelector('body')).to.not.be.null;
-        }
+        },
     },
     {
         file: 'test11-image-loading.mhtml',
@@ -144,7 +144,7 @@ const TEST_CASES = [
         description: 'Tests lazy loading, srcset, picture elements',
         checks: (doc, html) => {
             chai.expect(html).to.include('img');
-        }
+        },
     },
     {
         file: 'test12-base64-edge-cases.mhtml',
@@ -152,7 +152,7 @@ const TEST_CASES = [
         description: 'Tests various base64 encoding patterns',
         checks: (doc, html) => {
             chai.expect(html).to.include('data:');
-        }
+        },
     },
 ];
 
@@ -164,13 +164,13 @@ describe('Chromium MHTML Export Tests', function () {
             it(`Should parse ${testCase.name}`, function (done) {
                 readMHTML(testCase.file, (data) => {
                     const doc = mhtml2html.parse(data, { parseDOM });
-                    
+
                     chai.expect(doc).to.be.an('object');
                     chai.expect(doc).to.have.property('index');
                     chai.expect(doc).to.have.property('media');
                     chai.expect(doc).to.have.property('frames');
                     chai.expect(doc.index).to.be.a('string');
-                    
+
                     done();
                 });
             });
@@ -182,18 +182,18 @@ describe('Chromium MHTML Export Tests', function () {
             it(`Should convert ${testCase.name}`, function (done) {
                 readMHTML(testCase.file, (data) => {
                     const doc = mhtml2html.convert(data, { parseDOM, convertIframes: true });
-                    
+
                     chai.expect(doc).to.be.an('object');
                     chai.expect(doc).to.have.property('window');
                     chai.expect(doc.window).to.have.property('document');
-                    
+
                     const html = doc.window.document.documentElement.outerHTML;
                     chai.expect(html).to.be.a('string');
                     chai.expect(html.length).to.be.greaterThan(100);
-                    
+
                     // Run test-specific checks
                     testCase.checks(doc, html);
-                    
+
                     done();
                 });
             });
@@ -205,15 +205,15 @@ describe('Chromium MHTML Export Tests', function () {
             readMHTML('test1-external-css.mhtml', (data) => {
                 const parsed = mhtml2html.parse(data, { parseDOM });
                 const converted = mhtml2html.convert(parsed, { parseDOM });
-                
+
                 const document = converted.window.document;
-                
+
                 // Check essential structure is preserved
                 chai.expect(document.querySelector('html')).to.not.be.null;
                 chai.expect(document.querySelector('head')).to.not.be.null;
                 chai.expect(document.querySelector('body')).to.not.be.null;
                 chai.expect(document.querySelector('title')).to.not.be.null;
-                
+
                 done();
             });
         });
@@ -222,11 +222,11 @@ describe('Chromium MHTML Export Tests', function () {
             readMHTML('test1-external-css.mhtml', (data) => {
                 const converted = mhtml2html.convert(data, { parseDOM });
                 const document = converted.window.document;
-                
+
                 // External <link> should be converted to <style>
                 const styles = document.querySelectorAll('style');
                 chai.expect(styles.length).to.be.greaterThan(0);
-                
+
                 done();
             });
         });
@@ -235,11 +235,11 @@ describe('Chromium MHTML Export Tests', function () {
             readMHTML('test2-images-svg.mhtml', (data) => {
                 const converted = mhtml2html.convert(data, { parseDOM });
                 const html = converted.window.document.documentElement.outerHTML;
-                
+
                 // Check for data URI images
                 const hasDataUri = html.includes('data:image');
                 chai.expect(hasDataUri).to.be.true;
-                
+
                 done();
             });
         });

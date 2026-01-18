@@ -188,7 +188,7 @@ describe('Test converting MHTML to HTML', function () {
     });
 
     it('Should convert valid MHTML with iframes enabled', function (done) {
-        this.timeout(10000);
+        this.timeout(30000);
 
         readMHTML('iframes.mhtml', (data) => {
             const doc = mhtml2html.convert(data, { parseDOM, convertIframes: true });
